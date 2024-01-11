@@ -157,7 +157,7 @@ export class OrganizationsFromMetadataService
             terms: {
               field:
                 semVersion === '4.2.2'
-                  ? 'contactForResource.organisation'
+                  ? 'contactForResource.organisation.keyword'
                   : 'contactForResource.organisationObject.default.keyword',
               exclude: '',
               size: 5000,

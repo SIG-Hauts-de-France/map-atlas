@@ -41,16 +41,19 @@ proxy_path = ""
 #  - for font families: https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
 #  - for background: https://developer.mozilla.org/en-US/docs/Web/CSS/background
 [theme]
-primary_color = "#c82850"
-secondary_color = "#001638"
-main_color = "#555" # All-purpose text color
-background_color = "#fdfbff"
+primary_color = "#0050a4" #c82850
+secondary_color = "#8DC63F" #001638
+main_color = "#000000" #555 All-purpose text color
+background_color = "#ffffff" #fdfbff
 
 # These optional parameters indicate which background should be used for the main header and the text color used
 # on top of the background. The color should be chosen to contrast well with the background (defaults to white).
 # Note: The search header does not use the header_foreground_color as it allows futher customisation via HTML.
 # header_background = "center /cover url('assets/img/header_bg.webp')" or "var(--color-gray-500)"
 # header_foreground_color = 'white'
+#header_background = "white"
+#header_foreground_color = "#0050a4";
+header_background = "#8DC63F"
 
 # This optional parameter allows to override the fallback image that should be used for thumbnails,
 # if the metadata record has no thumbnail image url or it is broken.
@@ -60,6 +63,8 @@ background_color = "#fdfbff"
 # main_font = "'My Custom Font', fallback-font"
 # title_font = "'My Custom Title Font', fallback-font-title"
 # fonts_stylesheet_url = "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Permanent+Marker&display=swap"
+main_font = "'Etelka Text Pro', Arial"
+title_font = "'Etelka Text Pro Bold', Arial"
 
 ### SEARCH SETTINGS
 

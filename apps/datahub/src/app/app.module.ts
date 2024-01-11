@@ -80,6 +80,7 @@ import { RecordOtherlinksComponent } from './record/record-otherlinks/record-oth
 import { RecordDownloadsComponent } from './record/record-downloads/record-downloads.component'
 import { RecordApisComponent } from './record/record-apis/record-apis.component'
 import { MatTabsModule } from '@angular/material/tabs'
+import { LinkMenuComponent } from './home/link-menu/link-menu.component'
 
 export const metaReducers: MetaReducer[] = !environment.production ? [] : []
 // https://github.com/nrwl/nx/issues/191
@@ -104,6 +105,7 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     RecordOtherlinksComponent,
     RecordDownloadsComponent,
     RecordApisComponent,
+    LinkMenuComponent,
   ],
   imports: [
     BrowserModule,

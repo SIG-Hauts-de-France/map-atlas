@@ -109,7 +109,7 @@
   "datahub.header.news": "Accueil",
   "datahub.header.organisations": "Organisations",
   "datahub.header.popularRecords": "Les plus appréciées",
-  "datahub.header.title.html": "<div class=\"text-white\">Toutes les données<br>publiques de mon organisation</div>",
+  "datahub.header.title.html": "Carthotèque de la Région Hauts-de-France",
   "datahub.news.feed": "Fil d'activité",
   "datahub.news.figures": "Quelques chiffres",
   "datahub.search.back": "Retour aux résultats",
