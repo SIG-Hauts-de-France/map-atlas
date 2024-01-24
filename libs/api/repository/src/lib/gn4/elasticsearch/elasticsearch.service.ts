@@ -242,17 +242,18 @@ export class ElasticsearchService {
     uuids?: string[],
     geometry?: Geometry
   ) {
-    const must = [] as Record<string, unknown>[]
+    const must = {
+      ...this.queryFilterOnValues('resourceType', [
+        'map', 'map/static', 'mapDigital'
+      ]),
+    } as Record<string, unknown>[]
     const must_not = {
       ...this.queryFilterOnValues('resourceType', [
-        'service',
-        'map',
-        'map/static',
-        'mapDigital',
+        'service'
       ]),
     }
     const should = [] as Record<string, unknown>[]
-    const filter = [this.queryFilterOnValues('isTemplate', 'n')] as Record<
+    const filter = [this.queryFilterOnValues('isTemplate', 'n'), ] as Record<
       string,
       unknown
     >[]
@@ -342,6 +343,9 @@ export class ElasticsearchService {
       query: {
         bool: {
           must: [
+            this.queryFilterOnValues('resourceType', [
+              'map', 'map/static', 'mapDigital'
+            ]),
             this.queryFilterOnValues('isTemplate', 'n'),
             {
               multi_match: {
@@ -358,10 +362,7 @@ export class ElasticsearchService {
           ],
           must_not: {
             ...this.queryFilterOnValues('resourceType', [
-              'service',
-              'map',
-              'map/static',
-              'mapDigital',
+              'service'
             ]),
           },
         },
