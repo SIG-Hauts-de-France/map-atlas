@@ -25,21 +25,29 @@ interface SortChoice {
 export class SortByComponent implements OnInit {
   @Input() isQualitySortable: boolean
   choices: SortChoice[] = [
-    {
-      label: marker('results.sortBy.relevancy'),
-      value: SortByEnum.RELEVANCY.join(','),
-    },
+    // {
+    //   label: marker('results.sortBy.relevancy'),
+    //   value: SortByEnum.RELEVANCY.join(','),
+    // },
     {
       label: marker('results.sortBy.dateStamp'),
       value: SortByEnum.CREATE_DATE.join(','),
     },
     {
-      label: marker('results.sortBy.changeDate'),
-      value: SortByEnum.CHANGE_DATE.join(','),
+      label: marker('results.sortBy.dateStampAsc'),
+      value: SortByEnum.CREATE_DATE_ASC.join(','),
     },
+    // {
+    //   label: marker('results.sortBy.changeDate'),
+    //   value: SortByEnum.CHANGE_DATE.join(','),
+    // },
     {
       label: marker('results.sortBy.popularity'),
       value: SortByEnum.POPULARITY.join(','),
+    },
+    {
+      label: marker('results.sortBy.popularityAsc'),
+      value: SortByEnum.POPULARITY_ASC.join(','),
     },
   ]
   currentSortBy$ = this.facade.sortBy$.pipe(

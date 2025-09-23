@@ -12,6 +12,9 @@ import {
   DEFAULT_RESULTS_LAYOUT_CONFIG,
   RESULTS_LAYOUT_CONFIG,
 } from '@geonetwork-ui/ui/search'
+import { MostRecentComponent } from './most-recent/most-recent.component'
+import { MostDownloadedComponent } from './most-downloaded/most-downloaded.component'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'datahub-news-page',
@@ -27,13 +30,27 @@ import {
     FeatureSearchModule,
     LastCreatedComponent,
     SearchStateContainerDirective,
+    MostRecentComponent,
+    MostDownloadedComponent,
   ],
   providers: [
     { provide: RESULTS_LAYOUT_CONFIG, useValue: DEFAULT_RESULTS_LAYOUT_CONFIG },
   ],
 })
 export class NewsPageComponent {
+  constructor(private router: Router) {}
   getContactMail(): string {
     return getGlobalConfig().CONTACT_EMAIL
+  }
+  onMostRecentClick():void{
+    this.router.navigate(['/maps-recent']);
+  }
+
+  onMapsClick():void{
+    this.router.navigate(['/maps']);
+  }
+
+  onMostDownloadedClick():void{
+    this.router.navigate(['/maps-downloaded']);
   }
 }

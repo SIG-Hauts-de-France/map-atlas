@@ -88,4 +88,8 @@ export class EditorFacade {
   canEditRecord(canEditRecord: boolean) {
     this.store.dispatch(EditorActions.canEditRecord({ canEditRecord }))
   }
+
+  prefillRecordData(issue: any) {
+    this.store.dispatch(EditorActions.prefillRecord({ record: issue }));
+  }
 }

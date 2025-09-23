@@ -12,10 +12,16 @@ import { NewsPageComponent } from '../home/news-page/news-page.component'
 import { OrganisationsPageComponent } from '../home/organisations-page/organisations-page.component'
 import { SearchPageComponent } from '../home/search/search-page/search-page.component'
 import { RecordPageComponent } from '../record/record-page/record-page.component'
+import { MapsPageComponent } from '../home/maps-page/maps-page.component'
+import { MapsRecentPageComponent } from '../home/maps-recent-page/maps-recent-page.component'
+import { MapsDownloadedPageComponent } from '../home/maps-downloaded-page/maps-downloaded-page.component'
 import {
   ROUTER_ROUTE_HOME,
   ROUTER_ROUTE_NEWS,
   ROUTER_ROUTE_ORGANIZATIONS,
+  ROUTER_ROUTE_MAPS,
+  ROUTER_ROUTE_MAPS_RECENT,
+  ROUTER_ROUTE_MAPS_DOWNLOADED,
 } from './constants'
 import { OrganizationPageComponent } from '../organization/organization-page/organization-page.component'
 
@@ -65,6 +71,27 @@ export class DatahubRouterService {
           {
             path: ROUTER_ROUTE_ORGANIZATIONS,
             component: OrganisationsPageComponent,
+            data: {
+              shouldDetach: true,
+            },
+          },
+          {
+            path: ROUTER_ROUTE_MAPS,
+            component: MapsPageComponent,
+            data: {
+              shouldDetach: true,
+            },
+          },
+          {
+            path: ROUTER_ROUTE_MAPS_RECENT,
+            component: MapsRecentPageComponent,
+            data: {
+              shouldDetach: true,
+            },
+          },
+          {
+            path: ROUTER_ROUTE_MAPS_DOWNLOADED,
+            component: MapsDownloadedPageComponent,
             data: {
               shouldDetach: true,
             },

@@ -28,3 +28,9 @@ gn-ui-button:last-of-type {
 .mat-mdc-option.suggestion.mat-mdc-option-active {
   background-color: var(--color-primary-lightest);
 }
+
+input {
+  height: var(--input-height);
+  padding: 1.05em;
+  padding-right: calc(2 * var(--input-height));
+}

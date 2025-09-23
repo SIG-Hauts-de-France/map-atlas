@@ -68,3 +68,8 @@ export const canEditRecord = createAction(
   '[Editor] User can edit record',
   props<{ canEditRecord: boolean }>()
 )
+
+export const prefillRecord = createAction(
+  '[Editor] Prefill Record',
+  props<{ record: CatalogRecord }>()
+);

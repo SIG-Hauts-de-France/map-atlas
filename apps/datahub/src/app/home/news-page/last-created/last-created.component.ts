@@ -26,10 +26,16 @@ export class LastCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'changeDate'])
-      .setPageSize(getOptionalSearchConfig()?.LIMIT || 10)
-      .setSortBy(['desc', 'createDate'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'dateStamp'])
+      .setPageSize(3)
+      .setSortBy(['desc', 'dateStamp'])
       .setResultsLayout('FEED')
+      .setConfigFilters({
+        'th_otherKeywords-.default': {
+            CALU: true
+        } 
+      })
+    
   }
 
   onMetadataSelection(metadata: CatalogRecord): void {

@@ -22,7 +22,12 @@ import {
   SortByField,
 } from '@geonetwork-ui/common/domain/model/search'
 import { map } from 'rxjs/operators'
-import { ROUTER_ROUTE_NEWS } from '../../router/constants'
+import { 
+  ROUTER_ROUTE_NEWS,
+  ROUTER_ROUTE_MAPS_DOWNLOADED, 
+  ROUTER_ROUTE_MAPS_RECENT, 
+  ROUTER_ROUTE_MAPS,
+} from '../../router/constants'
 import { lastValueFrom } from 'rxjs'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 import { sortByFromString } from '@geonetwork-ui/util/shared'
@@ -36,6 +41,7 @@ import { NavigationMenuComponent } from '../navigation-menu/navigation-menu.comp
 import { LanguageSwitcherComponent } from '@geonetwork-ui/ui/catalog'
 import { provideIcons, provideNgIconsConfig } from '@ng-icons/core'
 import { matStarOutline } from '@ng-icons/material-icons/outline'
+import { LinkMenuComponent } from '../link-menu/link-menu.component'
 
 marker('datahub.header.myfavorites')
 marker('datahub.header.lastRecords')
@@ -57,6 +63,7 @@ marker('datahub.header.popularRecords')
     NavigationMenuComponent,
     LanguageSwitcherComponent,
     FuzzySearchComponent,
+    LinkMenuComponent,
   ],
   providers: [
     provideIcons({
@@ -94,7 +101,10 @@ export class HomeHeaderComponent {
     map(
       (route) =>
         route.url[0].path === ROUTER_ROUTE_NEWS ||
-        route.url[0].path === ROUTER_ROUTE_SEARCH
+        route.url[0].path === ROUTER_ROUTE_SEARCH ||
+        route.url[0].path === ROUTER_ROUTE_MAPS ||
+        route.url[0].path === ROUTER_ROUTE_MAPS_RECENT ||
+        route.url[0].path === ROUTER_ROUTE_MAPS_DOWNLOADED
     )
   )
 

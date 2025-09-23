@@ -35,6 +35,10 @@ import { SpinningLoaderComponent } from '@geonetwork-ui/ui/widgets'
 import { SearchHeaderComponent } from '../dashboard/search-header/search-header.component'
 import { PageErrorComponent } from './components/page-error/page-error.component'
 import { DateService } from '@geonetwork-ui/util/shared'
+import { RedmineService } from '../redmine.service'
+import { FormsModule } from '@angular/forms';
+import { CatalogRecord, Keyword } from '@geonetwork-ui/common/domain/model/record'
+
 
 marker('editor.record.form.bottomButtons.comeBackLater')
 marker('editor.record.form.bottomButtons.previous')
@@ -61,6 +65,7 @@ marker('editor.record.form.bottomButtons.next')
     PageErrorComponent,
     MultilingualPanelComponent,
     MetadataQualityPanelComponent,
+    FormsModule,
   ],
 })
 export class EditPageComponent implements OnInit, OnDestroy {
@@ -78,6 +83,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
   newRecord = false
   isLoading = true
   sidePanelOpen: 'multilingual' | 'metadataQuality' | null = null
+  cardNumber = ''
 
   @ViewChild('scrollContainer') scrollContainer: ElementRef<HTMLElement>
 
@@ -87,7 +93,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
     private notificationsService: NotificationsService,
     private translateService: TranslateService,
     private router: Router,
-    private dateService: DateService
+    private dateService: DateService,
+    private redmineService: RedmineService,
   ) {}
 
   ngOnInit(): void {

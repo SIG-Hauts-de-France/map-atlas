@@ -59,9 +59,9 @@ export class NavigationMenuComponent {
       label: 'datahub.header.datasets',
     },
     {
-      link: `${ROUTER_ROUTE_ORGANIZATIONS}`,
-      label: 'datahub.header.organizations',
-    },
+      link: 'https://sig.hautsdefrance.fr/ext/opendata/web/contact.html',
+      label: 'datahub.header.contact',
+    }
   ]
 
   activeLink$ = this.routerFacade.currentRoute$.pipe(
