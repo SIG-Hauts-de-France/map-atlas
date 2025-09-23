@@ -1,0 +1,12 @@
+<div id="record-page">
+  <gn-ui-record-meta
+    [metadata]="mdViewFacade.metadata$ | async"
+  ></gn-ui-record-meta>
+  <map-atlas-header-record
+    [metadata]="mdViewFacade.metadata$ | async"
+  ></map-atlas-header-record>
+
+  <map-atlas-record-metadata
+    [metadataQualityDisplay]="metadataQualityDisplay"
+  ></map-atlas-record-metadata>
+</div>

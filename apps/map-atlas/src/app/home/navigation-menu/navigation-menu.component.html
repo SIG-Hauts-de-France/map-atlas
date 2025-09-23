@@ -1,0 +1,59 @@
+<ng-container *ngFor="let l of tabLinks">
+   <!-- Lien interne -->
+   <button
+    *ngIf="!l.link.startsWith('http')"
+    [routerLink]="l.link"
+    [ngClass]="
+      (activeLink$ | async).link === l.link
+        ? 'decoration-primary'
+        : 'decoration-transparent hover:decoration-primary transition-colors'
+    "
+    class="hidden sm:block sm:py-4 uppercase truncate underline decoration-[7px] underline-offset-[16px]"
+    [style.color]="foregroundColor"
+    translate
+  >
+    {{ l.label }}
+  </button>
+  <!-- Lien externe -->
+  <a
+    *ngIf="l.link.startsWith('http')"
+    [href]="l.link"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hidden sm:block sm:py-4 uppercase truncate underline decoration-[7px] underline-offset-[16px] decoration-transparent hover:decoration-primary transition-colors"
+    [style.color]="foregroundColor"
+    translate
+  >
+    {{ l.label }}
+  </a>
+
+</ng-container>
+<button
+  (click)="toggleMobileMenu()"
+  *ngIf="(isMobile$ | async) === true"
+  class="uppercase truncate text-white bg-primary w-full flex justify-start cursor-pointer z-50"
+>
+  <button
+    type="button"
+    class="h-12 inline-flex items-center justify-center align-middle pl-6 rounded-md shrink-0"
+  >
+    <ng-icon class="align-middle" name="matMenuOutline"></ng-icon>
+  </button>
+  <div class="shrink truncate" *ngIf="displayMobileMenu">
+    <div *ngFor="let l of tabLinks">
+      <button
+        [routerLink]="l.link"
+        class="block pl-5 pr-3 py-3 rounded-md text-[18px] font-medium uppercase tracking-wider w-full text-left truncate"
+        translate
+      >
+        {{ l.label }}
+      </button>
+    </div>
+  </div>
+  <button
+    class="block pl-5 pr-3 py-3 rounded-md text-[18px] font-medium uppercase tracking-wider shrink truncate"
+    *ngIf="!displayMobileMenu"
+  >
+    {{ (activeLink$ | async).label | translate }}
+  </button>
+</button>
