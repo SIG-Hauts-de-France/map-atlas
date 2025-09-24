@@ -67,6 +67,36 @@ export const RECORD_KEYWORDS_FIELD: EditorField = {
   formFieldConfig: {},
 }
 
+export const RECORD_THEME_HDF_FIELD: EditorField = {
+  model: 'keywordsTheme',
+  formFieldConfig: {
+    labelKey: marker('Thématique Haut de France'),
+  },
+}
+marker('editor.record.form.field.keywordsTheme')
+
+export const RECORD_COLLECTION_FIELD: EditorField = {
+  model: 'keywordsCollection',
+  formFieldConfig: {
+    labelKey: marker('Collections'),
+  },
+}
+marker('editor.record.form.field.keywordsCollection')
+
+export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
+  model: 'resolutionScaleDenominator',
+  formFieldConfig: {
+    labelKey: marker('Echelle'),
+  },
+}
+
+export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
+  model: 'alimentations',
+  formFieldConfig: {
+    labelKey: marker('Alimentations'),
+  },
+}
+
 export const RECORD_TOPICS_FIELD: EditorField = {
   model: 'topics',
   formFieldConfig: {},
@@ -243,6 +273,18 @@ export const CLASSIFICATION_SECTION: EditorSection = {
   fields: [RECORD_KEYWORDS_FIELD],
 }
 
+export const CUSTOM_SECTION: EditorSection = {
+  labelKey: marker('Section pour HDF'),
+  descriptionKey: marker('Section pour HDF - Concu spécialement pour vous'),
+  hidden: false,
+  fields: [
+    RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD, 
+    RECORD_ALIMENTATIONS_FIELD,
+    RECORD_THEME_HDF_FIELD, 
+    RECORD_COLLECTION_FIELD
+  ],
+}
+
 export const INSPIRE_SECTION: EditorSection = {
   labelKey: marker('editor.record.form.section.inspire.label'),
   descriptionKey: marker('editor.record.form.section.inspire.description'),
@@ -287,6 +329,7 @@ export const DEFAULT_CONFIGURATION: EditorConfig = {
     {
       labelKey: marker('editor.record.form.page.description'),
       sections: [
+        CUSTOM_SECTION,
         TITLE_SECTION,
         CLASSIFICATION_SECTION,
         INSPIRE_SECTION,

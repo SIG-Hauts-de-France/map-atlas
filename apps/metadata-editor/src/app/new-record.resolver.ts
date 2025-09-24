@@ -38,6 +38,8 @@ export class NewRecordResolver {
           defaultLanguage: 'en',
           topics: [],
           keywords: [],
+          keywordsTheme: [],
+          keywordsCollection: [],
           licenses: [],
           legalConstraints: [NOT_KNOWN_CONSTRAINT],
           securityConstraints: [],
@@ -50,6 +52,8 @@ export class NewRecordResolver {
           onlineResources: [],
           spatialExtents: [],
           temporalExtents: [],
+          resolutionScaleDenominator: '',
+          alimentations: '',
         }
         return [catalogRecord, null, false]
       })

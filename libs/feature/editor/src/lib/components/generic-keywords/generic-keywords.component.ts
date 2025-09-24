@@ -48,6 +48,7 @@ export class GenericKeywordsComponent {
   @Input() keywordTypes: KeywordType[]
   @Input() placeholder: string
   @Input() allowSubmit: boolean
+  @Input() thesaurusId: string
   @Output() changedKeywords: EventEmitter<Keyword[]> = new EventEmitter()
   @Output() addedKeyword: EventEmitter<Keyword> = new EventEmitter()
   @Output() deletedKeyword: EventEmitter<Keyword> = new EventEmitter()
@@ -57,13 +58,23 @@ export class GenericKeywordsComponent {
   }
 
   autoCompleteAction = (query: string) => {
-    return this.platformService.searchKeywords(query, this.keywordTypes).pipe(
-      map((keywords) =>
-        keywords.map((keyword) => {
-          return { title: keyword.label, value: keyword }
-        })
+    if (this.thesaurusId) {
+      return this.platformService.searchKeywordsInThesaurus(query, this.thesaurusId).pipe(
+        map((keywords) =>
+          keywords.map((keyword) => {
+            return { title: keyword.label, value: keyword }
+          })
+        )
       )
-    )
+    } else {
+      return this.platformService.searchKeywords(query, this.keywordTypes).pipe(
+        map((keywords) =>
+          keywords.map((keyword) => {
+            return { title: keyword.label, value: keyword }
+          })
+        )
+      ) 
+    }
   }
 
   constructor(private platformService: PlatformServiceInterface) {}

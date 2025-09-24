@@ -66,7 +66,8 @@ export function extractCharacterString(): ChainableFunction<
     fallback(
       findChildElement('gco:CharacterString', false),
       findChildElement('gmx:Anchor', false),
-      findChildElement('gmx:MimeFileType', false)
+      findChildElement('gmx:MimeFileType', false),
+      findChildElement('gco:Integer', false)
     ),
     readText()
   )
@@ -130,7 +131,10 @@ export function extractDateTime(): ChainableFunction<XmlElement, Date> {
 
 export function extractDecimal(): ChainableFunction<XmlElement, number> {
   return pipe(
-    findChildElement('gco:Decimal', false),
+    fallback(
+      findChildElement('gco:Decimal', false),
+      findChildElement('gco:Integer', false)
+    ),
     readText(),
     map((numberStr) => (numberStr ? Number(numberStr) : null))
   )
@@ -791,6 +795,24 @@ export function readKeywords(rootEl: XmlElement): Keyword[] {
   )(rootEl)
 }
 
+export function readKeywordsTheme(rootEl: XmlElement): Keyword[] {
+  return pipe(
+    findIdentification(),
+    findNestedElements('gmd:descriptiveKeywordsTheme', 'gmd:MD_Keywords'),
+    mapArray(readKeywordGroup),
+    flattenArray()
+  )(rootEl)
+}
+
+export function readKeywordsCollection(rootEl: XmlElement): Keyword[] {
+  return pipe(
+    findIdentification(),
+    findNestedElements('gmd:descriptiveKeywordsCollection', 'gmd:MD_Keywords'),
+    mapArray(readKeywordGroup),
+    flattenArray()
+  )(rootEl)
+}
+
 export function readStatus(rootEl: XmlElement): RecordStatus {
   return pipe(
     findIdentification(),
@@ -1191,6 +1213,33 @@ export function readResourceIdentifier(rootEl: XmlElement): string {
       'gmd:CI_Citation',
       'gmd:identifier',
       'gmd:MD_Identifier',
+      'gmd:code'
+    ),
+    extractCharacterString()
+  )(rootEl)
+}
+
+export function readResolutionScaleDenominator(rootEl: XmlElement): string {
+  return pipe(
+    findIdentification(),
+    findNestedElement(
+      'gmd:spatialResolution',
+      'gmd:MD_Resolution',
+      'gmd:equivalentScale',
+      'gmd:MD_RepresentativeFraction',
+      'gmd:denominator'
+    ),
+    extractCharacterString()
+  )(rootEl)
+}
+export function readAlimentations(rootEl: XmlElement): string {
+  return pipe(
+    findIdentification(),
+    findNestedElement(
+      'gmd:referenceSystemInfo',
+      'gmd:MD_ReferenceSystem',
+      'gmd:referenceSystemIdentifier',
+      'gmd:RS_Identifier',
       'gmd:code'
     ),
     extractCharacterString()

@@ -86,6 +86,8 @@ export const elasticHitsOnlyFixture = () => ({
             },
           ],
           resourceLanguage: ['eng'],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceIdentifier: [
             {
               code: 'eea_v_3035_10_km_eea-ref-grid-de_2013',
@@ -157,6 +159,8 @@ export const elasticHitsOnlyFixture = () => ({
               type: 'publication',
             },
           ],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceLanguage: ['eng'],
           resourceIdentifier: [
             {
@@ -266,6 +270,8 @@ export const elasticSummaryHitsFixture = () => ({
             { date: '2020-02-19T00:00:00.000Z', type: 'revision' },
           ],
           resourceLanguage: ['fre'],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceIdentifier: [
             {
               code: 'https://public.sig.rennesmetropole.fr/geonetwork/srv/fre/xml.metadata.get?uuid=cde8a11b-2343-42ac-a366-6971f67d2fc6',
@@ -340,6 +346,8 @@ export const elasticSummaryHitsFixture = () => ({
             { date: '2022-07-29T00:00:00.000Z', type: 'creation' },
             { date: '2022-07-29T00:00:00.000Z', type: 'revision' },
           ],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceLanguage: ['fre'],
           resourceIdentifier: [
             {
@@ -603,6 +611,8 @@ export const elasticServiceMetadataHistsFixture = () => ({
               lte: '2023-12-17T23:00:00.000Z',
             },
           ],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceIdentifier: [
             {
               code: 'fe1c1a3d-c75b-435c-a1d1-48426818f54d',
@@ -2311,6 +2321,8 @@ export const elasticServiceMetadataHistsFixture = () => ({
           },
           'th_otherKeywords-themeNumber': '9',
           'th_high-value-dataset-category-skos-ap-euNumber': '1',
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceIdentifier: [
             {
               code: 'https://id.eaufrance.fr/meta/ODP_WFS',
@@ -2991,6 +3003,8 @@ export const elasticReuseMetadataHitsFixture = () => ({
               lte: '2018-03-31T22:00:00.000Z',
             },
           ],
+          resolutionScaleDenominator:'1050000',
+          alimentations: 'Oui-externe',
           resourceIdentifier: [
             {
               code: '83809bcd-1763-4d28-b820-2b9828083ba5',

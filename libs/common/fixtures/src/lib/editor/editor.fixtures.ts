@@ -124,9 +124,43 @@ export const editorFieldSpatialExtentsFixture = () => ({
   },
 })
 
+export const editorFieldResolutionScaleDenominatorFixture = () => ({
+  model: 'resolutionScaleDenominator',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.resolutionScaleDenominator',
+  },
+  value: 'unknown',
+})
+
+export const editorFieldAlimentationsFixture = () => ({
+  model: 'alimentations',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.alimentations',
+  },
+  value: 'unknown',
+})
+
 export const editorFieldKeywordsFixture = () => ({
   model: 'keywords',
   hidden: false,
+})
+
+export const editorFieldKeywordsThemeFixture = () => ({
+  model: 'keywordsTheme',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.keywordsTheme',
+  },
+})
+
+export const editorFieldKeywordsCollectionFixture = () => ({
+  model: 'keywordsCollection',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.keywordsCollection',
+  },
 })
 
 export const editorFieldUniqueIdentifierFixture = () => ({
@@ -156,5 +190,9 @@ export const editorFieldsFixture = () => [
   editorFieldTemporalExtentsFixture(),
   editorFieldSpatialExtentsFixture(),
   editorFieldKeywordsFixture(),
+  editorFieldKeywordsThemeFixture(),
+  editorFieldKeywordsCollectionFixture(),
   editorFieldUniqueIdentifierFixture(),
+  editorFieldResolutionScaleDenominatorFixture(),
+  editorFieldAlimentationsFixture(),
 ]

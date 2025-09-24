@@ -17,6 +17,22 @@
         <gn-ui-notifications-container></gn-ui-notifications-container>
       </div>
     </div>
+
+    <div class="flex items-center gap-4 p-4">
+      <input
+        type="text"
+        [(ngModel)]="cardNumber"
+        placeholder="Numéro de la carte (ex: 7352-6)"
+        class="border border-gray-300 p-2 rounded w-[300px]"
+      />
+      <button
+        class="bg-primary text-white px-4 py-2 rounded"
+        (click)="fetchRedmineData()"
+      >
+        Importer depuis Redmine
+      </button>
+    </div>
+    
     <div class="flex flex-row flex-1 min-h-0">
       <div class="grow overflow-auto p-[32px]" #scrollContainer>
         <div class="container-lg mx-auto flex flex-col gap-[32px]">

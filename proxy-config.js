@@ -17,4 +17,11 @@ module.exports = {
     changeOrigin: true,
     router: (req) => decodeURIComponent(req._parsedUrl.query),
   },
+  "/redmine-api": {
+    "target": "https://redmine.hautsdefrance.fr",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/redmine-api": "" }
+  },
 }

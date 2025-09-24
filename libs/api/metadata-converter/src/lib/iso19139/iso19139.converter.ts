@@ -26,6 +26,8 @@ import {
   readDefaultLanguage,
   readIsoTopics,
   readKeywords,
+  readKeywordsTheme,
+  readKeywordsCollection,
   readKind,
   readLegalConstraints,
   readLicenses,
@@ -49,6 +51,8 @@ import {
   readTitle,
   readUniqueIdentifier,
   readUpdateFrequency,
+  readResolutionScaleDenominator,
+  readAlimentations,
 } from './read-parts'
 import {
   writeAbstract,
@@ -57,6 +61,8 @@ import {
   writeDefaultLanguage,
   writeGraphicOverviews,
   writeKeywords,
+  writeKeywordsTheme,
+  writeKeywordsCollection,
   writeKind,
   writeLanguages,
   writeLegalConstraints,
@@ -79,6 +85,8 @@ import {
   writeTopics,
   writeUniqueIdentifier,
   writeUpdateFrequency,
+  writeResolutionScaleDenominator,
+  writeAlimentations,
 } from './write-parts'
 
 export class Iso19139Converter extends BaseConverter<string> {
@@ -102,6 +110,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     contacts: readContacts,
     contactsForResource: readContactsForResource,
     keywords: readKeywords,
+    keywordsTheme: readKeywordsTheme,
+    keywordsCollection: readKeywordsCollection,
     topics: readIsoTopics,
     licenses: readLicenses,
     legalConstraints: readLegalConstraints,
@@ -117,6 +127,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     spatialExtents: readSpatialExtents,
     otherLanguages: readOtherLanguages,
     defaultLanguage: readDefaultLanguage,
+    resolutionScaleDenominator: readResolutionScaleDenominator,
+    alimentations: readAlimentations,
     // TODO
     extras: () => undefined,
     landingPage: () => undefined,
@@ -143,6 +155,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     contacts: writeContacts,
     contactsForResource: writeContactsForResource,
     keywords: writeKeywords,
+    keywordsTheme: writeKeywordsTheme,
+    keywordsCollection: writeKeywordsCollection,
     topics: writeTopics,
     licenses: writeLicenses,
     legalConstraints: writeLegalConstraints,
@@ -158,6 +172,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     spatialExtents: writeSpatialExtents,
     otherLanguages: writeLanguages,
     defaultLanguage: writeDefaultLanguage,
+    resolutionScaleDenominator: writeResolutionScaleDenominator,
+    alimentations: writeAlimentations,
     // TODO
     extras: () => undefined,
     landingPage: () => undefined,
@@ -230,6 +246,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     const resourceUpdated = this.readers['resourceUpdated'](rootEl, tr)
     const resourcePublished = this.readers['resourcePublished'](rootEl, tr)
     const keywords = this.readers['keywords'](rootEl, tr)
+    const keywordsTheme = this.readers['keywordsTheme'](rootEl, tr)
+    const keywordsCollection = this.readers['keywordsCollection'](rootEl, tr)
     const topics = this.readers['topics'](rootEl, tr)
     const legalConstraints = this.readers['legalConstraints'](rootEl, tr)
     const otherConstraints = this.readers['otherConstraints'](rootEl, tr)
@@ -242,6 +260,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     const defaultLanguage = this.readers['defaultLanguage'](rootEl, tr)
     const resourceIdentifier = this.readers['resourceIdentifier'](rootEl, tr)
     const spatialExtents = this.readers['spatialExtents'](rootEl, tr)
+    const resolutionScaleDenominator = this.readers['resolutionScaleDenominator'](rootEl, tr)
+    const alimentations = this.readers['alimentations'](rootEl, tr)
 
     return {
       uniqueIdentifier,
@@ -261,6 +281,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       contacts,
       contactsForResource,
       keywords,
+      keywordsTheme,
+      keywordsCollection,
       topics,
       licenses,
       legalConstraints,
@@ -270,6 +292,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       spatialExtents,
       onlineResources,
       translations: tr,
+      resolutionScaleDenominator,
+      alimentations,
       ...(landingPage && { landingPage }),
     } as CatalogRecord
   }
@@ -378,6 +402,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['contactsForResource'](record, rootEl)
 
     fieldChanged('keywords') && this.writers['keywords'](record, rootEl)
+    fieldChanged('keywordsTheme') && this.writers['keywordsTheme'](record, rootEl)
+    fieldChanged('keywordsCollection') && this.writers['keywordsCollection'](record, rootEl)
     fieldChanged('topics') && this.writers['topics'](record, rootEl)
     fieldChanged('legalConstraints') &&
       this.writers['legalConstraints'](record, rootEl)
@@ -390,6 +416,9 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['onlineResources'](record, rootEl)
     fieldChanged('resourceIdentifier') &&
       this.writers['resourceIdentifier'](record, rootEl)
+    fieldChanged('resolutionScaleDenominator') &&
+      this.writers['resolutionScaleDenominator'](record, rootEl)
+    fieldChanged('alimentations') && this.writers['alimentations'](record, rootEl)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') && this.writers['status'](record, rootEl)

@@ -55,6 +55,8 @@ export class DcatApConverter extends BaseConverter<string> {
     onlineResources: readOnlineResources,
     spatialExtents: readSpatialExtents,
     keywords: readKeywords,
+    keywordsTheme: readKeywords,
+    keywordsCollection: readKeywords,
     topics: readTopics,
     resourceIdentifier: () => undefined,
     recordUpdated: readRecordUpdated,
@@ -81,6 +83,8 @@ export class DcatApConverter extends BaseConverter<string> {
     spatialRepresentation: () => undefined,
     extras: () => undefined,
     translations: () => undefined,
+    resolutionScaleDenominator: () => undefined,
+    alimentations: () => undefined,
   }
 
   protected writers: Record<
@@ -104,6 +108,8 @@ export class DcatApConverter extends BaseConverter<string> {
     contacts: () => undefined,
     contactsForResource: () => undefined,
     keywords: () => undefined,
+    keywordsTheme: () => undefined,
+    keywordsCollection: () => undefined,
     topics: () => undefined,
     licenses: () => undefined,
     legalConstraints: () => undefined,
@@ -122,6 +128,8 @@ export class DcatApConverter extends BaseConverter<string> {
     defaultLanguage: () => undefined,
     otherLanguages: () => undefined,
     translations: () => undefined,
+    resolutionScaleDenominator: () => undefined,
+    alimentations: () => undefined,
   }
 
   constructor(
@@ -234,6 +242,18 @@ export class DcatApConverter extends BaseConverter<string> {
       tr,
       defaultLanguage
     )
+    const keywordsTheme = this.readers['keywordsTheme'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
+    const keywordsCollection = this.readers['keywordsCollection'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
     const topics = this.readers['topics'](
       dataStore,
       catalogRecord,
@@ -280,6 +300,18 @@ export class DcatApConverter extends BaseConverter<string> {
       dataStore,
       catalogRecord,
       tr,
+      defaultLanguage
+    )
+    const resolutionScaleDenominator = this.readers['resolutionScaleDenominator'](
+      dataStore, 
+      catalogRecord, 
+      tr, 
+      defaultLanguage
+    )
+    const alimentations = this.readers['alimentations'](
+      dataStore, 
+      catalogRecord, 
+      tr, 
       defaultLanguage
     )
 
@@ -345,6 +377,8 @@ export class DcatApConverter extends BaseConverter<string> {
         contacts,
         contactsForResource,
         keywords,
+        keywordsTheme,
+        keywordsCollection,
         topics,
         licenses,
         legalConstraints,
@@ -359,6 +393,8 @@ export class DcatApConverter extends BaseConverter<string> {
         updateFrequency,
         ...(landingPage && { landingPage }),
         translations: tr,
+        resolutionScaleDenominator,
+        alimentations,
       } as DatasetRecord
     } else {
       const onlineResources = this.readers['onlineResources'](
@@ -384,6 +420,8 @@ export class DcatApConverter extends BaseConverter<string> {
         contacts,
         contactsForResource,
         keywords,
+        keywordsTheme,
+        keywordsCollection,
         topics,
         licenses,
         legalConstraints,
@@ -393,6 +431,8 @@ export class DcatApConverter extends BaseConverter<string> {
         onlineResources,
         ...(landingPage && { landingPage }),
         translations: tr,
+        resolutionScaleDenominator,
+        alimentations,
       } as ServiceRecord
     }
   }
@@ -474,6 +514,10 @@ export class DcatApConverter extends BaseConverter<string> {
 
     fieldChanged('keywords') &&
       this.writers['keywords'](record, dataStore, recordNode)
+    fieldChanged('keywordsTheme') &&
+      this.writers['keywordsTheme'](record, dataStore, recordNode)
+    fieldChanged('keywordsCollection') &&
+      this.writers['keywordsCollection'](record, dataStore, recordNode)
     fieldChanged('topics') &&
       this.writers['topics'](record, dataStore, recordNode)
     fieldChanged('legalConstraints') &&
@@ -486,6 +530,10 @@ export class DcatApConverter extends BaseConverter<string> {
       this.writers['otherConstraints'](record, dataStore, recordNode)
     fieldChanged('onlineResources') &&
       this.writers['onlineResources'](record, dataStore, recordNode)
+    fieldChanged('resolutionScaleDenominator') &&
+      this.writers['resolutionScaleDenominator'](record, dataStore, recordNode)
+    fieldChanged('alimentations') &&
+      this.writers['alimentations'](record, dataStore, recordNode)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') &&
