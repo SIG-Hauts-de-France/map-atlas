@@ -17,6 +17,7 @@ import {
   MetadataInfoComponent,
   MetadataQualityComponent,
   ServiceCapabilitiesComponent,
+  ImageOverlayPreviewComponent,
 } from '@geonetwork-ui/ui/elements'
 import { combineLatest, Observable } from 'rxjs'
 import { filter, map, mergeMap, startWith } from 'rxjs/operators'
@@ -73,6 +74,7 @@ import { UserModel } from '@geonetwork-ui/common/domain/model/user'
     RecordLinkedRecordsComponent,
     TranslateDirective,
     TranslatePipe,
+    ImageOverlayPreviewComponent,
   ],
   viewProviders: [
     provideIcons({ matChatOutline, iconoirAppWindow }),
@@ -84,6 +86,8 @@ import { UserModel } from '@geonetwork-ui/common/domain/model/user'
 export class RecordMetadataComponent {
   @Input() metadataQualityDisplay: boolean
   @ViewChild('userFeedbacks') userFeedbacks: ElementRef<HTMLElement>
+
+  showOverlay = true
 
   private readonly displayConditions = {
     dataset: {
@@ -223,6 +227,16 @@ export class RecordMetadataComponent {
   )
 
   feedbacksAllowed$ = this.platformServiceInterface.getFeedbacksAllowed()
+
+  thumbnailUrl$ = this.metadataViewFacade.metadata$.pipe(
+    map((metadata) => {
+      if (metadata?.overviews === undefined) {
+        return undefined
+      } else {
+        return metadata?.overviews?.[0]?.url.toString() ?? null
+      }
+    })
+  )
 
   errorTypes = ErrorType
 

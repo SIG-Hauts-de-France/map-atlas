@@ -4,9 +4,10 @@ import {
   EventEmitter,
   Input,
   Output,
+  SimpleChanges
 } from '@angular/core'
 import {
-  CatalogRecord,
+  DatasetRecord,
   Keyword,
 } from '@geonetwork-ui/common/domain/model/record'
 import { DateService, getTemporalRangeUnion } from '@geonetwork-ui/util/shared'
@@ -59,12 +60,34 @@ import { SpatialExtentComponent } from '@geonetwork-ui/ui/map'
   ],
 })
 export class MetadataInfoComponent {
-  @Input() metadata: Partial<CatalogRecord>
+  @Input() metadata: Partial<DatasetRecord>
   @Input() incomplete: boolean
   @Output() keyword = new EventEmitter<Keyword>()
   updatedTimes: number
+  otherKeywords: Keyword[] = [];
+  placeKeywords: Keyword[] = [];
+  themeSIGKeywords: Keyword[] = [];
 
   constructor(private dateService: DateService) {}
+
+  private filterKeywords(type:string) {
+    return this.metadata.keywords?.filter(k => !this.thesaurusContains(k, 'theme') &&  k?.type === type) || [];
+  }
+
+  private thesaurusContains(keyword:Keyword, value: string) {
+    return (keyword?.thesaurus?.id && keyword?.thesaurus?.id?.indexOf(value) !== -1);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['metadata']) {
+      console.log(this.metadata);
+      this.otherKeywords = this.filterKeywords('other');
+      this.placeKeywords = this.filterKeywords('place');
+      this.themeSIGKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'themes_sig')) || [];
+    }
+    console.log("otherkkkkk: ",this.otherKeywords);
+    
+  }
 
   get hasUsage() {
     return (
@@ -77,16 +100,26 @@ export class MetadataInfoComponent {
     )
   }
 
+  // get legalConstraints() {
+  //   let array = []
+  //   if (this.metadata.legalConstraints?.length) {
+  //     const licensesTexts = this.metadata.licenses.map(
+  //       (license) => license.text
+  //     )
+  //     array = array.concat(
+  //       this.metadata.legalConstraints
+  //         .filter((c) => c.text && !licensesTexts.includes(c.text))
+  //         .map((c) => c.text)
+  //     )
+  //   }
+  //   return array
+  // }
+
   get legalConstraints() {
     let array = []
     if (this.metadata.legalConstraints?.length) {
-      const licensesTexts = this.metadata.licenses.map(
-        (license) => license.text
-      )
       array = array.concat(
-        this.metadata.legalConstraints
-          .filter((c) => c.text && !licensesTexts.includes(c.text))
-          .map((c) => c.text)
+        this.metadata.legalConstraints.filter((c) => c.text).map((c) => c.text)
       )
     }
     return array

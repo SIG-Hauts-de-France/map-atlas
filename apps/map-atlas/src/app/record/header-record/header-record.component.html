@@ -117,24 +117,27 @@
                 </div>
               </div>
             </div>
-            <gn-ui-image-overlay-preview
+            <!-- <gn-ui-image-overlay-preview
               class="block h-[228px] w-full self-center"
               [imageUrl]="thumbnailUrl$ | async"
               (isPlaceholderShown)="showOverlay = !$event"
               *ngIf="(thumbnailUrl$ | async) && showOverlay"
             >
-            </gn-ui-image-overlay-preview>
+            </gn-ui-image-overlay-preview> -->
           </div>
         </div>
       </div>
-      <map-atlas-navigation-bar
+      <!-- <map-atlas-navigation-bar
         *ngIf="(facade.isMetadataLoading$ | async) === false"
         [metadata]="metadata"
         [style.display]="-1 + (1 - expandRatio) * 2 < 1 ? 'none' : 'block'"
         [style.pointer-events]="
           -1 + (1 - expandRatio) * 2 < 1 ? 'none' : 'auto'
         "
-      ></map-atlas-navigation-bar>
+      ></map-atlas-navigation-bar> -->
     </header>
+    <div class="container-lg mt-[-40px] z-20 sticky lg:mx-auto inset-x-0 top-[10px]">
+      <map-atlas-navigation-bar></map-atlas-navigation-bar>
+    </div>
   </ng-template>
 </gn-ui-sticky-header>
