@@ -4,11 +4,12 @@ import { FIELDS_BRIEF, SearchFacade } from '@geonetwork-ui/feature/search'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 import { Observable } from 'rxjs';
 import { RouterFacade } from '@geonetwork-ui/feature/router';
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 @Component({
   selector: 'map-atlas-most-downloaded',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatTooltipModule],
   templateUrl: './most-downloaded.component.html',
   styleUrl: './most-downloaded.component.css',
 })

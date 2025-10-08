@@ -85,7 +85,7 @@ export class MetadataInfoComponent {
       this.placeKeywords = this.filterKeywords('place');
       this.themeSIGKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'themes_sig')) || [];
     }
-    console.log("otherkkkkk: ",this.otherKeywords);
+    // console.log("otherkkkkk: ",this.otherKeywords);
     
   }
 

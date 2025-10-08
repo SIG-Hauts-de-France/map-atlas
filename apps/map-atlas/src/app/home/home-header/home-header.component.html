@@ -21,19 +21,19 @@
   </div>
 
   <div class="bg-secondary px-5">
-    <div class="container-lg mx-auto py-10 relative z-40"
+    <div class="container-lg mx-auto py-8 relative z-40"
       [style.transform]="'translate(0, ' + (1 - expandRatio) * 45 + 'px)'">
       <ng-container *ngIf="displaySortBadges$ | async">
-        <!-- <div class="container-lg mx-auto">
+        <div class="container-lg mx-auto">
           <div class="text-white text-[24px]" [style.opacity]="expandRatio"
             [innerHTML]="'header.everyDataHdf' | translate">
           </div>
-        </div> -->
+        </div>
         <gn-ui-fuzzy-search class="text-[18px]" (itemSelected)="onFuzzySearchSelection($event)"></gn-ui-fuzzy-search>
         <div class="flex h-0 py-5 gap-3" [style.opacity]="-0.6 + expandRatio * 2">
-          <map-atlas-header-badge-button [routerLink]="ROUTE_SEARCH" *ngIf="isAuthenticated$ | async" icon="star"
-            label="map-atlas.header.myfavorites" [toggled]="searchFacade.favoritesOnly$ | async"
-            (action)="listFavorites($event)"></map-atlas-header-badge-button>
+          <!-- <map-atlas-header-badge-button [routerLink]="ROUTE_SEARCH" *ngIf="isAuthenticated$ | async" icon="star"
+            label="mapatlas.header.myfavorites" [toggled]="searchFacade.favoritesOnly$ | async"
+            (action)="listFavorites($event)"></map-atlas-header-badge-button> -->
           <div *ngFor="let preset of searchConfig?.SEARCH_PRESET">
             <div>
               <button
