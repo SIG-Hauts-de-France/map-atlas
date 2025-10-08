@@ -7,7 +7,8 @@ import { environment } from '../environements/environement';
 })
 export class RedmineService {
   private apiUrl = '/redmine-api/issues/7084.json';
-  private apiUrlByCardNumber = '/redmine-api/issues.json?status_id=7&cf_1=';
+  // private apiUrlByCardNumber = '/redmine-api/issues.json?status_id=7&cf_1=';
+  private apiUrlByCardNumber = `${environment.redmineUrl}/issues.json?status_id=7&cf_1=`;
   private username = environment.redmineUsername;
   private password = environment.redminePassword;
 

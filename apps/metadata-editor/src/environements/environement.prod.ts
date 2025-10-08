@@ -1,7 +1,6 @@
 export const environment = {
-    production: false,
-    redmineUrl: '/redmine-api',
+    production: true,
+    redmineUrl: 'https://redmine.hautsdefrance.fr',
     redmineUsername: 'metourneau',
     redminePassword: 'metourneau'
 };
-  
