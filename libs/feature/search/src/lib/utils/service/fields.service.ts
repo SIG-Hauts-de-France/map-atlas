@@ -77,6 +77,16 @@ export class FieldsService {
     q: new FullTextSearchField(),
     license: new LicenseSearchField(this.injector),
     owner: new OwnerSearchField(this.injector),
+    themesSIG: new SimpleSearchField(
+      'th_themes_sig.default',
+      this.injector,
+      'asc'
+    ),
+    placeKeywords: new SimpleSearchField(
+      'keywordType-place.default',
+      this.injector,
+      'asc'
+    ),
     producerOrg: new MultilingualSearchField(
       'originatorOrgForResourceObject',
       this.injector,

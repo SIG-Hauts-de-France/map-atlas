@@ -8,6 +8,7 @@
     "ng": "nx",
     "nx": "nx",
     "start": "nx serve datahub",
+    "start:atlas": "nx serve map-atlas",
     "build": "nx affected:build",
     "lint": "nx affected:lint",
     "test": "TEST_HIDE_CONSOLE=1 nx affected:test",

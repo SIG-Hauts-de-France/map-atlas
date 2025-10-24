@@ -1,0 +1,20 @@
+<ng-container>
+  <div [ngClass]="layoutConfig.containerClass">
+    <div
+      [ngClass]="layoutConfig.itemClass"
+      [style]="layoutConfig.itemStyle"
+      *ngFor="let record of records"
+    >
+      <gn-ui-results-list-item
+        [attr.data-cy]="record.uniqueIdentifier"
+        [record]="record"
+        [layoutConfig]="layoutConfig"
+        [metadataQualityDisplay]="metadataQualityDisplay"
+        (mdSelect)="mdSelect.emit($event)"
+        [linkHref]="recordUrlGetter(record)"
+        [title]="record.title"
+      ></gn-ui-results-list-item>
+    </div>
+  </div>
+</ng-container>
+
