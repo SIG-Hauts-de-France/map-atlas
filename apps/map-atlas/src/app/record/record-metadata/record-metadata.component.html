@@ -1,79 +1,33 @@
 <div *ngIf="(metadataViewFacade.error$ | async) === null">
   <section id="about">
     <div class="container-lg px-4 mt-10 mb-12 pb-2 lg:mx-auto">
-      <gn-ui-metadata-info
+      <gn-ui-image-overlay-preview-hdf
+        class="flex w-full justify-center items-center py-6 mx-auto"
+        [fit]="'contain'"
+        [imageUrl]="thumbnailUrl$ | async"
+        (isPlaceholderShown)="showOverlay = !$event"
+        *ngIf="showOverlay"
+      >
+      </gn-ui-image-overlay-preview-hdf>
+      <gn-ui-metadata-info-hdf
         class="sm:block"
         *ngIf="(metadataViewFacade.isPresent$ | async) === false"
         [metadata]="{}"
         [incomplete]="true"
       >
-      </gn-ui-metadata-info>
+      </gn-ui-metadata-info-hdf>
       <div
         *ngIf="(metadataViewFacade.isPresent$ | async) === true"
         class="grid gap-8 grid-cols-1 sm:gap-6 sm:grid-cols-3"
       >
-        <div class="sm:col-span-2">
-          <gn-ui-metadata-info
+        <div class="sm:col-span-3">
+          <gn-ui-metadata-info-hdf
             class="sm:block"
             [metadata]="metadataViewFacade.metadata$ | async"
             [incomplete]="metadataViewFacade.isIncomplete$ | async"
             (keyword)="onInfoKeywordClick($event)"
           >
-          </gn-ui-metadata-info>
-        </div>
-        <div class="flex flex-col gap-5">
-          <gn-ui-metadata-contact
-            (organizationClick)="onOrganizationClick($event)"
-            [metadata]="metadataViewFacade.metadata$ | async"
-          >
-          </gn-ui-metadata-contact>
-          <div
-            *ngIf="metadataQualityDisplay"
-            class="border border-gray-300 rounded-lg py-4 px-5"
-          >
-            <p class="mb-3" translate>record.metadata.quality</p>
-            <gn-ui-metadata-quality
-              [metadata]="metadataViewFacade.metadata$ | async"
-              [metadataQualityDisplay]="metadataQualityDisplay"
-              [popoverDisplay]="true"
-            ></gn-ui-metadata-quality>
-          </div>
-          <div
-            *ngIf="
-              (kind$ | async) === 'dataset' && sourceLabel$
-                | async as sourceLabel
-            "
-            class="border border-gray-300 rounded-lg py-4 px-5"
-          >
-            <gn-ui-metadata-catalog [sourceLabel]="sourceLabel">
-            </gn-ui-metadata-catalog>
-          </div>
-          <gn-ui-button
-            *ngIf="(feedbacksAllowed$ | async) === true"
-            type="outline"
-            extraClass="w-full flex flex-row justify-between bg-white"
-            [style.--gn-ui-button-rounded]="'10px'"
-            (buttonClick)="scrollToQuestions()"
-          >
-            <span translate>service.metadata.question</span>
-            <ng-icon
-              class="mr-[5px] text-[1em]"
-              name="matChatOutline"
-            ></ng-icon>
-          </gn-ui-button>
-          <gn-ui-button
-            *ngIf="showReuseButton() | async"
-            type="outline"
-            extraClass="w-full flex flex-row justify-between bg-white"
-            [style.--gn-ui-button-rounded]="'10px'"
-            (buttonClick)="navigateToReuseForm()"
-          >
-            <span translate>service.metadata.reuse</span>
-            <ng-icon
-              class="mr-[5px] text-[1em]"
-              name="iconoirAppWindow"
-            ></ng-icon>
-          </gn-ui-button>
+          </gn-ui-metadata-info-hdf>
         </div>
       </div>
     </div>

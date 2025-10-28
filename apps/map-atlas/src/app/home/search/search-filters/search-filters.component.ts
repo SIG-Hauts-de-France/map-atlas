@@ -92,10 +92,6 @@ export class SearchFiltersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.fieldsService.supportedFields);
-    console.log('Available values for themesSIG:');
-    
-    console.log(this.fieldsService.getAvailableValues('themesSIG'));
     
     this.platformService.getMe().subscribe((user) => (this.userId = user?.id))
     this.searchConfig = (

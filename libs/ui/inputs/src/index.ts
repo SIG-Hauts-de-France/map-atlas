@@ -1,5 +1,6 @@
 export * from './lib/autocomplete/autocomplete.component'
 export * from './lib/badge/badge.component'
+export * from './lib/HdF/badge-hdf/badge-hdf.component'
 export * from './lib/button/button.component'
 export * from './lib/check-toggle/check-toggle.component'
 export * from './lib/checkbox/checkbox.component'

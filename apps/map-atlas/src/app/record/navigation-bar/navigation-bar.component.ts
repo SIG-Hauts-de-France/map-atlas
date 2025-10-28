@@ -17,8 +17,9 @@ import { AnchorLinkDirective } from '@geonetwork-ui/ui/layout'
 import { HostListener } from '@angular/core'
 import { ElementRef, ViewChild } from '@angular/core'
 import { getIsMobile } from '@geonetwork-ui/util/shared'
+import { MatIconModule } from '@angular/material/icon'
 
-marker('record.metadata.about')
+marker('record.metadata.about.hdf')
 marker('record.metadata.capabilities')
 marker('record.metadata.preview')
 marker('record.metadata.ressources.and.links')
@@ -39,6 +40,7 @@ marker('record.metadata.userFeedbacks')
     LanguageSwitcherComponent,
     FavoriteStarComponent,
     AnchorLinkDirective,
+    MatIconModule,
   ],
   viewProviders: [
     provideIcons({ iconoirMenu, matArrowBack }),
@@ -54,33 +56,27 @@ export class NavigationBarComponent {
   anchorLinks = [
     {
       anchor: 'about',
-      label: 'record.metadata.about',
+      label: 'record.metadata.carte',
     },
     {
-      anchor: 'capabilities',
-      label: 'record.metadata.capabilities',
+      anchor: 'about',
+      label: 'record.metadata.about.hdf',
     },
     {
-      anchor: 'data-preview',
-      label: 'record.metadata.preview',
+      anchor: 'access',
+      label: 'record.metadata.download',
     },
     {
       anchor: 'resources',
-      label: 'record.metadata.ressources.and.links',
-    },
-    {
-      anchor: 'feature-catalog',
-      label: 'record.metadata.feature.catalog',
-    },
-    {
-      anchor: 'linked-records',
-      label: 'record.metadata.linked.records',
-    },
-    {
-      anchor: 'user-feedbacks',
-      label: 'record.metadata.userFeedbacks',
+      label: 'record.metadata.links',
     },
   ]
+  activeLabel = this.anchorLinks[0].label
+  setActiveLabel(el: HTMLElement) {
+    const disabledClass = el.getAttribute('gnUiAnchorLinkDisabledClass')
+    const disabled = new RegExp(disabledClass).test(el.className)
+    if (!disabled) this.activeLabel = el.textContent
+  }
   showLanguageSwitcher = getGlobalConfig().LANGUAGES?.length > 0
   isMobile$ = getIsMobile()
 

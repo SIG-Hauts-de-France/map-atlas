@@ -1,0 +1,198 @@
+<div
+  *ngIf="metadata.landingPage"
+>
+  <p class="mt-3 font-medium text-primary text-sm" translate>
+    service.metadata.description
+  </p>
+  <div
+    class="px-6 rounded bg-gray-100 gap-y-6 gap-x-[20px] text-gray-700"
+  >
+    <div class="flex flex-col gap-4 mr-4 py-5 rounded text-gray-700">
+      <gn-ui-content-ghost
+        ghostClass="h-[178px]"
+        [showContent]="fieldReady('abstract')"
+      >
+        <gn-ui-max-lines [maxLines]="6" *ngIf="metadata.abstract">
+          <div class="mb-6">
+            <gn-ui-markdown-parser
+              [textContent]="metadata.abstract"
+            ></gn-ui-markdown-parser>
+          </div>
+        </gn-ui-max-lines>
+      </gn-ui-content-ghost>
+
+      <div *ngIf="themeSIGKeywords?.length">
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
+          search.filters.themesSIG
+        </p>
+        <div class="sm:pb-4 flex flex-wrap gap-2">
+          <gn-ui-badge-hdf
+            class="inline-block lowercase"
+            (click)="onKeywordClick(keyword)"
+            [clickable]="true"
+            *ngFor="let keyword of themeSIGKeywords"
+            >{{ keyword.label }}</gn-ui-badge-hdf>
+        </div>
+      </div>
+
+      <div *ngIf="otherKeywords?.length">
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
+          search.filters.otherKeywords
+        </p>
+        <div class="sm:pb-4 flex flex-wrap gap-2">
+          <gn-ui-badge-hdf
+            class="inline-block lowercase"
+            (click)="onKeywordClick(keyword)"
+            [clickable]="true"
+            *ngFor="let keyword of otherKeywords"
+            >{{ keyword.label }}</gn-ui-badge-hdf>
+        </div>
+      </div>
+
+      <div *ngIf="placeKeywords?.length">
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
+          search.filters.placeKeywords
+        </p>
+        <div class="sm:pb-4 flex flex-wrap gap-2">
+          <gn-ui-badge-hdf
+            class="inline-block lowercase"
+            (click)="onKeywordClick(keyword)"
+            [clickable]="true"
+            *ngFor="let keyword of placeKeywords"
+            >{{ keyword.label }}</gn-ui-badge-hdf>
+        </div>
+      </div>
+
+      <div *ngIf="metadata.lineage">
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
+          record.metadata.details
+        </p>
+        <div class="text-gray-900 flex flex-col mt-4 gap-2">
+          <p class="whitespace-pre-line break-words text-gray-900" gnUiLinkify>
+            {{ metadata.lineage }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div
+  *ngIf="metadata.landingPage"
+>
+  <p class="mt-3 font-medium text-primary text-sm" translate>
+    service.metadata.infos
+  </p>
+  <div
+    class="py-6 px-6 rounded bg-gray-100 grid grid-cols-2 gap-y-6 gap-x-[20px] text-gray-700"
+  >
+    
+      <!-- Numéro de carte -->
+      <div *ngIf="metadata.resourceIdentifier">
+        <p class="text-sm" translate>record.metadata.resourceIdentifier</p>
+        <p class="text-primary font-medium mt-1">
+          {{ metadata.resourceIdentifier }}
+        </p>
+      </div>
+      <!-- Date de création -->
+      <div *ngIf="metadata.resourceCreated">
+        <p class="text-sm" translate>record.metadata.creation</p>
+        <p class="text-primary font-medium mt-1">
+          {{ formatDate(metadata.resourceCreated) }}
+        </p>
+      </div>
+      <!-- Mise à jour -->
+      <div *ngIf="updateFrequency">
+        <p class="text-sm" translate>record.metadata.updateFrequency</p>
+        <p
+          class="text-primary font-medium mt-1 updateFrequency"
+          translate
+          [translateParams]="{ count: updatedTimes }"
+        >
+          {{ updateFrequency }}
+        </p>
+      </div>
+       <!-- Echelle -->
+      <div *ngIf="metadata.resolutionScaleDenominator">
+        <p class="text-sm" translate>record.metadata.resolutionScaleDenominator</p>
+        <p class="text-primary font-medium mt-1">
+          {{ metadata.resolutionScaleDenominator }}
+        </p>
+      </div>
+      <!-- Emprise géographique -->
+      <div *ngIf="metadata.emprise">
+        <p class="text-sm" translate>record.metadata.emprise</p>
+        <p class="text-primary font-medium mt-1">
+          {{ metadata.emprise }}
+        </p>
+      </div>
+      
+  </div>
+</div>
+
+<gn-ui-expandable-panel
+  *ngIf="metadata.kind !== 'dataset' && metadata.spatialExtents"
+  [title]="'service.metadata.spatialExtent' | translate"
+  data-test="spatial-extent-panel"
+>
+  <gn-ui-spatial-extent
+    class="flex h-[271px] w-full rounded-lg border border-gray-100 mt-3 mb-6"
+    [spatialExtents]="metadata.spatialExtents"
+  ></gn-ui-spatial-extent>
+</gn-ui-expandable-panel>
+
+<div
+  *ngIf="metadata.landingPage"
+>
+  <p class="mt-3 font-medium text-primary text-sm" translate>
+    service.metadata.other
+  </p>
+  <div
+    class="px-6 rounded bg-gray-100 gap-y-6 gap-x-[20px] text-gray-700"
+  >
+    <div class="flex flex-col gap-4 mr-4 py-5 rounded text-gray-700">
+      <div *ngIf="metadata.landingPage">
+        <p class="text-sm" translate>record.metadata.sheet</p>
+        <p class="text-primary font-medium" translate>
+          <a [href]="metadata.landingPage" target="_blank">
+            <span class="break-all" gnUiLinkify>{{ metadata.landingPage }}</span>
+          </a>
+        </p>
+      </div>
+      <div *ngIf="metadata.ownerOrganization">
+        <p class="text-sm" translate>record.metadata.owner</p>
+        <p class="text-primary font-medium">
+          {{ metadata.ownerOrganization.name }}
+        </p>
+      </div>
+      <div *ngIf="metadata.uniqueIdentifier">
+        <p class="text-sm" translate>record.metadata.uniqueId</p>
+        <div class="flex flex-row content-align items-end gap-1">
+          <gn-ui-copy-text-button
+            [text]="metadata.uniqueIdentifier"
+            [tooltipText]="'tooltip.id.copy' | translate"
+            [displayText]="false"
+          ></gn-ui-copy-text-button>
+          <p class="text-primary font-medium">
+            {{ metadata.uniqueIdentifier }}
+          </p>
+        </div>
+      </div>
+      <div *ngIf="metadata.topics?.length">
+        <p class="text-sm mb-1" translate>record.metadata.topics</p>
+        <div class="sm:pb-4 sm:pr-16">
+          <gn-ui-badge-hdf
+            [clickable]="false"
+            class="inline-block mr-2 mb-2 lowercase"
+            *ngFor="let topic of metadata.topics"
+            >{{ topic }}</gn-ui-badge-hdf
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
