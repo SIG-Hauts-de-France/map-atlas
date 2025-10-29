@@ -92,6 +92,12 @@ export function writeCharacterString(
   )
 }
 
+export function writeInteger(
+  text: string
+): ChainableFunction<XmlElement, XmlElement> {
+  return tap(pipe(findChildOrCreate('gco:Integer'), setTextContent(text)))
+}
+
 export function writeLocalizedCharacterString(
   text: string,
   translations: FieldTranslation,
@@ -419,6 +425,14 @@ export function removeKeywords() {
   return removeChildren(pipe(findNestedElements('gmd:descriptiveKeywords')))
 }
 
+export function removeKeywordsTheme() {
+  return removeChildren(pipe(findNestedElements('gmd:descriptiveKeywordsTheme')))
+}
+
+export function removeKeywordsCollection() {
+  return removeChildren(pipe(findNestedElements('gmd:descriptiveKeywordsCollection')))
+}
+
 // returns a <gmd:thesaurusName> element
 export function createThesaurus(thesaurus: ThesaurusModel) {
   return pipe(
@@ -467,6 +481,119 @@ export function appendKeywords(
     ...keywordsByThesaurus.map((keywords) =>
       pipe(
         createNestedElement('gmd:descriptiveKeywords', 'gmd:MD_Keywords'),
+        appendChildren(
+          pipe(
+            createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
+            writeAttribute(
+              'codeList',
+              'http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode'
+            ),
+            writeAttribute('codeListValue', keywords[0].type)
+          )
+        ),
+        keywords[0].thesaurus
+          ? appendChildren(createThesaurus(keywords[0].thesaurus))
+          : noop,
+        appendChildren(
+          ...keywords.map((keyword) =>
+            pipe(
+              createElement('gmd:keyword'),
+              writeLocalizedCharacterString(
+                keyword.label,
+                keyword.translations?.label,
+                defaultLanguage
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
+
+export function appendKeywordsTheme(
+  keywords: Keyword[],
+  defaultLanguage: LanguageCode
+) {
+  // keywords are grouped by thesaurus if they have one, otherwise by type
+  const keywordsByThesaurus: Keyword[][] = keywords.reduce((acc, keyword) => {
+    
+    const thesaurusId = keyword.thesaurus?.id
+    const thesaurusName = keyword.thesaurus?.name
+    const type = keyword.type
+    let existingGroup = acc.find((group) =>
+      thesaurusId
+        ? group[0].thesaurus?.name === thesaurusName
+        : group[0].type === type && !group[0].thesaurus
+    )
+    
+    if (!existingGroup) {
+      existingGroup = []
+      acc.push(existingGroup)
+    }
+    existingGroup.push(keyword)
+    
+    return acc
+  }, [])
+  return appendChildren(
+    ...keywordsByThesaurus.map((keywords) =>
+      pipe(
+        createNestedElement('gmd:descriptiveKeywordsTheme', 'gmd:MD_Keywords'),
+        appendChildren(
+          pipe(
+            createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
+            writeAttribute(
+              'codeList',
+              'http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode'
+            ),
+            writeAttribute('codeListValue', keywords[0].type)
+          )
+        ),
+        keywords[0].thesaurus
+          ? appendChildren(createThesaurus(keywords[0].thesaurus))
+          : noop,
+        appendChildren(
+          ...keywords.map((keyword) =>
+            pipe(
+              createElement('gmd:keyword'),
+              writeLocalizedCharacterString(
+                keyword.label,
+                keyword.translations?.label,
+                defaultLanguage
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
+
+export function appendKeywordsCollection(
+  keywords: Keyword[],
+  defaultLanguage: LanguageCode
+) {
+  // keywords are grouped by thesaurus if they have one, otherwise by type
+  const keywordsByThesaurus: Keyword[][] = keywords.reduce((acc, keyword) => {
+    const thesaurusId = keyword.thesaurus?.id
+    const thesaurusName = keyword.thesaurus?.name
+    const type = keyword.type
+    let existingGroup = acc.find((group) =>
+      thesaurusId
+        ? group[0].thesaurus?.name === thesaurusName
+        : group[0].type === type && !group[0].thesaurus
+    )
+    if (!existingGroup) {
+      existingGroup = []
+      acc.push(existingGroup)
+    }
+    existingGroup.push(keyword)
+    return acc
+  }, [])
+  return appendChildren(
+    ...keywordsByThesaurus.map((keywords) =>
+      pipe(
+        createNestedElement('gmd:descriptiveKeywordsCollection', 'gmd:MD_Keywords'),
         appendChildren(
           pipe(
             createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
@@ -954,6 +1081,22 @@ export function writeKeywords(record: CatalogRecord, rootEl: XmlElement) {
     findOrCreateIdentification(),
     removeKeywords(),
     appendKeywords(record.keywords, record.defaultLanguage)
+  )(rootEl)
+}
+
+export function writeKeywordsTheme(record: CatalogRecord, rootEl: XmlElement) {
+  pipe(
+    findOrCreateIdentification(),
+    removeKeywordsTheme(),
+    appendKeywordsTheme(record.keywordsTheme, record.defaultLanguage)
+  )(rootEl)
+}
+
+export function writeKeywordsCollection(record: CatalogRecord, rootEl: XmlElement) {
+  pipe(
+    findOrCreateIdentification(),
+    removeKeywordsCollection(),
+    appendKeywordsCollection(record.keywordsCollection, record.defaultLanguage)
   )(rootEl)
 }
 
@@ -1512,5 +1655,40 @@ export function writeResourceIdentifier(
           writeCharacterString(record.resourceIdentifier)
         )
       : noop
+  )(rootEl)
+}
+
+export function writeResolutionScaleDenominator(
+  record: DatasetRecord,
+  rootEl: XmlElement
+) {
+  pipe(
+    findOrCreateIdentification(),
+    findNestedChildOrCreate(
+      'gmd:spatialResolution',
+      'gmd:MD_Resolution',
+      'gmd:equivalentScale',
+      'gmd:MD_RepresentativeFraction',
+      'gmd:denominator'
+    ),
+    // writeCharacterString(record.resolutionScaleDenominator)
+    writeInteger(record.resolutionScaleDenominator)
+  )(rootEl)
+}
+
+export function writeAlimentations(
+  record: DatasetRecord,
+  rootEl: XmlElement
+) {
+  pipe(
+    findOrCreateIdentification(),
+    findNestedChildOrCreate(
+      'gmd:referenceSystemInfo',
+      'gmd:MD_ReferenceSystem',
+      'gmd:referenceSystemIdentifier',
+      'gmd:RS_Identifier',
+      'gmd:code',
+    ),
+    writeCharacterString(record.alimentations)
   )(rootEl)
 }

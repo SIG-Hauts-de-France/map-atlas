@@ -235,6 +235,28 @@ export const WALLONIE_SERVICE_NAPITSWALLONIA_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsTheme: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'international',
+      translations: {},
+    },
+  ],
+  keywordsCollection: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'my collection',
+      translations: {},
+    },
+  ],
   topics: ['transportation'],
   licenses: [],
   legalConstraints: [
@@ -286,4 +308,6 @@ export const WALLONIE_SERVICE_NAPITSWALLONIA_RECORD: ServiceRecord = {
   landingPage: new URL(
     'https://metawal.wallonie.be/geonetwork/srv/api/records/fe1c1a3d-c75b-435c-a1d1-48426818f54d'
   ),
+  resolutionScaleDenominator:'1050000',
+  alimentations: 'Oui-externe',
 }

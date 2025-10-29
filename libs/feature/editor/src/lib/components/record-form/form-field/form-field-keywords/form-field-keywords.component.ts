@@ -24,6 +24,7 @@ import { SPATIAL_SCOPES } from '../../../../fields.config'
 })
 export class FormFieldKeywordsComponent {
   @Input() value: Keyword[]
+  @Input() thesaurusId: string
   @Output() valueChange: EventEmitter<Keyword[]> = new EventEmitter()
 
   keywordTypes = ['temporal', 'theme', 'other'] as KeywordType[]

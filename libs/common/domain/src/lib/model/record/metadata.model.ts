@@ -125,6 +125,8 @@ export interface BaseRecord {
   kind: RecordKind
   topics: Array<string> // TODO: handle codelists
   keywords: Array<Keyword>
+  keywordsTheme?: Array<Keyword>
+  keywordsCollection?: Array<Keyword>
   licenses: Array<Constraint>
   legalConstraints: Array<Constraint>
   securityConstraints: Array<Constraint>
@@ -146,6 +148,8 @@ export interface BaseRecord {
   otherLanguages: Array<LanguageCode> // this should include all non-default languages present in the metadata, even if incompletely translated
 
   translations?: RecordTranslations
+  resolutionScaleDenominator?: string
+  alimentations?: string
 
   // to add: canonical url
   // to add: source catalog (??)

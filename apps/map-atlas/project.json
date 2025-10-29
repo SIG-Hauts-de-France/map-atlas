@@ -125,7 +125,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "nx build map-atlas --base-href='/map-atlas/'",
+          "nx build map-atlas --base-href='/cartotheque/'",
           "docker build --build-arg APP_NAME=map-atlas -f ./tools/docker/Dockerfile.apps . -t $(tools/print-docker-tag.sh map-atlas)"
         ],
         "parallel": false

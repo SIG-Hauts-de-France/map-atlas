@@ -144,6 +144,28 @@ export const GEO2FRANCE_SERVICE_EAUXUSEES_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsTheme: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'international',
+      translations: {},
+    },
+  ],
+  keywordsCollection: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'my collection',
+      translations: {},
+    },
+  ],
   topics: [],
   licenses: [],
   legalConstraints: [
@@ -184,4 +206,6 @@ export const GEO2FRANCE_SERVICE_EAUXUSEES_RECORD: ServiceRecord = {
     },
   ],
   translations: {},
+  resolutionScaleDenominator:'1050000',
+  alimentations: 'Oui-externe',
 }

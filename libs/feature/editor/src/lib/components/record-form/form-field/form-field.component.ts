@@ -142,4 +142,13 @@ export class FormFieldComponent {
   get valueAsOnlineResources() {
     return this.value as Array<OnlineResource>
   }
+  get thesaurusId() {
+    return null
+  }
+  get thesaurusThemeId() {
+    return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
+  }
+  get thesaurusCollectionsId() {
+    return 'geonetwork.thesaurus.external.theme.collections'
+  }
 }

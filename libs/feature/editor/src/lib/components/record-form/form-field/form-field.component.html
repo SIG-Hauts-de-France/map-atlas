@@ -106,6 +106,21 @@
     <ng-container *ngSwitchCase="'keywords'">
       <gn-ui-form-field-keywords
         [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusId"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-keywords>
+    </ng-container>
+    <ng-container *ngSwitchCase="'keywordsTheme'">
+      <gn-ui-form-field-keywords
+        [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusThemeId"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-keywords>
+    </ng-container>
+    <ng-container *ngSwitchCase="'keywordsCollection'">
+      <gn-ui-form-field-keywords
+        [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusCollectionsId"
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-keywords>
     </ng-container>
@@ -169,6 +184,23 @@
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-online-link-resources>
     </ng-container>
+
+    <ng-container *ngSwitchCase="'resolutionScaleDenominator'">
+      <gn-ui-form-field-simple
+        [type]="'text'"
+        [value]="valueAsString"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-simple>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'alimentations'">
+      <gn-ui-form-field-simple
+        [type]="'text'"
+        [value]="valueAsString"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-simple>
+    </ng-container>
+    
   </ng-container>
 
   <ng-container *ngIf="!model">
