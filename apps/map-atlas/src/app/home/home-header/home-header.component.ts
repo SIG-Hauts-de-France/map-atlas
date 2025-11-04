@@ -23,10 +23,7 @@ import {
 } from '@geonetwork-ui/common/domain/model/search'
 import { map } from 'rxjs/operators'
 import { 
-  ROUTER_ROUTE_NEWS,
-  ROUTER_ROUTE_MAPS_DOWNLOADED, 
-  ROUTER_ROUTE_MAPS_RECENT, 
-  ROUTER_ROUTE_MAPS,
+  ROUTER_ROUTE_NEWS
 } from '../../router/constants'
 import { lastValueFrom } from 'rxjs'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
@@ -101,10 +98,7 @@ export class HomeHeaderComponent {
     map(
       (route) =>
         route.url[0].path === ROUTER_ROUTE_NEWS ||
-        route.url[0].path === ROUTER_ROUTE_SEARCH ||
-        route.url[0].path === ROUTER_ROUTE_MAPS ||
-        route.url[0].path === ROUTER_ROUTE_MAPS_RECENT ||
-        route.url[0].path === ROUTER_ROUTE_MAPS_DOWNLOADED
+        route.url[0].path === ROUTER_ROUTE_SEARCH
     )
   )
 
@@ -125,6 +119,8 @@ export class HomeHeaderComponent {
   }
 
   async clearSearchAndFilterAndSort(customSearchParameters: SearchPreset) {
+    console.log('Custom search parameters:', customSearchParameters);
+    
     const searchFilters = await lastValueFrom(
       this.fieldsService.buildFiltersFromFieldValues(
         customSearchParameters.filters

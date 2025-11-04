@@ -59,7 +59,7 @@ export class NavigationMenuComponent {
       label: 'mapatlas.header.datasets',
     },
     {
-      link: 'https://sig.hautsdefrance.fr/ext/opendata/web/contact.html',
+      link: 'https://sig.hautsdefrance.fr/ext/cartotheque/web/contact.html',
       label: 'mapatlas.header.contact',
     }
   ]

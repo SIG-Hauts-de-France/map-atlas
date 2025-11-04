@@ -87,6 +87,11 @@ export class FieldsService {
       this.injector,
       'asc'
     ),
+    collection: new SimpleSearchField(
+      'th_collections.default',
+      this.injector,
+      'asc'
+    ),
     producerOrg: new MultilingualSearchField(
       'originatorOrgForResourceObject',
       this.injector,

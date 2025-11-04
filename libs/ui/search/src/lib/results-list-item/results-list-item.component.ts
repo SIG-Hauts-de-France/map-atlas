@@ -47,6 +47,8 @@ export class ResultsListItemComponent implements OnChanges, AfterViewInit {
   }
 
   loadComponent() {
+    console.log('Loading component for record', this.layoutConfig);
+    
     const resolver =
       this.componentFactoryResolver.resolveComponentFactory<RecordPreviewComponent>(
         this.layoutConfig.component

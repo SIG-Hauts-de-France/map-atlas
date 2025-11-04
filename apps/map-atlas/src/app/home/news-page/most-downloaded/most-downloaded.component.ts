@@ -23,9 +23,9 @@ export class MostDownloadedComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'dateStamp'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
       .setPageSize(8)
-      .setSortBy(['desc', 'dateStamp'])
+      .setSortBy(['desc', 'createDate'])
       .setResultsLayout('FEED')
       .setConfigFilters({
         'th_otherKeywords-.default': {

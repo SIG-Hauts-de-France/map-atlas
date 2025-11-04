@@ -245,13 +245,13 @@ export class EditPageComponent implements OnInit, OnDestroy {
   }
 
   fetchRedmineData() {
-    console.log('Fetching Redmine data for card number:', this.cardNumber);
+    // console.log('Fetching Redmine data for card number:', this.cardNumber);
     
     
     if (!this.cardNumber) return;
 
     this.redmineService.getIssueByCardNumber(this.cardNumber).subscribe((data: any) => {
-      console.log('Redmine data received:', data);
+      // console.log('Redmine data received:', data);
       
       if (data.issues && data.issues.length > 0) {
         const issue = data.issues[0];

@@ -67,7 +67,7 @@ export class SearchFiltersComponent implements OnInit {
   @ViewChildren(FilterDropdownComponent)
   filters: QueryList<FilterDropdownComponent>
   searchConfig: { fieldName: string; title: string }[]
-  isOpen = false
+  // isOpen = false
   @Input() isQualitySortable = false
   userId: string
   myRecordsFilterEnabled$: Observable<boolean> =
@@ -92,6 +92,9 @@ export class SearchFiltersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // console.log('SearchFiltersComponent initialized');
+    // console.log(this.fieldsService.getAvailableValues('themesSIG'));
+    
     
     this.platformService.getMe().subscribe((user) => (this.userId = user?.id))
     this.searchConfig = (
@@ -99,7 +102,7 @@ export class SearchFiltersComponent implements OnInit {
         'themesSIG',
         'keyword',
         'publicationYear',
-        'isSpatial',
+        'collection',
         'placeKeywords',
         'resourceType'
       ]
@@ -128,13 +131,13 @@ export class SearchFiltersComponent implements OnInit {
       }))
   }
 
-  open() {
-    this.isOpen = true
-  }
+  // open() {
+  //   this.isOpen = true
+  // }
 
-  close() {
-    this.isOpen = false
-  }
+  // close() {
+  //   this.isOpen = false
+  // }
 
   toggleSpatialFilter(enabled: boolean) {
     this.searchFacade.setSpatialFilterEnabled(enabled)
@@ -159,7 +162,7 @@ export class SearchFiltersComponent implements OnInit {
       })
   }
 
-  getClassForFilter(index: number) {
-    return this.isOpen || index < 2 ? 'block' : 'hidden'
-  }
+  // getClassForFilter(index: number) {
+  //   return this.isOpen || index < 2 ? 'block' : 'hidden'
+  // }
 }

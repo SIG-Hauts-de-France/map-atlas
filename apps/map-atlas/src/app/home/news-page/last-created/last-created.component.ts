@@ -27,9 +27,9 @@ export class LastCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'dateStamp'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
       .setPageSize(3)
-      .setSortBy(['desc', 'dateStamp'])
+      .setSortBy(['desc', 'createDate'])
       .setResultsLayout('FEED')
       .setConfigFilters({
         'th_otherKeywords-.default': {

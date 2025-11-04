@@ -66,6 +66,7 @@ export class MetadataInfoHDFComponent {
   updatedTimes: number
   otherKeywords: Keyword[] = [];
   placeKeywords: Keyword[] = [];
+  collectionKeywords: Keyword[] = [];
   themeSIGKeywords: Keyword[] = [];
 
   constructor(private dateService: DateService) {}
@@ -83,8 +84,17 @@ export class MetadataInfoHDFComponent {
       console.log(this.metadata);
       this.otherKeywords = this.filterKeywords('other');
       this.placeKeywords = this.filterKeywords('place');
+      this.collectionKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'collections')) || [];
       this.themeSIGKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'themes_sig')) || [];
     }
+
+    // console.log("Other keywords:", this.otherKeywords);
+    // console.log("Place keywords:", this.placeKeywords);
+    // console.log("Collection keywords:", this.collectionKeywords);
+    // console.log("Theme SIG keywords:", this.themeSIGKeywords);
+    
+    
+    
     
   }
 

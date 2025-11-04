@@ -12,6 +12,7 @@ import {
   DEFAULT_RESULTS_LAYOUT_CONFIG,
   RESULTS_LAYOUT_CONFIG,
 } from '@geonetwork-ui/ui/search'
+import { ROUTER_ROUTE_SEARCH } from '@geonetwork-ui/feature/router'
 import { MostRecentComponent } from './most-recent/most-recent.component'
 import { MostDownloadedComponent } from './most-downloaded/most-downloaded.component'
 import { Router } from '@angular/router';
@@ -43,14 +44,14 @@ export class NewsPageComponent {
     return getGlobalConfig().CONTACT_EMAIL
   }
   onMostRecentClick():void{
-    this.router.navigate(['/maps-recent']);
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { _sort: '-createDate' } });
   }
 
   onMapsClick():void{
-    this.router.navigate(['/maps']);
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'CALU',  _sort: '-createDate' } });
   }
 
   onMostDownloadedClick():void{
-    this.router.navigate(['/maps-downloaded']);
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'SPRC',  _sort: '-createDate' } });
   }
 }

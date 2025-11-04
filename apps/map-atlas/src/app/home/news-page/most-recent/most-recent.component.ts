@@ -21,9 +21,9 @@ export class MostRecentComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'dateStamp'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
       .setPageSize(8)
-      .setSortBy(['desc', 'dateStamp'])
+      .setSortBy(['desc', 'createDate'])
       .setResultsLayout('FEED')
 
     this.records$ = this.searchFacade.results$; 

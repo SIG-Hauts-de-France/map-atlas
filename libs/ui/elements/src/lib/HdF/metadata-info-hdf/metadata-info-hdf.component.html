@@ -63,6 +63,20 @@
         </div>
       </div>
 
+      <div *ngIf="collectionKeywords?.length">
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
+          search.filters.collection
+        </p>
+        <div class="sm:pb-4 flex flex-wrap gap-2">
+          <gn-ui-badge-hdf
+            class="inline-block lowercase"
+            (click)="onKeywordClick(keyword)"
+            [clickable]="true"
+            *ngFor="let keyword of collectionKeywords"
+            >{{ keyword.label }}</gn-ui-badge-hdf>
+        </div>
+      </div>
+
       <div *ngIf="metadata.lineage">
         <p class="mt-3 mb-3 font-medium text-primary text-sm" translate>
           record.metadata.details
