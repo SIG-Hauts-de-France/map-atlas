@@ -6,14 +6,12 @@
 >
   <img
     #imageElement
-    class="relative w-full object-center"
+    class="relative object-center"
     [ngClass]="imgFit === 'contain' ? 'h-4/5 w-4/5' : 'h-full'"
     [ngStyle]="{ 
       objectFit: imgFit,
       maxHeight: '50vh',
-      maxWidth: '100%',
-      height: 'auto',
-      width: 'auto'
+      maxWidth: '100%'
      }"
     alt="thumbnail"
     loading="lazy"

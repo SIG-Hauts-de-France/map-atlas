@@ -5,7 +5,7 @@
   <ng-template let-expandRatio>
     <header
       class="w-full sm:h-[344px] grid"
-      [ngClass]="(thumbnailUrl$ | async) ? 'h-[554px]' : 'h-[344px]'"
+      [ngClass]="(thumbnailUrl$ | async) ? 'h-[344px]' : 'h-[344px] '"
     >
       <div
         [style.background]="backgroundCss"
@@ -84,13 +84,13 @@
                     [styling]="'default'"
                     [record]="metadata"
                   ></gn-ui-geo-data-badge>
-                  <div *ngIf="metadata.recordUpdated">
+                  <div *ngIf="metadata.resourceCreated">
                     <p
                       translate
-                      [translateParams]="{ date: lastUpdate }"
+                      [translateParams]="{ date: createDate }"
                       class="text-sm"
                     >
-                      record.metadata.lastUpdate
+                      record.metadata.createDate
                     </p>
                   </div>
                   <div

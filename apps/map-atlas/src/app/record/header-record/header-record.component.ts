@@ -32,7 +32,7 @@ import { LanguageSwitcherComponent } from '@geonetwork-ui/ui/catalog'
 import { StickyHeaderComponent } from '@geonetwork-ui/ui/layout'
 
 export const HEADER_HEIGHT_DEFAULT = 344
-export const HEADER_HEIGHT_MOBILE_THUMBNAIL = 554
+export const HEADER_HEIGHT_MOBILE_THUMBNAIL = 344
 
 @Component({
   selector: 'map-atlas-header-record',
@@ -111,6 +111,10 @@ export class HeaderRecordComponent {
 
   get lastUpdate() {
     return this.dateService.formatDate(this.metadata.recordUpdated)
+  }
+
+  get createDate() {
+    return this.dateService.formatDate(this.metadata.resourceCreated) // or recordCreated
   }
 
   back() {

@@ -20,7 +20,8 @@ import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 import { KindBadgeComponent } from '../../kind-badge/kind-badge.component'
 import { MarkdownParserComponent } from '../../markdown-parser/markdown-parser.component'
 import { MetadataQualityComponent } from '../../metadata-quality/metadata-quality.component'
-import { ThumbnailComponent } from '../../thumbnail/thumbnail.component'
+import { ThumbnailComponent,  } from '../../thumbnail/thumbnail.component'
+import { ThumbnailHDFComponent } from '../thumbnail-hdf/thumbnail-hdf.component'
 import {
   removeWhitespace,
   stripHtml,
@@ -40,7 +41,7 @@ type CardSize = 'L' | 'M' | 'S' | 'XS'
     NgTemplateOutlet,
     KindBadgeComponent,
     MarkdownParserComponent,
-    ThumbnailComponent,
+    ThumbnailHDFComponent,
   ],
   providers: [
     provideIcons({
@@ -78,6 +79,8 @@ export class InternalLinkCardHDFComponent implements OnInit {
   constructor(protected elementRef: ElementRef) {}
 
   ngOnInit(): void {
+    console.log('Initializing InternalLinkCardHDFComponent for record', this.record);
+    
     this.abstract = removeWhitespace(stripHtml(this.record?.abstract))
     this.subscription.add(
       fromEvent(this.elementRef.nativeElement, 'click').subscribe(() =>

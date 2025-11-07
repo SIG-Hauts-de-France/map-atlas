@@ -2,7 +2,7 @@ import { InjectionToken, Type } from '@angular/core'
 import { RecordPreviewCardComponent } from '../../record-preview-card/record-preview-card.component'
 import { RecordPreviewFeedHdFComponent } from '../../HdF/record-preview-feed-hdf/record-preview-feed-hdf.component'
 import { RecordPreviewListComponent } from '../../record-preview-list/record-preview-list.component'
-import { RecordPreviewRowComponent } from '../../record-preview-row/record-preview-row.component'
+import { RecordPreviewRowHDFComponent } from '../../HdF/record-preview-row-hdf/record-preview-row-hdf.component'
 import { RecordPreviewTextComponent } from '../../record-preview-text/record-preview-text.component'
 import { RecordPreviewTitleComponent } from '../../record-preview-title/record-preview-title.component'
 import { RecordPreviewComponent } from '../../record-preview/record-preview.component'
@@ -28,7 +28,7 @@ export const DEFAULT_RESULTS_HDF_LAYOUT_CONFIG: ResultsHdFLayoutConfigModel = {
     'grid md:grid-cols-2 lg:grid-cols-4 gap-4 p-4'
   ),
   ROW: new ResultsHdFLayoutConfigItem(
-    RecordPreviewRowComponent,
+    RecordPreviewRowHDFComponent,
     'py-2',
     '',
     'grid grid-cols-1 divide-y divide-gray-100'

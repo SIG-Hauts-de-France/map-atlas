@@ -60,6 +60,7 @@ import { FeatureEditorModule } from '@geonetwork-ui/feature/editor'
     importProvidersFrom(FeatureEditorModule),
     provideI18n(),
     provideRepositoryUrl(() => getGlobalConfig().GN4_API_URL),
+    // provideRepositoryUrl(() => 'http://localhost:8080/geonetwork/srv/api'),
     importProvidersFrom(EffectsModule.forRoot()),
     provideGn4(),
     provideAnimations(),

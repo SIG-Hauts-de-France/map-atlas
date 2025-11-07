@@ -122,6 +122,9 @@ export class ResultsListHdFContainerComponent implements OnInit {
           !loading && currentPage < totalPages
       )
     )
+
+    console.log('Facade initialized in ResultsListHdFContainerComponent', this.facade.results$);
+    
   }
 
   onMetadataSelection(metadata: CatalogRecord): void {

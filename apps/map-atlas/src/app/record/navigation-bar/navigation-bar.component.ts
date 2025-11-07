@@ -55,20 +55,16 @@ export class NavigationBarComponent {
   displayMobileMenu = false
   anchorLinks = [
     {
-      anchor: 'about',
-      label: 'record.metadata.carte',
+      anchor: 'preview',
+      label: 'record.metadata.preview',
     },
     {
       anchor: 'about',
       label: 'record.metadata.about.hdf',
     },
     {
-      anchor: 'access',
-      label: 'record.metadata.download',
-    },
-    {
       anchor: 'resources',
-      label: 'record.metadata.links',
+      label: 'record.metadata.download',
     },
   ]
   activeLabel = this.anchorLinks[0].label

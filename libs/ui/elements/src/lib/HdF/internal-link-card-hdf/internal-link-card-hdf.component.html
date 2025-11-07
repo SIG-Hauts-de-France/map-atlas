@@ -5,11 +5,11 @@
   [ngClass]="cardClass"
 >
   <div *ngIf="shouldShowThumbnail" class="record-card__thumbnail">
-    <!-- <gn-ui-thumbnail
-      class="w-full h-full object-cover"
+    <gn-ui-thumbnail-hdf
+      class="h-full object-cover"
       [thumbnailUrl]="record.overviews?.[0]?.url?.toString() || ''"
       [fit]="'cover'"
-    ></gn-ui-thumbnail> -->
+    ></gn-ui-thumbnail-hdf>
   </div>
   <div class="grow pt-1" [ngClass]="shouldShowThumbnail ? 'sm:w-0' : ''">
     <div class="flex flex-col gap-2 h-full">
@@ -46,8 +46,9 @@
             data-cy="recordOrgName"
             class="line-clamp-1"
             [title]="record.ownerOrganization.name"
-            >{{ record.ownerOrganization.name }}</span
+            >{{ record.ownerOrganization.name }} </span
           >
+          <!-- <p>{{ record.resourceCreated }}</p> -->
         </div>
         <div class="record-card__footer__other">
           <div

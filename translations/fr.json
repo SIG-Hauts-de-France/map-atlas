@@ -486,6 +486,7 @@
   "record.metadata.keywords": "Mots-clés",
   "record.metadata.languages": "Langues",
   "record.metadata.lastUpdate": "Mis à jour le {date}",
+  "record.metadata.createDate": "Date de réalisation : {date}",
   "record.metadata.linked.datasets": "Jeux de données associés",
   "record.metadata.linked.records": "Contenus associés",
   "record.metadata.linked.reuses": "Réutilisations associées",

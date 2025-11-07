@@ -92,6 +92,12 @@ export const FORMATS = {
     color: '#C4A98F',
     mimeTypes: ['image/jpg'],
   },
+  png: {
+    extensions: ['png'],
+    priority: 9,
+    color: '#C4A98F',
+    mimeTypes: ['image/png'],
+  },
   svg: {
     extensions: ['svg'],
     priority: 10,
