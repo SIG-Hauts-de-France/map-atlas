@@ -29,6 +29,8 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core'
 import { combineLatest, Observable, of, Subscription } from 'rxjs'
 import { catchError, map, skip, switchMap, take } from 'rxjs/operators'
 import { DateService } from '@geonetwork-ui/util/shared'
+import { requiredFields } from '../../../../environements/environement'
+import { NotificationsService } from '@geonetwork-ui/feature/notifications'
 
 export type RecordSaveStatus = 'saving' | 'upToDate' | 'hasChanges'
 @Component({
@@ -91,7 +93,8 @@ export class PublishButtonComponent implements OnDestroy {
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
     private cdr: ChangeDetectorRef,
-    private dateService: DateService
+    private dateService: DateService,
+    private notificationsService: NotificationsService // Ajout du service de notifications
   ) {}
 
   ngOnDestroy() {
@@ -172,24 +175,44 @@ export class PublishButtonComponent implements OnDestroy {
   }
 
   saveRecord() {
-    this.facade.saveRecord()
-    this.facade.saveSuccess$
-      .pipe(
-        take(1),
-        switchMap(() =>
-          combineLatest([this.platformService.getMe(), this.record$]).pipe(
-            take(1)
-          )
-        ),
-        switchMap(([userId, record]) =>
-          this.recordsApiService.setRecordOwnership(
-            record.uniqueIdentifier,
-            0,
-            Number(userId.id)
+    this.record$.pipe(take(1)).subscribe((record) => {
+      let missingFields: string[] = []
+      for (const field of requiredFields) {
+        if (!record[field]) {
+          missingFields.push(field)
+        }
+      }
+      if (missingFields.length > 0) {
+        this.notificationsService.showNotification({
+          type: 'error',
+          title: 'Champs obligatoires manquants',
+          text: `Veuillez remplir les champs suivants : ${missingFields.join(
+            ', '
+          )}`,
+          closeMessage: 'Fermer',
+        })
+        return
+      }
+      console.log('Saving record', record)
+      this.facade.saveRecord()
+      this.facade.saveSuccess$
+        .pipe(
+          take(1),
+          switchMap(() =>
+            combineLatest([this.platformService.getMe(), this.record$]).pipe(
+              take(1)
+            )
+          ),
+          switchMap(([userId, record]) =>
+            this.recordsApiService.setRecordOwnership(
+              record.uniqueIdentifier,
+              0,
+              Number(userId.id)
+            )
           )
         )
-      )
-      .subscribe()
+        .subscribe()
+    })
   }
 
   formatDate(date: Date): string {
