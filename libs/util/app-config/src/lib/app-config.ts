@@ -91,7 +91,7 @@ export function loadAppConfig() {
       let parsedGlobalSection = parseConfigSection(
         parsed,
         'global',
-        ['geonetwork4_api_url'],
+        ['geonetwork4_api_url', 'geonetwork4_api_url_map_atlas'],
         [
           'datahub_url',
           'proxy_path',
@@ -118,6 +118,8 @@ export function loadAppConfig() {
           ? null
           : ({
               GN4_API_URL: parsedGlobalSection.geonetwork4_api_url,
+              GN4_API_URL_MAP_ATLAS:
+                parsedGlobalSection.geonetwork4_api_url_map_atlas,
               DATAHUB_URL: parsedGlobalSection.datahub_url,
               PROXY_PATH: parsedGlobalSection.proxy_path,
               METADATA_LANGUAGE: parsedGlobalSection.metadata_language
@@ -295,7 +297,7 @@ ${warnings.join('\n')}`)
 }
 
 export function loadAppConfigHDF() {
-  return fetch('assets/configuration/default-hdf.toml')
+  return fetch('assets/configuration/default.toml')
     .then((resp) => {
       if (!resp.ok) throw new Error('Configuration file could not be loaded')
       return resp.text()
@@ -315,7 +317,7 @@ export function loadAppConfigHDF() {
       let parsedGlobalSection = parseConfigSection(
         parsed,
         'global',
-        ['geonetwork4_api_url'],
+        ['geonetwork4_api_url', 'geonetwork4_api_url_map_atlas'],
         [
           'datahub_url',
           'proxy_path',
@@ -342,6 +344,8 @@ export function loadAppConfigHDF() {
           ? null
           : ({
               GN4_API_URL: parsedGlobalSection.geonetwork4_api_url,
+              GN4_API_URL_MAP_ATLAS:
+                parsedGlobalSection.geonetwork4_api_url_map_atlas,
               DATAHUB_URL: parsedGlobalSection.datahub_url,
               PROXY_PATH: parsedGlobalSection.proxy_path,
               METADATA_LANGUAGE: parsedGlobalSection.metadata_language

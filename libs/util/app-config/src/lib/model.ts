@@ -2,6 +2,7 @@ import { Geometry } from 'geojson'
 
 export interface GlobalConfig {
   GN4_API_URL: string
+  GN4_API_URL_MAP_ATLAS?: string
   DATAHUB_URL?: string
   PROXY_PATH?: string
   METADATA_LANGUAGE?: string

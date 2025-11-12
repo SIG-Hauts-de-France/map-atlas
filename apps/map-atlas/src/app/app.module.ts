@@ -113,7 +113,7 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     importProvidersFrom(FeatureRecordModule),
     importProvidersFrom(FeatureEditorModule),
     provideI18n(TRANSLATE_WITH_OVERRIDES_CONFIG),
-    provideRepositoryUrl(() => getGlobalConfig().GN4_API_URL),
+    provideRepositoryUrl(() => getGlobalConfig().GN4_API_URL_MAP_ATLAS),
     importProvidersFrom(EffectsModule.forRoot()),
     provideGn4(),
     provideAnimations(),
