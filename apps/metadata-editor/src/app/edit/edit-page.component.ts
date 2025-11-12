@@ -355,7 +355,6 @@ export class EditPageComponent implements OnInit, OnDestroy {
   
           this.facade.openRecord(updatedRecord, null);
           this.facade.setCurrentPage(0);
-          this.facade.saveRecord();
         });
         
        

@@ -55,7 +55,7 @@ export class NavigationBarComponent {
   displayMobileMenu = false
   anchorLinks = [
     {
-      anchor: 'preview',
+      anchor: 'about',
       label: 'record.metadata.preview',
     },
     {

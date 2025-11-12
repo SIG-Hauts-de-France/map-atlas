@@ -6,9 +6,9 @@
 >
   <div *ngIf="shouldShowThumbnail" class="record-card__thumbnail">
     <gn-ui-thumbnail-hdf
-      class="h-full object-cover"
+      class="h-full object-contain"
       [thumbnailUrl]="record.overviews?.[0]?.url?.toString() || ''"
-      [fit]="'cover'"
+      [fit]="contain"
     ></gn-ui-thumbnail-hdf>
   </div>
   <div class="grow pt-1" [ngClass]="shouldShowThumbnail ? 'sm:w-0' : ''">
@@ -46,7 +46,7 @@
             data-cy="recordOrgName"
             class="line-clamp-1"
             [title]="record.ownerOrganization.name"
-            >{{ record.ownerOrganization.name }} </span
+            >{{ record.ownerOrganization.name }} - Crée le {{ formatDate(record.recordCreated) }}</span
           >
           <!-- <p>{{ record.resourceCreated }}</p> -->
         </div>

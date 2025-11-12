@@ -27,6 +27,7 @@ import {
   stripHtml,
   type ValidatorMapperKeys,
 } from '@geonetwork-ui/util/shared'
+import { DateService } from '@geonetwork-ui/util/shared'
 
 type CardSize = 'L' | 'M' | 'S' | 'XS'
 
@@ -76,7 +77,10 @@ export class InternalLinkCardHDFComponent implements OnInit {
 
   private _size: CardSize = 'L'
 
-  constructor(protected elementRef: ElementRef) {}
+  constructor(
+    protected elementRef: ElementRef,
+    private dateService: DateService
+  ) {}
 
   ngOnInit(): void {
     console.log('Initializing InternalLinkCardHDFComponent for record', this.record);
@@ -101,5 +105,9 @@ export class InternalLinkCardHDFComponent implements OnInit {
       this.size === 'M' &&
       cardWidth <= 490
     )
+  }
+  
+  formatDate(date: Date): string {
+    return this.dateService.formatDate(date)
   }
 }
