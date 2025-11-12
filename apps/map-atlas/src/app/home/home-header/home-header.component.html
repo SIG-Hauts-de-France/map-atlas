@@ -1,6 +1,6 @@
-<header class="h-full">
+<header class="h-full" [style.background]="backgroundCss">
   <div class="bg-menu px-5">
-    <div class="container-lg mx-auto">
+    <div class="container-lg mx-auto hidden sm:block">
       <map-atlas-link-menu></map-atlas-link-menu>
     </div>
   </div>
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="bg-secondary px-5 hidden sm:block" [style.background]="backgroundCss">
+  <div class="bg-secondary px-5" >
     <div class="container-lg mx-auto py-8 relative z-40"
       [style.transform]="'translate(0, ' + (1 - expandRatio) * 45 + 'px)'">
       <ng-container *ngIf="displaySortBadges$ | async">

@@ -37,7 +37,7 @@ const DEFAULT_PLACEHOLDER_HDF =
 })
 export class ThumbnailHDFComponent implements OnInit, OnChanges {
   @Input() thumbnailUrl: string | string[]
-  @Input() fit: FitOptions | FitOptions[] = 'cover'
+  @Input() fit: FitOptions | FitOptions[] = 'contain'
   @ViewChild('imageElement') imgElement: ElementRef<HTMLImageElement>
   @ViewChild('containerElement') containerElement: ElementRef<HTMLDivElement>
   @Output() placeholderShown = new EventEmitter<boolean>()
@@ -77,7 +77,7 @@ export class ThumbnailHDFComponent implements OnInit, OnChanges {
     this.images = urls
       .map((url, index) => ({
         url,
-        fit: (Array.isArray(this.fit) ? this.fit[index] : this.fit) || 'cover',
+        fit: 'contain' as FitOptions,
       }))
       .filter((img) => !!img.url)
     if (!this.images.length) {

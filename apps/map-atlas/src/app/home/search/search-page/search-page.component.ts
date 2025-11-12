@@ -5,6 +5,7 @@ import {
   ResultsHitsHdFContainerComponent,
   ResultsListHdFContainerComponent,
   SearchFacade,
+  FIELDS_BRIEF,
 } from '@geonetwork-ui/feature/search'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 import {
@@ -45,7 +46,10 @@ export class SearchPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.searchFacade.setResultsLayout('ROW')
+    this.searchFacade.setSortBy(['desc', 'createDate']);
+    this.searchFacade
+      .setResultsLayout('ROW')
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'resoucreCreated', 'resourceDate', 'resourceIdentifier'])
 
     const metadataQualityConfig: MetadataQualityConfig =
       getMetadataQualityConfig() || ({} as MetadataQualityConfig)
