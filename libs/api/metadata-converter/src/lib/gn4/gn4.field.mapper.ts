@@ -451,6 +451,15 @@ export class Gn4FieldMapper {
         }),
       }
     },
+    resourceIdentifier: (output, source) => {
+      const resourceIdentifier = getFirstValue(
+        selectField(source, 'resourceIdentifier')
+      )
+      return {
+        ...output,
+        ...(resourceIdentifier && { resourceIdentifier }),
+      }
+    },
   }
 
   private genericField = (output) => output
