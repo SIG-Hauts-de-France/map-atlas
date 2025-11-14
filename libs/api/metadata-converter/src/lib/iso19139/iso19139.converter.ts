@@ -87,6 +87,7 @@ import {
   writeUpdateFrequency,
   writeResolutionScaleDenominator,
   writeAlimentations,
+  writeMapDigital,
 } from './write-parts'
 
 export class Iso19139Converter extends BaseConverter<string> {
@@ -133,6 +134,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     extras: () => undefined,
     landingPage: () => undefined,
     translations: () => undefined,
+    mapDigital: () => undefined, // Custom part not in CatalogRecord
   }
 
   protected writers: Record<
@@ -178,6 +180,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     extras: () => undefined,
     landingPage: () => undefined,
     translations: () => undefined, // NB. translations are handled in properties
+    mapDigital: writeMapDigital, // Custom part not in CatalogRecord
   }
 
   protected beforeDocumentCreation(rootElement: XmlElement) {
@@ -260,8 +263,11 @@ export class Iso19139Converter extends BaseConverter<string> {
     const defaultLanguage = this.readers['defaultLanguage'](rootEl, tr)
     const resourceIdentifier = this.readers['resourceIdentifier'](rootEl, tr)
     const spatialExtents = this.readers['spatialExtents'](rootEl, tr)
-    const resolutionScaleDenominator = this.readers['resolutionScaleDenominator'](rootEl, tr)
+    const resolutionScaleDenominator = this.readers[
+      'resolutionScaleDenominator'
+    ](rootEl, tr)
     const alimentations = this.readers['alimentations'](rootEl, tr)
+    const mapDigital = this.readers['mapDigital'](rootEl, tr)
 
     return {
       uniqueIdentifier,
@@ -294,6 +300,7 @@ export class Iso19139Converter extends BaseConverter<string> {
       translations: tr,
       resolutionScaleDenominator,
       alimentations,
+      mapDigital,
       ...(landingPage && { landingPage }),
     } as CatalogRecord
   }
@@ -368,6 +375,34 @@ export class Iso19139Converter extends BaseConverter<string> {
       rootEl = createElement('gmd:MD_Metadata')()
       fieldChanged = () => true
     }
+    //Add MapDigital
+
+    // pipe(
+    //   findOrCreateIdentification(),
+    //   findNestedChildOrCreate(
+    //     'gmd:citation',
+    //     'gmd:CI_Citation',
+    //     'gmd:presentationForm',
+    //     'gmd:CI_PresentationFormCode'
+    //   ),
+    //   writeAttribute('codeListValue', 'mapDigital')
+    // )(rootEl)
+    // pipe(
+    //   findNestedChildOrCreate('gmd:distributionInfo', 'gmd:MD_Distribution'),
+    //   pipe(
+    //     findNestedChildOrCreate('gmd:distributionFormat', 'gmd:MD_Format'),
+    //     pipe(findNestedChildOrCreate('gmd:name'), writeCharacterString('PDF')),
+    //     pipe(findNestedChildOrCreate('gmd:version'), writeCharacterString('1.7'))
+    //   ),
+    //   pipe(
+    //     findNestedChildOrCreate(
+    //       'gmd:distributionFormat',
+    //       'gmd:MD_Format',
+    //       'gmd:name'
+    //     ),
+    //     writeCharacterString('PNG')
+    //   )
+    // )(rootEl)
 
     fieldChanged('uniqueIdentifier') &&
       this.writers['uniqueIdentifier'](record, rootEl)
@@ -402,8 +437,10 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['contactsForResource'](record, rootEl)
 
     fieldChanged('keywords') && this.writers['keywords'](record, rootEl)
-    fieldChanged('keywordsTheme') && this.writers['keywordsTheme'](record, rootEl)
-    fieldChanged('keywordsCollection') && this.writers['keywordsCollection'](record, rootEl)
+    fieldChanged('keywordsTheme') &&
+      this.writers['keywordsTheme'](record, rootEl)
+    fieldChanged('keywordsCollection') &&
+      this.writers['keywordsCollection'](record, rootEl)
     fieldChanged('topics') && this.writers['topics'](record, rootEl)
     fieldChanged('legalConstraints') &&
       this.writers['legalConstraints'](record, rootEl)
@@ -418,7 +455,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['resourceIdentifier'](record, rootEl)
     fieldChanged('resolutionScaleDenominator') &&
       this.writers['resolutionScaleDenominator'](record, rootEl)
-    fieldChanged('alimentations') && this.writers['alimentations'](record, rootEl)
+    fieldChanged('alimentations') &&
+      this.writers['alimentations'](record, rootEl)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') && this.writers['status'](record, rootEl)
@@ -437,6 +475,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     fieldChanged('otherLanguages') &&
       this.writers['otherLanguages'](record, rootEl)
 
+    this.writers['mapDigital'](record, rootEl)
     this.beforeDocumentCreation(rootEl)
 
     const newDocument = createDocument(rootEl)

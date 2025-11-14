@@ -85,6 +85,7 @@ export class DcatApConverter extends BaseConverter<string> {
     translations: () => undefined,
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
+    mapDigital: () => undefined,
   }
 
   protected writers: Record<
@@ -130,6 +131,7 @@ export class DcatApConverter extends BaseConverter<string> {
     translations: () => undefined,
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
+    mapDigital: () => undefined,
   }
 
   constructor(
@@ -302,16 +304,13 @@ export class DcatApConverter extends BaseConverter<string> {
       tr,
       defaultLanguage
     )
-    const resolutionScaleDenominator = this.readers['resolutionScaleDenominator'](
-      dataStore, 
-      catalogRecord, 
-      tr, 
-      defaultLanguage
-    )
+    const resolutionScaleDenominator = this.readers[
+      'resolutionScaleDenominator'
+    ](dataStore, catalogRecord, tr, defaultLanguage)
     const alimentations = this.readers['alimentations'](
-      dataStore, 
-      catalogRecord, 
-      tr, 
+      dataStore,
+      catalogRecord,
+      tr,
       defaultLanguage
     )
 

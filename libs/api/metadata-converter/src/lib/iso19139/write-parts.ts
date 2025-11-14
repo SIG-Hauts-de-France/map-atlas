@@ -426,11 +426,15 @@ export function removeKeywords() {
 }
 
 export function removeKeywordsTheme() {
-  return removeChildren(pipe(findNestedElements('gmd:descriptiveKeywordsTheme')))
+  return removeChildren(
+    pipe(findNestedElements('gmd:descriptiveKeywordsTheme'))
+  )
 }
 
 export function removeKeywordsCollection() {
-  return removeChildren(pipe(findNestedElements('gmd:descriptiveKeywordsCollection')))
+  return removeChildren(
+    pipe(findNestedElements('gmd:descriptiveKeywordsCollection'))
+  )
 }
 
 // returns a <gmd:thesaurusName> element
@@ -517,7 +521,6 @@ export function appendKeywordsTheme(
 ) {
   // keywords are grouped by thesaurus if they have one, otherwise by type
   const keywordsByThesaurus: Keyword[][] = keywords.reduce((acc, keyword) => {
-    
     const thesaurusId = keyword.thesaurus?.id
     const thesaurusName = keyword.thesaurus?.name
     const type = keyword.type
@@ -526,13 +529,13 @@ export function appendKeywordsTheme(
         ? group[0].thesaurus?.name === thesaurusName
         : group[0].type === type && !group[0].thesaurus
     )
-    
+
     if (!existingGroup) {
       existingGroup = []
       acc.push(existingGroup)
     }
     existingGroup.push(keyword)
-    
+
     return acc
   }, [])
   return appendChildren(
@@ -593,7 +596,10 @@ export function appendKeywordsCollection(
   return appendChildren(
     ...keywordsByThesaurus.map((keywords) =>
       pipe(
-        createNestedElement('gmd:descriptiveKeywordsCollection', 'gmd:MD_Keywords'),
+        createNestedElement(
+          'gmd:descriptiveKeywordsCollection',
+          'gmd:MD_Keywords'
+        ),
         appendChildren(
           pipe(
             createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
@@ -1092,7 +1098,10 @@ export function writeKeywordsTheme(record: CatalogRecord, rootEl: XmlElement) {
   )(rootEl)
 }
 
-export function writeKeywordsCollection(record: CatalogRecord, rootEl: XmlElement) {
+export function writeKeywordsCollection(
+  record: CatalogRecord,
+  rootEl: XmlElement
+) {
   pipe(
     findOrCreateIdentification(),
     removeKeywordsCollection(),
@@ -1676,10 +1685,7 @@ export function writeResolutionScaleDenominator(
   )(rootEl)
 }
 
-export function writeAlimentations(
-  record: DatasetRecord,
-  rootEl: XmlElement
-) {
+export function writeAlimentations(record: DatasetRecord, rootEl: XmlElement) {
   pipe(
     findOrCreateIdentification(),
     findNestedChildOrCreate(
@@ -1687,8 +1693,111 @@ export function writeAlimentations(
       'gmd:MD_ReferenceSystem',
       'gmd:referenceSystemIdentifier',
       'gmd:RS_Identifier',
-      'gmd:code',
+      'gmd:code'
     ),
     writeCharacterString(record.alimentations)
   )(rootEl)
+}
+
+export function writeMapDigital(record: DatasetRecord, rootEl: XmlElement) {
+  pipe(
+    // Ajout du format PNG dans distributionInfo
+    findNestedChildOrCreate('gmd:distributionInfo', 'gmd:MD_Distribution'),
+    appendChildren(
+      pipe(
+        createNestedElement('gmd:distributionFormat', 'gmd:MD_Format'),
+        appendChildren(
+          pipe(createElement('gmd:name'), writeCharacterString('PNG'))
+        )
+      )
+    )
+    // // Ajout du format PNG dans distributionInfo
+    // findNestedChildOrCreate(
+    //   'gmd:distributionInfo',
+    //   'gmd:MD_Distribution',
+    //   'gmd:distributionFormat',
+    //   'gmd:MD_Format',
+    //   'gmd:name'
+    // ),
+    // writeCharacterString('PNG')
+  )(rootEl)
+  pipe(
+    // Ajout du code mapDigital dans la citation
+    findOrCreateIdentification(),
+    findNestedChildOrCreate(
+      'gmd:citation',
+      'gmd:CI_Citation',
+      'gmd:presentationForm',
+      'gmd:CI_PresentationFormCode'
+    ),
+    writeAttribute('codeListValue', 'mapDigital')
+  )(rootEl)
+
+  // pipe(
+  //   //    appendChildren(
+  //   //pipe(
+  //   findNestedChildOrCreate(
+  //     'gmd:distributionInfo',
+  //     'gmd:MD_Distribution',
+  //     'gmd:distributionFormat',
+  //     'gmd:MD_Format',
+  //     'gmd:name'
+  //   ),
+  //   writeCharacterString('PNG')
+
+  //   // appendChildren(
+  //   //   pipe(
+  //   //     findOrCreateIdentification(),
+  //   //     findNestedChildOrCreate(
+  //   //       'gmd:citation',
+  //   //       'gmd:CI_Citation',
+  //   //       'gmd:presentationForm',
+  //   //       'gmd:CI_PresentationFormCode'
+  //   //     ),
+  //   //     writeAttribute('codeListValue', 'mapDigital')
+  //   //   )
+  //   // )
+  //   //)
+  //   // pipe(
+  //   //   findOrCreateIdentification(),
+  //   //   findNestedChildOrCreate(
+  //   //     'gmd:citation',
+  //   //     'gmd:CI_Citation',
+  //   //     'gmd:presentationForm',
+  //   //     'gmd:CI_PresentationFormCode'
+  //   //   ),
+  //   //   writeAttribute('codeListValue', 'mapDigital')
+  //   // )
+  //   // pipe(
+  //   //   findNestedChildOrCreate('gmd:distributionInfo', 'gmd:MD_Distribution'),
+  //   //   pipe(
+  //   //     findNestedChildOrCreate('gmd:distributionFormat', 'gmd:MD_Format'),
+  //   //     pipe(findNestedChildOrCreate('gmd:name'), writeCharacterString('PDF')),
+  //   //     pipe(
+  //   //       findNestedChildOrCreate('gmd:version'),
+  //   //       writeCharacterString('1.7')
+  //   //     )
+  //   //   ),
+  //   //   pipe(
+  //   //     findNestedChildOrCreate(
+  //   //       'gmd:distributionFormat',
+  //   //       'gmd:MD_Format',
+  //   //       'gmd:name'
+  //   //     ),
+  //   //     writeCharacterString('PNG')
+  //   //   )
+  //   // )
+  //   //    )
+  // )(rootEl)
+
+  // pipe(
+  //   findOrCreateIdentification(),
+  //   findNestedChildOrCreate(
+  //     'gmd:citation',
+  //     'gmd:CI_Citation',
+  //     'gmd:presentationForm',
+  //     'gmd:CI_PresentationFormCode'
+  //   ),
+  //   writeAttribute('codeListValue', 'mapDigital')
+  // )(rootEl)
 }
