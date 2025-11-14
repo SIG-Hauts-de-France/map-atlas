@@ -46,10 +46,11 @@ export class SearchPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.searchFacade.setSortBy(['desc', 'createDate']);
     this.searchFacade
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'resoucreCreated', 'resourceIdentifier', 'resolutionScaleDenominator'])
+      .setSortBy(['desc', 'createDate'])
       .setResultsLayout('ROW')
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'resoucreCreated', 'resourceDate', 'resourceIdentifier'])
+      
 
     const metadataQualityConfig: MetadataQualityConfig =
       getMetadataQualityConfig() || ({} as MetadataQualityConfig)

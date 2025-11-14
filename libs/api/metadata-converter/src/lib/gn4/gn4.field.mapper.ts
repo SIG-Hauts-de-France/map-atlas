@@ -460,6 +460,15 @@ export class Gn4FieldMapper {
         ...(resourceIdentifier && { resourceIdentifier }),
       }
     },
+    resolutionScaleDenominator: (output, source) => {
+      const resolutionScaleDenominator = getFirstValue(
+        selectField(source, 'resolutionScaleDenominator')
+      )
+      return {
+        ...output,
+        ...(resolutionScaleDenominator && { resolutionScaleDenominator }),
+      }
+    },
   }
 
   private genericField = (output) => output

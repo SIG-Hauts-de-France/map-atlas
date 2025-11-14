@@ -70,7 +70,7 @@ export const RECORD_KEYWORDS_FIELD: EditorField = {
 export const RECORD_THEME_HDF_FIELD: EditorField = {
   model: 'keywordsTheme',
   formFieldConfig: {
-    labelKey: marker('Thématique Haut de France'),
+    labelKey: marker('Thématique Haut de France *'),
   },
 }
 marker('editor.record.form.field.keywordsTheme')
@@ -78,7 +78,7 @@ marker('editor.record.form.field.keywordsTheme')
 export const RECORD_COLLECTION_FIELD: EditorField = {
   model: 'keywordsCollection',
   formFieldConfig: {
-    labelKey: marker('Collections'),
+    labelKey: marker('Collections *'),
   },
 }
 marker('editor.record.form.field.keywordsCollection')
@@ -86,7 +86,7 @@ marker('editor.record.form.field.keywordsCollection')
 export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
   model: 'resolutionScaleDenominator',
   formFieldConfig: {
-    labelKey: marker('Echelle'),
+    labelKey: marker('Echelle *'),
   },
 }
 

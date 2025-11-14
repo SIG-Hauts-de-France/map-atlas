@@ -32,23 +32,22 @@
       <div class="record-card__footer">
         <div
           data-cy="recordOrg"
-          *ngIf="record.ownerOrganization?.name"
+          *ngIf="record.recordCreated"
           class="grow flex flex-row gap-1 items-center text-primary-lighter"
           [ngClass]="displayContactIconOnly ? 'justify-center' : ''"
         >
-          <ng-icon
+          <!-- <ng-icon
             name="iconoirBank"
             class="text-primary -translate-y-[0.5px] shrink-0"
             [title]="record.ownerOrganization.name"
-          ></ng-icon>
-          <span
-            *ngIf="!displayContactIconOnly"
-            data-cy="recordOrgName"
-            class="line-clamp-1"
-            [title]="record.ownerOrganization.name"
-            >{{ record.ownerOrganization.name }} - Crée le {{ formatDate(record.recordCreated) }}</span
-          >
-          <!-- <p>{{ record.resourceCreated }}</p> -->
+          ></ng-icon> -->
+          
+          <span *ngIf="record.recordCreated">
+            Crée le {{ formatDate(record.recordCreated) }}
+          </span>
+          <span *ngIf="record?.resourceIdentifier">
+            - Carte numéro : {{ record.resourceIdentifier.code }}
+          </span>
         </div>
         <div class="record-card__footer__other">
           <div

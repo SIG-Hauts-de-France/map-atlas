@@ -23,6 +23,9 @@ export const allSearchFields = [
   'mainLanguage',
   'otherLanguage',
   'isHarvested',
+  'resourceDate',
+  'resourceIdentifier',
+  'resolutionScaleDenominator',
 ]
 @Component({
   selector: 'md-editor-records-list',

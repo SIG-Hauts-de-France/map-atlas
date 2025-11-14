@@ -29,7 +29,7 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core'
 import { combineLatest, Observable, of, Subscription } from 'rxjs'
 import { catchError, map, skip, switchMap, take } from 'rxjs/operators'
 import { DateService } from '@geonetwork-ui/util/shared'
-import { requiredFields } from '../../../../environements/environement'
+import { requiredFields, translatableFields } from '../../../../environements/environement'
 import { NotificationsService } from '@geonetwork-ui/feature/notifications'
 
 export type RecordSaveStatus = 'saving' | 'upToDate' | 'hasChanges'
@@ -178,15 +178,21 @@ export class PublishButtonComponent implements OnDestroy {
     this.record$.pipe(take(1)).subscribe((record) => {
       let missingFields: string[] = []
       for (const field of requiredFields) {
-        if (!record[field]) {
-          missingFields.push(field)
+        const value = record[field];
+        const isEmpty =
+          value == null ||
+          value === '' ||
+          (Array.isArray(value) && value.length === 0);
+        if (isEmpty) {
+          missingFields.push(translatableFields[field])
         }
       }
-      if (missingFields.length > 0) {
+      const cleanMissingFields = missingFields.filter(f => f && f.trim() !== '');
+      if (cleanMissingFields.length > 0) {
         this.notificationsService.showNotification({
           type: 'error',
           title: 'Champs obligatoires manquants',
-          text: `Veuillez remplir les champs suivants : ${missingFields.join(
+          text: `Veuillez remplir les champs suivants : ${cleanMissingFields.join(
             ', '
           )}`,
           closeMessage: 'Fermer',

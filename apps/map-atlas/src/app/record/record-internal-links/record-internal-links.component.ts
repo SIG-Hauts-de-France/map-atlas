@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
-import { InternalLinkCardComponent } from '@geonetwork-ui/ui/elements'
+import { InternalLinkCardHDFComponent } from '@geonetwork-ui/ui/elements'
 import { CommonModule } from '@angular/common'
 import {
   FavoriteStarComponent,
@@ -36,7 +36,7 @@ import {
     PreviousNextButtonsComponent,
     BlockListComponent,
     RouterLink,
-    InternalLinkCardComponent,
+    InternalLinkCardHDFComponent,
     FavoriteStarComponent,
   ],
 })
