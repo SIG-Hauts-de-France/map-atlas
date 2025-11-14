@@ -375,34 +375,6 @@ export class Iso19139Converter extends BaseConverter<string> {
       rootEl = createElement('gmd:MD_Metadata')()
       fieldChanged = () => true
     }
-    //Add MapDigital
-
-    // pipe(
-    //   findOrCreateIdentification(),
-    //   findNestedChildOrCreate(
-    //     'gmd:citation',
-    //     'gmd:CI_Citation',
-    //     'gmd:presentationForm',
-    //     'gmd:CI_PresentationFormCode'
-    //   ),
-    //   writeAttribute('codeListValue', 'mapDigital')
-    // )(rootEl)
-    // pipe(
-    //   findNestedChildOrCreate('gmd:distributionInfo', 'gmd:MD_Distribution'),
-    //   pipe(
-    //     findNestedChildOrCreate('gmd:distributionFormat', 'gmd:MD_Format'),
-    //     pipe(findNestedChildOrCreate('gmd:name'), writeCharacterString('PDF')),
-    //     pipe(findNestedChildOrCreate('gmd:version'), writeCharacterString('1.7'))
-    //   ),
-    //   pipe(
-    //     findNestedChildOrCreate(
-    //       'gmd:distributionFormat',
-    //       'gmd:MD_Format',
-    //       'gmd:name'
-    //     ),
-    //     writeCharacterString('PNG')
-    //   )
-    // )(rootEl)
 
     fieldChanged('uniqueIdentifier') &&
       this.writers['uniqueIdentifier'](record, rootEl)
@@ -475,6 +447,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     fieldChanged('otherLanguages') &&
       this.writers['otherLanguages'](record, rootEl)
 
+    console.log('record', record)
     this.writers['mapDigital'](record, rootEl)
     this.beforeDocumentCreation(rootEl)
 
