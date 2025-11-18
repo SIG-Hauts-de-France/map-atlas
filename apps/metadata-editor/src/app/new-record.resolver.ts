@@ -54,6 +54,7 @@ export class NewRecordResolver {
           temporalExtents: [],
           resolutionScaleDenominator: '',
           alimentations: '',
+          emprise: '',
         }
         return [catalogRecord, null, false]
       })

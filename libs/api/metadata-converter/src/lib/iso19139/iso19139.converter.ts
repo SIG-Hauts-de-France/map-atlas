@@ -53,6 +53,7 @@ import {
   readUpdateFrequency,
   readResolutionScaleDenominator,
   readAlimentations,
+  readEmprise,
 } from './read-parts'
 import {
   writeAbstract,
@@ -88,6 +89,7 @@ import {
   writeResolutionScaleDenominator,
   writeAlimentations,
   writeMapDigital,
+  writeEmprise,
 } from './write-parts'
 
 export class Iso19139Converter extends BaseConverter<string> {
@@ -130,6 +132,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     defaultLanguage: readDefaultLanguage,
     resolutionScaleDenominator: readResolutionScaleDenominator,
     alimentations: readAlimentations,
+    emprise: readEmprise,
     // TODO
     extras: () => undefined,
     landingPage: () => undefined,
@@ -176,6 +179,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     defaultLanguage: writeDefaultLanguage,
     resolutionScaleDenominator: writeResolutionScaleDenominator,
     alimentations: writeAlimentations,
+    emprise: writeEmprise,
     // TODO
     extras: () => undefined,
     landingPage: () => undefined,
@@ -268,6 +272,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     ](rootEl, tr)
     const alimentations = this.readers['alimentations'](rootEl, tr)
     const mapDigital = this.readers['mapDigital'](rootEl, tr)
+    const emprise = this.readers['emprise'](rootEl, tr)
 
     return {
       uniqueIdentifier,
@@ -301,6 +306,7 @@ export class Iso19139Converter extends BaseConverter<string> {
       resolutionScaleDenominator,
       alimentations,
       mapDigital,
+      emprise,
       ...(landingPage && { landingPage }),
     } as CatalogRecord
   }
@@ -429,6 +435,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['resolutionScaleDenominator'](record, rootEl)
     fieldChanged('alimentations') &&
       this.writers['alimentations'](record, rootEl)
+    fieldChanged('emprise') &&
+      this.writers['emprise'](record, rootEl)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') && this.writers['status'](record, rootEl)
@@ -447,7 +455,6 @@ export class Iso19139Converter extends BaseConverter<string> {
     fieldChanged('otherLanguages') &&
       this.writers['otherLanguages'](record, rootEl)
 
-    console.log('record', record)
     this.writers['mapDigital'](record, rootEl)
     this.beforeDocumentCreation(rootEl)
 

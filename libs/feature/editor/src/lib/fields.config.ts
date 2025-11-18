@@ -64,7 +64,9 @@ export const RECORD_LICENSE_FIELD: EditorField = {
 
 export const RECORD_KEYWORDS_FIELD: EditorField = {
   model: 'keywords',
-  formFieldConfig: {},
+  formFieldConfig: {
+    labelKey: marker('Mots-clés *'),
+  },
 }
 
 export const RECORD_THEME_HDF_FIELD: EditorField = {
@@ -94,6 +96,13 @@ export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
   model: 'alimentations',
   formFieldConfig: {
     labelKey: marker('Alimentations'),
+  },
+}
+
+export const RECORD_EMPRISE_FIELD: EditorField = {
+  model: 'emprise',
+  formFieldConfig: {
+    labelKey: marker('Emprise géographique'),
   },
 }
 
@@ -221,8 +230,8 @@ marker('editor.record.form.field.onlineLinkResources')
 export const TITLE_SECTION: EditorSection = {
   hidden: false,
   fields: [
-    RECORD_TITLE_FIELD,
-    RECORD_ABSTRACT_FIELD,
+    // RECORD_TITLE_FIELD,
+    // RECORD_ABSTRACT_FIELD,
     RECORD_GRAPHICAL_OVERVIEW_FIELD,
   ],
 }
@@ -234,6 +243,8 @@ export const ABOUT_SECTION: EditorSection = {
   fields: [
     RECORD_UNIQUE_IDENTIFIER_FIELD,
     RESOURCE_IDENTIFIER_FIELD,
+    RECORD_TITLE_FIELD,
+    RECORD_ABSTRACT_FIELD,
     RECORD_RESOURCE_CREATED_FIELD,
     RECORD_RESOURCE_UPDATED_FIELD,
     RECORD_UPDATED_FIELD,
@@ -278,10 +289,12 @@ export const CUSTOM_SECTION: EditorSection = {
   descriptionKey: marker('Section pour HDF - Concu spécialement pour vous'),
   hidden: false,
   fields: [
+    RECORD_EMPRISE_FIELD,
     RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD, 
+    RECORD_THEME_HDF_FIELD,
+    RECORD_KEYWORDS_FIELD,
+    RECORD_COLLECTION_FIELD,
     RECORD_ALIMENTATIONS_FIELD,
-    RECORD_THEME_HDF_FIELD, 
-    RECORD_COLLECTION_FIELD
   ],
 }
 
@@ -329,11 +342,11 @@ export const DEFAULT_CONFIGURATION: EditorConfig = {
     {
       labelKey: marker('editor.record.form.page.description'),
       sections: [
+        ABOUT_SECTION,
         CUSTOM_SECTION,
         TITLE_SECTION,
-        CLASSIFICATION_SECTION,
+        // CLASSIFICATION_SECTION,
         INSPIRE_SECTION,
-        ABOUT_SECTION,
         GEOGRAPHICAL_COVERAGE_SECTION,
       ],
     },

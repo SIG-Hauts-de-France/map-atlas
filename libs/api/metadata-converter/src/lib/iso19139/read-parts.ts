@@ -1245,3 +1245,16 @@ export function readAlimentations(rootEl: XmlElement): string {
     extractCharacterString()
   )(rootEl)
 }
+export function readEmprise(rootEl: XmlElement): string {
+  return pipe(
+    findIdentification(),
+    findNestedElement(
+      'gmd:referenceSystemEmprise',
+      'gmd:MD_ReferenceSystem',
+      'gmd:referenceSystemIdentifier',
+      'gmd:RS_Identifier',
+      'gmd:code'
+    ),
+    extractCharacterString()
+  )(rootEl)
+}

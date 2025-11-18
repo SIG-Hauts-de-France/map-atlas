@@ -123,7 +123,7 @@ export class ResultsListHdFContainerComponent implements OnInit {
       )
     )
 
-    console.log('Facade initialized in ResultsListHdFContainerComponent', this.facade.results$);
+    // console.log('Facade initialized in ResultsListHdFContainerComponent', this.facade.results$);
     
   }
 

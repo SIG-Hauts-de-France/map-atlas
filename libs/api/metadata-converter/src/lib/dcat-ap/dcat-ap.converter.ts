@@ -86,6 +86,7 @@ export class DcatApConverter extends BaseConverter<string> {
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
     mapDigital: () => undefined,
+    emprise: () => undefined,
   }
 
   protected writers: Record<
@@ -132,6 +133,7 @@ export class DcatApConverter extends BaseConverter<string> {
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
     mapDigital: () => undefined,
+    emprise: () => undefined,
   }
 
   constructor(
@@ -313,6 +315,12 @@ export class DcatApConverter extends BaseConverter<string> {
       tr,
       defaultLanguage
     )
+    const emprise = this.readers['emprise'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
 
     if (kind === 'dataset') {
       const status = this.readers['status'](
@@ -394,6 +402,7 @@ export class DcatApConverter extends BaseConverter<string> {
         translations: tr,
         resolutionScaleDenominator,
         alimentations,
+        emprise,
       } as DatasetRecord
     } else {
       const onlineResources = this.readers['onlineResources'](
@@ -432,6 +441,7 @@ export class DcatApConverter extends BaseConverter<string> {
         translations: tr,
         resolutionScaleDenominator,
         alimentations,
+        emprise,
       } as ServiceRecord
     }
   }
@@ -533,6 +543,8 @@ export class DcatApConverter extends BaseConverter<string> {
       this.writers['resolutionScaleDenominator'](record, dataStore, recordNode)
     fieldChanged('alimentations') &&
       this.writers['alimentations'](record, dataStore, recordNode)
+    fieldChanged('emprise') &&
+      this.writers['emprise'](record, dataStore, recordNode)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') &&

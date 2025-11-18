@@ -151,6 +151,7 @@ export interface BaseRecord {
   resolutionScaleDenominator?: string
   alimentations?: string
   mapDigital?: boolean
+  emprise?: string
 
   // to add: canonical url
   // to add: source catalog (??)

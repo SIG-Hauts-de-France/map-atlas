@@ -1733,3 +1733,17 @@ export function writeMapDigital(record: DatasetRecord, rootEl: XmlElement) {
     writeAttribute('codeListValue', 'mapDigital')
   )(rootEl)
 }
+
+export function writeEmprise(record: DatasetRecord, rootEl: XmlElement) {
+  pipe(
+    findOrCreateIdentification(),
+    findNestedChildOrCreate(
+      'gmd:referenceSystemEmprise',
+      'gmd:MD_ReferenceSystem',
+      'gmd:referenceSystemIdentifier',
+      'gmd:RS_Identifier',
+      'gmd:code'
+    ),
+    writeCharacterString(record.emprise)
+  )(rootEl)
+}

@@ -83,7 +83,6 @@ export class InternalLinkCardHDFComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Initializing InternalLinkCardHDFComponent for record', this.record);
     
     this.abstract = removeWhitespace(stripHtml(this.record?.abstract))
     this.subscription.add(

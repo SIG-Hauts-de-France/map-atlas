@@ -142,6 +142,15 @@ export const editorFieldAlimentationsFixture = () => ({
   value: 'unknown',
 })
 
+export const editorFieldEmpriseFixture = () => ({
+  model: 'emprise',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.emprise',
+  },
+  value: 'unknown',
+})
+
 export const editorFieldKeywordsFixture = () => ({
   model: 'keywords',
   hidden: false,
@@ -195,4 +204,5 @@ export const editorFieldsFixture = () => [
   editorFieldUniqueIdentifierFixture(),
   editorFieldResolutionScaleDenominatorFixture(),
   editorFieldAlimentationsFixture(),
+  editorFieldEmpriseFixture(),
 ]

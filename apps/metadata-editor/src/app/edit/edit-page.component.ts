@@ -260,6 +260,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         const collectionField = issue.custom_fields.find(cf => cf.name === 'Collection')?.value;
         const alimentationField = issue.custom_fields.find(cf => cf.name === 'Alimentation Cartothèque')?.value;
         const echelleField = issue.custom_fields.find(cf => cf.name === 'Echelle')?.value;
+        const empriseField = issue.custom_fields.find(cf => cf.name === 'Emprise données fournies')?.value;
 
         const keywords: Keyword[] = [
           ...keywordsField
@@ -351,6 +352,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
             onlineResources: [],
             resolutionScaleDenominator: echelle.toString(),
             alimentations: alimentationField || 'alimentation par défaut',
+            emprise: empriseField || 'Régional',
           };
   
           this.facade.openRecord(updatedRecord, null);

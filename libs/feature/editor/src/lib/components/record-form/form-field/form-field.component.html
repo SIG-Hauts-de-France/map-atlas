@@ -201,6 +201,14 @@
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-simple>
     </ng-container>
+
+    <ng-container *ngSwitchCase="'emprise'">
+      <gn-ui-form-field-simple
+        [type]="'text'"
+        [value]="valueAsString"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-simple>
+    </ng-container>
     
   </ng-container>
 
