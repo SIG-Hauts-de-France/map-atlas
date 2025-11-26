@@ -40,6 +40,8 @@ export class NewRecordResolver {
           keywords: [],
           keywordsTheme: [],
           keywordsCollection: [],
+          keywordsTypeCarte: [],
+          keywordsEmprise: [],
           licenses: [],
           legalConstraints: [NOT_KNOWN_CONSTRAINT],
           securityConstraints: [],
@@ -54,7 +56,6 @@ export class NewRecordResolver {
           temporalExtents: [],
           resolutionScaleDenominator: '',
           alimentations: '',
-          emprise: '',
         }
         return [catalogRecord, null, false]
       })

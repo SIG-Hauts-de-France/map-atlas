@@ -13,6 +13,8 @@ export const requiredFields = [
   'keywordsTheme',
   'keywords',
   'keywordsCollection',
+  'keywordsTypeCarte',
+  'keywordsEmprise',
   'ownerOrganization'
 ]
 
@@ -24,5 +26,7 @@ export const translatableFields = {
   'keywordsTheme': 'Thématique HdF',
   'keywords': 'Mots-clés',
   'keywordsCollection': 'Collection',
+  'keywordsTypeCarte': 'Type de carte',
+  'keywordsEmprise': 'Emprise géographique',
   'ownerOrganization': 'Auteur'
 }

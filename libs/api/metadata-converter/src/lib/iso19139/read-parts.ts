@@ -813,6 +813,31 @@ export function readKeywordsCollection(rootEl: XmlElement): Keyword[] {
   )(rootEl)
 }
 
+
+export function readKeywordsTypeCarte(rootEl: XmlElement): Keyword[] {
+  return pipe(
+    findIdentification(),
+    findNestedElements(
+      'gmd:descriptiveKeywordsTypeCarte',
+      'gmd:MD_Keywords'
+    ),
+    mapArray(readKeywordGroup),
+    flattenArray()
+  )(rootEl)
+}
+
+export function readKeywordsEmprise(rootEl: XmlElement): Keyword[] {
+  return pipe(
+    findIdentification(),
+    findNestedElements(
+      'gmd:descriptiveKeywordsEmprise',
+      'gmd:MD_Keywords'
+    ),
+    mapArray(readKeywordGroup),
+    flattenArray()
+  )(rootEl)
+}
+
 export function readStatus(rootEl: XmlElement): RecordStatus {
   return pipe(
     findIdentification(),
@@ -1245,16 +1270,4 @@ export function readAlimentations(rootEl: XmlElement): string {
     extractCharacterString()
   )(rootEl)
 }
-export function readEmprise(rootEl: XmlElement): string {
-  return pipe(
-    findIdentification(),
-    findNestedElement(
-      'gmd:referenceSystemEmprise',
-      'gmd:MD_ReferenceSystem',
-      'gmd:referenceSystemIdentifier',
-      'gmd:RS_Identifier',
-      'gmd:code'
-    ),
-    extractCharacterString()
-  )(rootEl)
-}
+

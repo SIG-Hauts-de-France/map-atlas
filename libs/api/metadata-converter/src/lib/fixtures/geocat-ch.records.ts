@@ -396,6 +396,28 @@ export const GEOCAT_CH_DATASET_RECORD: DatasetRecord = {
       translations: {},
     },
   ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
+      translations: {},
+    },
+  ],
   spatialRepresentation: 'vector',
   onlineResources: [
     {
@@ -792,6 +814,28 @@ export const GEOCAT_CH_SERVICE_RECORD: ServiceRecord = {
       },
       type: 'theme',
       label: 'my collection',
+      translations: {},
+    },
+  ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
       translations: {},
     },
   ],

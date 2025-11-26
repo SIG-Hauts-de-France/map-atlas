@@ -125,6 +125,20 @@
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-keywords>
     </ng-container>
+    <ng-container *ngSwitchCase="'keywordsTypeCarte'">
+      <gn-ui-form-field-keywords
+        [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusTypeCarteId"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-keywords>
+    </ng-container>
+    <ng-container *ngSwitchCase="'keywordsEmprise'">
+      <gn-ui-form-field-keywords
+        [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusEmpriseId"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-keywords>
+    </ng-container>
     <ng-container *ngSwitchCase="'topics'">
       <gn-ui-form-field-inspire-theme
         [value]="valueAsInspireTheme"

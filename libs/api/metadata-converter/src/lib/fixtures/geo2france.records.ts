@@ -128,6 +128,28 @@ Malgré l'attention portée à la création de ces données, il est rappelé que
       translations: {},
     },
   ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
+      translations: {},
+    },
+  ],
   topics: ['planningCadastre'],
   spatialRepresentation: 'vector',
   onlineResources: [

@@ -151,4 +151,10 @@ export class FormFieldComponent {
   get thesaurusCollectionsId() {
     return 'geonetwork.thesaurus.external.theme.collections'
   }
+  get thesaurusTypeCarteId() {
+    return 'geonetwork.thesaurus.external.theme.type_de_carte'
+  }
+  get thesaurusEmpriseId() {
+    return 'geonetwork.thesaurus.external.theme.emprise_geographique'
+  }
 }

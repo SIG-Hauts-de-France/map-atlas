@@ -28,6 +28,8 @@ import {
   readKeywords,
   readKeywordsTheme,
   readKeywordsCollection,
+  readKeywordsTypeCarte,
+  readKeywordsEmprise,
   readKind,
   readLegalConstraints,
   readLicenses,
@@ -53,7 +55,6 @@ import {
   readUpdateFrequency,
   readResolutionScaleDenominator,
   readAlimentations,
-  readEmprise,
 } from './read-parts'
 import {
   writeAbstract,
@@ -64,6 +65,8 @@ import {
   writeKeywords,
   writeKeywordsTheme,
   writeKeywordsCollection,
+  writeKeywordsTypeCarte,
+  writeKeywordsEmprise,
   writeKind,
   writeLanguages,
   writeLegalConstraints,
@@ -89,7 +92,6 @@ import {
   writeResolutionScaleDenominator,
   writeAlimentations,
   writeMapDigital,
-  writeEmprise,
 } from './write-parts'
 
 export class Iso19139Converter extends BaseConverter<string> {
@@ -115,6 +117,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     keywords: readKeywords,
     keywordsTheme: readKeywordsTheme,
     keywordsCollection: readKeywordsCollection,
+    keywordsTypeCarte: readKeywordsTypeCarte,
+    keywordsEmprise: readKeywordsEmprise,
     topics: readIsoTopics,
     licenses: readLicenses,
     legalConstraints: readLegalConstraints,
@@ -132,7 +136,6 @@ export class Iso19139Converter extends BaseConverter<string> {
     defaultLanguage: readDefaultLanguage,
     resolutionScaleDenominator: readResolutionScaleDenominator,
     alimentations: readAlimentations,
-    emprise: readEmprise,
     // TODO
     extras: () => undefined,
     landingPage: () => undefined,
@@ -162,6 +165,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     keywords: writeKeywords,
     keywordsTheme: writeKeywordsTheme,
     keywordsCollection: writeKeywordsCollection,
+    keywordsTypeCarte: writeKeywordsTypeCarte,
+    keywordsEmprise: writeKeywordsEmprise,
     topics: writeTopics,
     licenses: writeLicenses,
     legalConstraints: writeLegalConstraints,
@@ -179,8 +184,6 @@ export class Iso19139Converter extends BaseConverter<string> {
     defaultLanguage: writeDefaultLanguage,
     resolutionScaleDenominator: writeResolutionScaleDenominator,
     alimentations: writeAlimentations,
-    emprise: writeEmprise,
-    // TODO
     extras: () => undefined,
     landingPage: () => undefined,
     translations: () => undefined, // NB. translations are handled in properties
@@ -255,6 +258,8 @@ export class Iso19139Converter extends BaseConverter<string> {
     const keywords = this.readers['keywords'](rootEl, tr)
     const keywordsTheme = this.readers['keywordsTheme'](rootEl, tr)
     const keywordsCollection = this.readers['keywordsCollection'](rootEl, tr)
+    const keywordsTypeCarte = this.readers['keywordsTypeCarte'](rootEl, tr)
+    const keywordsEmprise = this.readers['keywordsEmprise'](rootEl, tr)
     const topics = this.readers['topics'](rootEl, tr)
     const legalConstraints = this.readers['legalConstraints'](rootEl, tr)
     const otherConstraints = this.readers['otherConstraints'](rootEl, tr)
@@ -272,7 +277,6 @@ export class Iso19139Converter extends BaseConverter<string> {
     ](rootEl, tr)
     const alimentations = this.readers['alimentations'](rootEl, tr)
     const mapDigital = this.readers['mapDigital'](rootEl, tr)
-    const emprise = this.readers['emprise'](rootEl, tr)
 
     return {
       uniqueIdentifier,
@@ -294,6 +298,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       keywords,
       keywordsTheme,
       keywordsCollection,
+      keywordsTypeCarte,
+      keywordsEmprise,
       topics,
       licenses,
       legalConstraints,
@@ -306,7 +312,6 @@ export class Iso19139Converter extends BaseConverter<string> {
       resolutionScaleDenominator,
       alimentations,
       mapDigital,
-      emprise,
       ...(landingPage && { landingPage }),
     } as CatalogRecord
   }
@@ -419,6 +424,10 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['keywordsTheme'](record, rootEl)
     fieldChanged('keywordsCollection') &&
       this.writers['keywordsCollection'](record, rootEl)
+    fieldChanged('keywordsTypeCarte') &&
+      this.writers['keywordsTypeCarte'](record, rootEl)
+    fieldChanged('keywordsEmprise') &&
+      this.writers['keywordsEmprise'](record, rootEl)
     fieldChanged('topics') && this.writers['topics'](record, rootEl)
     fieldChanged('legalConstraints') &&
       this.writers['legalConstraints'](record, rootEl)
@@ -435,8 +444,6 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['resolutionScaleDenominator'](record, rootEl)
     fieldChanged('alimentations') &&
       this.writers['alimentations'](record, rootEl)
-    fieldChanged('emprise') &&
-      this.writers['emprise'](record, rootEl)
 
     if (record.kind === 'dataset') {
       fieldChanged('status') && this.writers['status'](record, rootEl)

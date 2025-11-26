@@ -85,6 +85,22 @@ export const RECORD_COLLECTION_FIELD: EditorField = {
 }
 marker('editor.record.form.field.keywordsCollection')
 
+export const RECORD_TYPE_CARTE_FIELD: EditorField = {
+  model: 'keywordsTypeCarte',
+  formFieldConfig: {
+    labelKey: marker('Type de carte *'),
+  },
+}
+marker('editor.record.form.field.keywordsTypeCarte')
+
+export const RECORD_EMPRISE_FIELD: EditorField = {
+  model: 'keywordsEmprise',
+  formFieldConfig: {
+    labelKey: marker('Emprise géographique *'),
+  },
+}
+marker('editor.record.form.field.keywordsEmprise')
+
 export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
   model: 'resolutionScaleDenominator',
   formFieldConfig: {
@@ -99,12 +115,7 @@ export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
   },
 }
 
-export const RECORD_EMPRISE_FIELD: EditorField = {
-  model: 'emprise',
-  formFieldConfig: {
-    labelKey: marker('Emprise géographique'),
-  },
-}
+
 
 export const RECORD_TOPICS_FIELD: EditorField = {
   model: 'topics',
@@ -244,6 +255,7 @@ export const ABOUT_SECTION: EditorSection = {
     RECORD_UNIQUE_IDENTIFIER_FIELD,
     RESOURCE_IDENTIFIER_FIELD,
     RECORD_TITLE_FIELD,
+    RECORD_TYPE_CARTE_FIELD,
     RECORD_ABSTRACT_FIELD,
     RECORD_RESOURCE_CREATED_FIELD,
     RECORD_RESOURCE_UPDATED_FIELD,

@@ -390,6 +390,28 @@ export const WALLONIE_REUSE_SPW_RECORD: ReuseRecord = {
       translations: {},
     },
   ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
+      translations: {},
+    },
+  ],
   topics: [],
   licenses: [
     {

@@ -83,7 +83,8 @@ export class MetadataInfoHDFComponent {
     if (changes['metadata']) {
       console.log(this.metadata);
       this.otherKeywords = this.filterKeywords('other');
-      this.placeKeywords = this.filterKeywords('place');
+      // this.placeKeywords = this.filterKeywords('place');
+      this.placeKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'emprise_geographique')) || [];
       this.collectionKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'collections')) || [];
       this.themeSIGKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'themes_sig')) || [];
     }

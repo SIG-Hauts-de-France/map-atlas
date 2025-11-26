@@ -437,6 +437,18 @@ export function removeKeywordsCollection() {
   )
 }
 
+export function removeKeywordsTypeCarte() {
+  return removeChildren(
+    pipe(findNestedElements('gmd:descriptiveKeywordsTypeCarte'))
+  )
+}
+
+export function removeKeywordsEmprise() {
+  return removeChildren(
+    pipe(findNestedElements('gmd:descriptiveKeywordsEmprise'))
+  )
+}
+
 // returns a <gmd:thesaurusName> element
 export function createThesaurus(thesaurus: ThesaurusModel) {
   return pipe(
@@ -598,6 +610,122 @@ export function appendKeywordsCollection(
       pipe(
         createNestedElement(
           'gmd:descriptiveKeywordsCollection',
+          'gmd:MD_Keywords'
+        ),
+        appendChildren(
+          pipe(
+            createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
+            writeAttribute(
+              'codeList',
+              'http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode'
+            ),
+            writeAttribute('codeListValue', keywords[0].type)
+          )
+        ),
+        keywords[0].thesaurus
+          ? appendChildren(createThesaurus(keywords[0].thesaurus))
+          : noop,
+        appendChildren(
+          ...keywords.map((keyword) =>
+            pipe(
+              createElement('gmd:keyword'),
+              writeLocalizedCharacterString(
+                keyword.label,
+                keyword.translations?.label,
+                defaultLanguage
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
+
+export function appendKeywordsTypeCarte(
+  keywords: Keyword[],
+  defaultLanguage: LanguageCode
+) {
+  // keywords are grouped by thesaurus if they have one, otherwise by type
+  const keywordsByThesaurus: Keyword[][] = keywords.reduce((acc, keyword) => {
+    const thesaurusId = keyword.thesaurus?.id
+    const thesaurusName = keyword.thesaurus?.name
+    const type = keyword.type
+    let existingGroup = acc.find((group) =>
+      thesaurusId
+        ? group[0].thesaurus?.name === thesaurusName
+        : group[0].type === type && !group[0].thesaurus
+    )
+    if (!existingGroup) {
+      existingGroup = []
+      acc.push(existingGroup)
+    }
+    existingGroup.push(keyword)
+    return acc
+  }, [])
+  return appendChildren(
+    ...keywordsByThesaurus.map((keywords) =>
+      pipe(
+        createNestedElement(
+          'gmd:descriptiveKeywordsTypeCarte',
+          'gmd:MD_Keywords'
+        ),
+        appendChildren(
+          pipe(
+            createNestedElement('gmd:type', 'gmd:MD_KeywordTypeCode'),
+            writeAttribute(
+              'codeList',
+              'http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode'
+            ),
+            writeAttribute('codeListValue', keywords[0].type)
+          )
+        ),
+        keywords[0].thesaurus
+          ? appendChildren(createThesaurus(keywords[0].thesaurus))
+          : noop,
+        appendChildren(
+          ...keywords.map((keyword) =>
+            pipe(
+              createElement('gmd:keyword'),
+              writeLocalizedCharacterString(
+                keyword.label,
+                keyword.translations?.label,
+                defaultLanguage
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
+
+export function appendKeywordsEmprise(
+  keywords: Keyword[],
+  defaultLanguage: LanguageCode
+) {
+  // keywords are grouped by thesaurus if they have one, otherwise by type
+  const keywordsByThesaurus: Keyword[][] = keywords.reduce((acc, keyword) => {
+    const thesaurusId = keyword.thesaurus?.id
+    const thesaurusName = keyword.thesaurus?.name
+    const type = keyword.type
+    let existingGroup = acc.find((group) =>
+      thesaurusId
+        ? group[0].thesaurus?.name === thesaurusName
+        : group[0].type === type && !group[0].thesaurus
+    )
+    if (!existingGroup) {
+      existingGroup = []
+      acc.push(existingGroup)
+    }
+    existingGroup.push(keyword)
+    return acc
+  }, [])
+  return appendChildren(
+    ...keywordsByThesaurus.map((keywords) =>
+      pipe(
+        createNestedElement(
+          'gmd:descriptiveKeywordsEmprise',
           'gmd:MD_Keywords'
         ),
         appendChildren(
@@ -1106,6 +1234,28 @@ export function writeKeywordsCollection(
     findOrCreateIdentification(),
     removeKeywordsCollection(),
     appendKeywordsCollection(record.keywordsCollection, record.defaultLanguage)
+  )(rootEl)
+}
+
+export function writeKeywordsTypeCarte(
+  record: CatalogRecord,
+  rootEl: XmlElement
+) {
+  pipe(
+    findOrCreateIdentification(),
+    removeKeywordsTypeCarte(),
+    appendKeywordsTypeCarte(record.keywordsTypeCarte,record.defaultLanguage)
+  )(rootEl)
+}
+
+export function writeKeywordsEmprise(
+  record: CatalogRecord,
+  rootEl: XmlElement
+) {
+  pipe(
+    findOrCreateIdentification(),
+    removeKeywordsEmprise(),
+    appendKeywordsEmprise(record.keywordsEmprise, record.defaultLanguage)
   )(rootEl)
 }
 
@@ -1731,19 +1881,5 @@ export function writeMapDigital(record: DatasetRecord, rootEl: XmlElement) {
       'gmd:CI_PresentationFormCode'
     ),
     writeAttribute('codeListValue', 'mapDigital')
-  )(rootEl)
-}
-
-export function writeEmprise(record: DatasetRecord, rootEl: XmlElement) {
-  pipe(
-    findOrCreateIdentification(),
-    findNestedChildOrCreate(
-      'gmd:referenceSystemEmprise',
-      'gmd:MD_ReferenceSystem',
-      'gmd:referenceSystemIdentifier',
-      'gmd:RS_Identifier',
-      'gmd:code'
-    ),
-    writeCharacterString(record.emprise)
   )(rootEl)
 }

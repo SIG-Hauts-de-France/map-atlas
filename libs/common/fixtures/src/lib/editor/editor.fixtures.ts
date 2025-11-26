@@ -142,14 +142,6 @@ export const editorFieldAlimentationsFixture = () => ({
   value: 'unknown',
 })
 
-export const editorFieldEmpriseFixture = () => ({
-  model: 'emprise',
-  hidden: false,
-  formFieldConfig: {
-    labelKey: 'editor.record.form.field.emprise',
-  },
-  value: 'unknown',
-})
 
 export const editorFieldKeywordsFixture = () => ({
   model: 'keywords',
@@ -169,6 +161,22 @@ export const editorFieldKeywordsCollectionFixture = () => ({
   hidden: false,
   formFieldConfig: {
     labelKey: 'editor.record.form.field.keywordsCollection',
+  },
+})
+
+export const editorFieldKeywordsTypeCarteFixture = () => ({
+  model: 'keywordsTypeCarte',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.keywordsTypeCarte',
+  },
+})
+
+export const editorFieldKeywordsEmpriseFixture = () => ({
+  model: 'keywordsEmprise',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.keywordsEmprise',
   },
 })
 
@@ -201,8 +209,9 @@ export const editorFieldsFixture = () => [
   editorFieldKeywordsFixture(),
   editorFieldKeywordsThemeFixture(),
   editorFieldKeywordsCollectionFixture(),
+  editorFieldKeywordsTypeCarteFixture(),
+  editorFieldKeywordsEmpriseFixture(),
   editorFieldUniqueIdentifierFixture(),
   editorFieldResolutionScaleDenominatorFixture(),
   editorFieldAlimentationsFixture(),
-  editorFieldEmpriseFixture(),
 ]

@@ -257,6 +257,28 @@ export const WALLONIE_SERVICE_NAPITSWALLONIA_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
+      translations: {},
+    },
+  ],
   topics: ['transportation'],
   licenses: [],
   legalConstraints: [

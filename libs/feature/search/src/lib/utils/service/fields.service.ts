@@ -49,7 +49,12 @@ export class FieldsService {
   protected fields = {
     organization: new OrganizationSearchField(this.injector),
     format: new SimpleSearchField('format', this.injector, 'asc'),
-    resourceType: new ResourceTypeLegacyField(this.injector), // Deprecated, use `recordKind` instead
+    // resourceType: new ResourceTypeLegacyField(this.injector), // Deprecated, use `recordKind` instead
+    resourceType: new SimpleSearchField(
+      'th_type_de_carte.default',
+      this.injector,
+      'asc'
+    ),
     recordKind: new RecordKindField(this.injector),
     representationType: new TranslatedSearchField(
       'cl_spatialRepresentationType.key',
@@ -83,7 +88,7 @@ export class FieldsService {
       'asc'
     ),
     placeKeywords: new SimpleSearchField(
-      'keywordType-place.default',
+      'th_emprise_geographique.default',
       this.injector,
       'asc'
     ),

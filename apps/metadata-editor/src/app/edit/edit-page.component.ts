@@ -305,6 +305,36 @@ export class EditPageComponent implements OnInit, OnDestroy {
           }
         ];
 
+        const typeCarteKeyword: Keyword[] = [
+          {
+            thesaurus: {
+              name: 'Type de carte',
+              id: 'geonetwork.thesaurus.external.theme.type_de_carte',
+              url: new URL(
+                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.Type_de_carte'
+              ),
+            },
+            type: 'theme',
+            label: 'Statique',
+            translations: {}
+          }
+        ];
+
+        const empriseKeyword: Keyword[] = [
+          {
+            thesaurus: {
+              name: 'Emprise geographique',
+              id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
+              url: new URL(
+                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.emprise_geographique'
+              ),
+            },
+            type: 'theme',
+            label: empriseField,
+            translations: {}
+          }
+        ];
+
         const echelle = echelleField
             ? parseInt(
                 (
@@ -326,6 +356,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
             keywords: keywords, 
             keywordsTheme: keywordTheme,
             keywordsCollection: collectionKeywords,
+            keywordsTypeCarte: typeCarteKeyword,
+            keywordsEmprise: empriseKeyword,
             kind: 'dataset',
             resourceIdentifier: this.cardNumber,
             resourceCreated: issue.created_on,
@@ -352,7 +384,6 @@ export class EditPageComponent implements OnInit, OnDestroy {
             onlineResources: [],
             resolutionScaleDenominator: echelle.toString(),
             alimentations: alimentationField || 'alimentation par défaut',
-            emprise: empriseField || 'Régional',
           };
   
           this.facade.openRecord(updatedRecord, null);

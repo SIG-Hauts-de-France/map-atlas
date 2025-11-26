@@ -166,6 +166,28 @@ export const GEO2FRANCE_SERVICE_EAUXUSEES_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsTypeCarte: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Statique',
+      translations: {},
+    },
+  ],
+  keywordsEmprise: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Europe',
+      translations: {},
+    },
+  ],
   topics: [],
   licenses: [],
   legalConstraints: [

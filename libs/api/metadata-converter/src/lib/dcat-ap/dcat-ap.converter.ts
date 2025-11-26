@@ -57,6 +57,8 @@ export class DcatApConverter extends BaseConverter<string> {
     keywords: readKeywords,
     keywordsTheme: readKeywords,
     keywordsCollection: readKeywords,
+    keywordsTypeCarte: readKeywords,
+    keywordsEmprise: readKeywords,
     topics: readTopics,
     resourceIdentifier: () => undefined,
     recordUpdated: readRecordUpdated,
@@ -86,7 +88,6 @@ export class DcatApConverter extends BaseConverter<string> {
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
     mapDigital: () => undefined,
-    emprise: () => undefined,
   }
 
   protected writers: Record<
@@ -112,6 +113,8 @@ export class DcatApConverter extends BaseConverter<string> {
     keywords: () => undefined,
     keywordsTheme: () => undefined,
     keywordsCollection: () => undefined,
+    keywordsTypeCarte: () => undefined,
+    keywordsEmprise: () => undefined,
     topics: () => undefined,
     licenses: () => undefined,
     legalConstraints: () => undefined,
@@ -133,7 +136,6 @@ export class DcatApConverter extends BaseConverter<string> {
     resolutionScaleDenominator: () => undefined,
     alimentations: () => undefined,
     mapDigital: () => undefined,
-    emprise: () => undefined,
   }
 
   constructor(
@@ -253,6 +255,18 @@ export class DcatApConverter extends BaseConverter<string> {
       defaultLanguage
     )
     const keywordsCollection = this.readers['keywordsCollection'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
+    const keywordsTypeCarte = this.readers['keywordsTypeCarte'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
+    const keywordsEmprise = this.readers['keywordsEmprise'](
       dataStore,
       catalogRecord,
       tr,
@@ -386,6 +400,8 @@ export class DcatApConverter extends BaseConverter<string> {
         keywords,
         keywordsTheme,
         keywordsCollection,
+        keywordsTypeCarte,
+        keywordsEmprise,
         topics,
         licenses,
         legalConstraints,
@@ -402,7 +418,6 @@ export class DcatApConverter extends BaseConverter<string> {
         translations: tr,
         resolutionScaleDenominator,
         alimentations,
-        emprise,
       } as DatasetRecord
     } else {
       const onlineResources = this.readers['onlineResources'](
@@ -430,6 +445,8 @@ export class DcatApConverter extends BaseConverter<string> {
         keywords,
         keywordsTheme,
         keywordsCollection,
+        keywordsTypeCarte,
+        keywordsEmprise,
         topics,
         licenses,
         legalConstraints,
@@ -441,7 +458,6 @@ export class DcatApConverter extends BaseConverter<string> {
         translations: tr,
         resolutionScaleDenominator,
         alimentations,
-        emprise,
       } as ServiceRecord
     }
   }
@@ -527,6 +543,10 @@ export class DcatApConverter extends BaseConverter<string> {
       this.writers['keywordsTheme'](record, dataStore, recordNode)
     fieldChanged('keywordsCollection') &&
       this.writers['keywordsCollection'](record, dataStore, recordNode)
+    fieldChanged('keywordsTypeCarte') &&
+      this.writers['keywordsTypeCarte'](record, dataStore, recordNode)
+    fieldChanged('keywordsEmprise') &&
+      this.writers['keywordsEmprise'](record, dataStore, recordNode)
     fieldChanged('topics') &&
       this.writers['topics'](record, dataStore, recordNode)
     fieldChanged('legalConstraints') &&

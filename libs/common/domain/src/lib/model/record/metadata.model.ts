@@ -127,6 +127,8 @@ export interface BaseRecord {
   keywords: Array<Keyword>
   keywordsTheme?: Array<Keyword>
   keywordsCollection?: Array<Keyword>
+  keywordsTypeCarte?: Array<Keyword>
+  keywordsEmprise?: Array<Keyword>
   licenses: Array<Constraint>
   legalConstraints: Array<Constraint>
   securityConstraints: Array<Constraint>
@@ -151,7 +153,6 @@ export interface BaseRecord {
   resolutionScaleDenominator?: string
   alimentations?: string
   mapDigital?: boolean
-  emprise?: string
 
   // to add: canonical url
   // to add: source catalog (??)
