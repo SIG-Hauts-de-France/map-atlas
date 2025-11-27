@@ -36,8 +36,11 @@ import { SearchHeaderComponent } from '../dashboard/search-header/search-header.
 import { PageErrorComponent } from './components/page-error/page-error.component'
 import { DateService } from '@geonetwork-ui/util/shared'
 import { RedmineService } from '../redmine.service'
-import { FormsModule } from '@angular/forms';
-import { CatalogRecord, Keyword } from '@geonetwork-ui/common/domain/model/record'
+import { FormsModule } from '@angular/forms'
+import {
+  CatalogRecord,
+  Keyword,
+} from '@geonetwork-ui/common/domain/model/record'
 
 marker('editor.record.form.bottomButtons.comeBackLater')
 marker('editor.record.form.bottomButtons.previous')
@@ -93,7 +96,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private router: Router,
     private dateService: DateService,
-    private redmineService: RedmineService,
+    private redmineService: RedmineService
   ) {}
 
   ngOnInit(): void {
@@ -246,158 +249,175 @@ export class EditPageComponent implements OnInit, OnDestroy {
 
   fetchRedmineData() {
     // console.log('Fetching Redmine data for card number:', this.cardNumber);
-    
-    
-    if (!this.cardNumber) return;
 
-    this.redmineService.getIssueByCardNumber(this.cardNumber).subscribe((data: any) => {
-      // console.log('Redmine data received:', data);
-      
-      if (data.issues && data.issues.length > 0) {
-        const issue = data.issues[0];
-        const keywordsField = issue.custom_fields.find(cf => cf.name === 'Mots clés')?.value;
-        const themeHdfField = issue.custom_fields.find(cf => cf.name === 'Thématique HdF')?.value;
-        const collectionField = issue.custom_fields.find(cf => cf.name === 'Collection')?.value;
-        const alimentationField = issue.custom_fields.find(cf => cf.name === 'Alimentation Cartothèque')?.value;
-        const echelleField = issue.custom_fields.find(cf => cf.name === 'Echelle')?.value;
-        const empriseField = issue.custom_fields.find(cf => cf.name === 'Emprise données fournies')?.value;
+    if (!this.cardNumber) return
 
-        const keywords: Keyword[] = [
-          ...keywordsField
-            .split(',')
-            .map((kw: string) => kw.trim())
-            .filter((kw: string) => kw.length > 0)
-            .map((kw: string): Keyword => ({
-              thesaurus: { id: 'Mots-clés' },
-              type: 'other',
-              label: kw,
-            })),
-  
-        ];
+    this.redmineService
+      .getIssueByCardNumber(this.cardNumber)
+      .subscribe((data: any) => {
+        // console.log('Redmine data received:', data);
 
-        const keywordTheme: Keyword[] = [
-          {
-            thesaurus: {
-              name: 'Thématiques région',
-              id: 'geonetwork.thesaurus.external.theme.thematiques_region_hdf',
-              url: new URL(
-                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.thematiques_region_hdf'
+        if (data.issues && data.issues.length > 0) {
+          const issue = data.issues[0]
+          const keywordsField = issue.custom_fields.find(
+            (cf) => cf.name === 'Mots clés'
+          )?.value
+          const themeHdfField = issue.custom_fields.find(
+            (cf) => cf.name === 'Thématique HdF'
+          )?.value
+          const collectionField = issue.custom_fields.find(
+            (cf) => cf.name === 'Collection'
+          )?.value
+          const alimentationField = issue.custom_fields.find(
+            (cf) => cf.name === 'Alimentation Cartothèque'
+          )?.value
+          const echelleField = issue.custom_fields.find(
+            (cf) => cf.name === 'Echelle'
+          )?.value
+          let empriseField = issue.custom_fields.find(
+            (cf) => cf.name === 'Emprise données fournies'
+          )?.value
+          empriseField = empriseField == 'Régional' ? 'Région' : empriseField
+          empriseField =
+            empriseField == 'Départemental' ? 'Département' : empriseField
+          empriseField =
+            empriseField == 'Infra-Départemental'
+              ? 'Infra-départemental'
+              : empriseField
+          empriseField =
+            empriseField == 'Supra-Régional' ? 'France' : empriseField
+
+          const keywords: Keyword[] = [
+            ...keywordsField
+              .split(',')
+              .map((kw: string) => kw.trim())
+              .filter((kw: string) => kw.length > 0)
+              .map(
+                (kw: string): Keyword => ({
+                  thesaurus: { id: 'Mots-clés' },
+                  type: 'other',
+                  label: kw,
+                })
               ),
-            },
-            type: 'theme',
-            label: themeHdfField,
-            translations: {}
-          }
-        ];
+          ]
 
-        const collectionKeywords: Keyword[] = [
-          {
-            thesaurus: {
-              name: 'Collections',
-              id: 'geonetwork.thesaurus.external.theme.collections',
-              url: new URL(
-                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.collections'
-              ),
+          //TODO : localiser les URLs
+          const keywordTheme: Keyword[] = [
+            {
+              thesaurus: {
+                name: 'Thématiques région',
+                id: 'geonetwork.thesaurus.external.theme.thematiques_region_hdf',
+                url: new URL(
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.thematiques_region_hdf'
+                ),
+              },
+              type: 'theme',
+              label: themeHdfField,
+              translations: {},
             },
-            type: 'theme',
-            label: collectionField,
-            translations: {}
-          }
-        ];
+          ]
 
-        const typeCarteKeyword: Keyword[] = [
-          {
-            thesaurus: {
-              name: 'Type de carte',
-              id: 'geonetwork.thesaurus.external.theme.type_de_carte',
-              url: new URL(
-                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.Type_de_carte'
-              ),
+          const collectionKeywords: Keyword[] = [
+            {
+              thesaurus: {
+                name: 'Collections',
+                id: 'geonetwork.thesaurus.external.theme.collections',
+                url: new URL(
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.collections'
+                ),
+              },
+              type: 'theme',
+              label: collectionField,
+              translations: {},
             },
-            type: 'theme',
-            label: 'Statique',
-            translations: {}
-          }
-        ];
+          ]
 
-        const empriseKeyword: Keyword[] = [
-          {
-            thesaurus: {
-              name: 'Emprise geographique',
-              id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
-              url: new URL(
-                'http://localhost:8080/geonetwork/srv/api/registries/vocabularies/external.theme.emprise_geographique'
-              ),
+          const typeCarteKeyword: Keyword[] = [
+            {
+              thesaurus: {
+                name: 'Type de carte',
+                id: 'geonetwork.thesaurus.external.theme.type_de_carte',
+                url: new URL(
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.Type de Carte'
+                ),
+              },
+              type: 'theme',
+              label: 'Statique',
+              translations: {},
             },
-            type: 'theme',
-            label: empriseField,
-            translations: {}
-          }
-        ];
+          ]
 
-        const echelle = echelleField
+          const empriseKeyword: Keyword[] = [
+            {
+              thesaurus: {
+                name: 'Emprise géographique',
+                id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
+                url: new URL(
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.emprise_geographique'
+                ),
+              },
+              type: 'theme',
+              label: empriseField,
+              translations: {},
+            },
+          ]
+
+          const echelle = echelleField
             ? parseInt(
-                (
-                  echelleField.match(
-                    /1\s*:\s*([\d\s]+)/
-                  )?.[1] || ''
-                ).replace(/\s+/g, ''),
+                (echelleField.match(/1\s*:\s*([\d\s]+)/)?.[1] || '').replace(
+                  /\s+/g,
+                  ''
+                ),
                 10
               )
             : ''
 
-        
-        this.facade.record$.pipe(take(1)).subscribe(oldRecord => {
-          const updatedRecord: CatalogRecord = {
-            ...oldRecord,
-            title: issue.subject, 
-            abstract: issue.description || 'Description par défaut', 
-            overviews: [], 
-            keywords: keywords, 
-            keywordsTheme: keywordTheme,
-            keywordsCollection: collectionKeywords,
-            keywordsTypeCarte: typeCarteKeyword,
-            keywordsEmprise: empriseKeyword,
-            kind: 'dataset',
-            resourceIdentifier: this.cardNumber,
-            resourceCreated: issue.created_on,
-            resourceUpdated: issue.updated_on,
-            recordUpdated: issue.updated_on,
-            licenses: [], 
-            lineage: '', 
-            contacts: [],
-            contactsForResource: [],
-            spatialExtents: [],
-            temporalExtents: [],
-            status: 'ongoing', 
-            topics: [],
-            legalConstraints: [],
-            securityConstraints: [],
-            otherConstraints: [],
-            ownerOrganization: {
-              name: issue.author.name || 'MyOrganization',
-              translations: {}
-            },
-            defaultLanguage: 'fre',
-            otherLanguages: [],
-            uniqueIdentifier: oldRecord?.uniqueIdentifier ?? 'temp-id',
-            onlineResources: [],
-            resolutionScaleDenominator: echelle.toString(),
-            alimentations: alimentationField || 'alimentation par défaut',
-          };
-  
-          this.facade.openRecord(updatedRecord, null);
-          this.facade.setCurrentPage(0);
-        });
-        
-       
-      }
-      else {
-        alert('Aucune donnée trouvée pour ce numéro de carte.');
-        return;
-      }
-    });
-    
-  }
+          this.facade.record$.pipe(take(1)).subscribe((oldRecord) => {
+            const updatedRecord: CatalogRecord = {
+              ...oldRecord,
+              title: issue.subject,
+              abstract: issue.description || 'Description par défaut',
+              overviews: [],
+              keywords: keywords,
+              keywordsTheme: keywordTheme,
+              keywordsCollection: collectionKeywords,
+              keywordsTypeCarte: typeCarteKeyword,
+              keywordsEmprise: empriseKeyword,
+              kind: 'dataset',
+              resourceIdentifier: this.cardNumber,
+              resourceCreated: issue.created_on,
+              resourceUpdated: issue.updated_on,
+              recordUpdated: issue.updated_on,
+              licenses: [],
+              lineage: '',
+              contacts: [],
+              contactsForResource: [],
+              spatialExtents: [],
+              temporalExtents: [],
+              status: 'ongoing',
+              topics: [],
+              legalConstraints: [],
+              securityConstraints: [],
+              otherConstraints: [],
+              ownerOrganization: {
+                name: issue.author.name || 'MyOrganization',
+                translations: {},
+              },
+              defaultLanguage: 'fre',
+              otherLanguages: [],
+              uniqueIdentifier: oldRecord?.uniqueIdentifier ?? 'temp-id',
+              onlineResources: [],
+              resolutionScaleDenominator: echelle.toString(),
+              alimentations: alimentationField || 'alimentation par défaut',
+            }
 
+            this.facade.openRecord(updatedRecord, null)
+            this.facade.setCurrentPage(0)
+          })
+        } else {
+          alert('Aucune donnée trouvée pour ce numéro de carte.')
+          return
+        }
+      })
+  }
 }

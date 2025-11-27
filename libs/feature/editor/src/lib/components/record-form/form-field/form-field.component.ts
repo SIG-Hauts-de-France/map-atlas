@@ -149,12 +149,12 @@ export class FormFieldComponent {
     return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
   }
   get thesaurusCollectionsId() {
-    return 'geonetwork.thesaurus.external.theme.collections'
+    return 'geonetwork.thesaurus.local.theme.collections'
   }
   get thesaurusTypeCarteId() {
-    return 'geonetwork.thesaurus.external.theme.type_de_carte'
+    return 'geonetwork.thesaurus.local.theme.Type de Carte'
   }
   get thesaurusEmpriseId() {
-    return 'geonetwork.thesaurus.external.theme.emprise_geographique'
+    return 'geonetwork.thesaurus.local.theme.Emprise géographique'
   }
 }
