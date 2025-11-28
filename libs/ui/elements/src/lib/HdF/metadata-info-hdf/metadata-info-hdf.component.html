@@ -112,11 +112,11 @@
           {{ metadata.resourceIdentifier.code }}
         </p>
       </div>
-      <!-- Date de création // resourceCreated -->
-      <div *ngIf="metadata.recordCreated"> 
+      <!-- Date de création // recordCreated -->
+      <div *ngIf="metadata.resourceCreated"> 
         <p class="text-sm" translate>record.metadata.creation</p>
         <p class="text-primary font-medium mt-1">
-          {{ formatDate(metadata.recordCreated) }}
+          {{ formatDate(metadata.resourceCreated) }}
         </p>
       </div>
       <!-- Mise à jour -->
