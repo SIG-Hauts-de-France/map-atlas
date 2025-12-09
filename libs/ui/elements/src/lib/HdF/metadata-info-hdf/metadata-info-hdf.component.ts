@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core'
 import {
   DatasetRecord,
@@ -64,39 +64,44 @@ export class MetadataInfoHDFComponent {
   @Input() incomplete: boolean
   @Output() keyword = new EventEmitter<Keyword>()
   updatedTimes: number
-  otherKeywords: Keyword[] = [];
-  placeKeywords: Keyword[] = [];
-  collectionKeywords: Keyword[] = [];
-  themeSIGKeywords: Keyword[] = [];
+  otherKeywords: Keyword[] = []
+  placeKeywords: Keyword[] = []
+  collectionKeywords: Keyword[] = []
+  themeSIGKeywords: Keyword[] = []
 
   constructor(private dateService: DateService) {}
 
-  private filterKeywords(type:string) {
-    return this.metadata.keywords?.filter(k => !this.thesaurusContains(k, 'theme') &&  k?.type === type) || [];
+  private filterKeywords(type: string) {
+    return (
+      this.metadata.keywords?.filter(
+        (k) => !this.thesaurusContains(k, 'theme') && k?.type === type
+      ) || []
+    )
   }
 
-  private thesaurusContains(keyword:Keyword, value: string) {
-    return (keyword?.thesaurus?.id && keyword?.thesaurus?.id?.indexOf(value) !== -1);
+  private thesaurusContains(keyword: Keyword, value: string) {
+    return (
+      keyword?.thesaurus?.id && keyword?.thesaurus?.id?.indexOf(value) !== -1
+    )
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['metadata']) {
-      console.log(this.metadata);
-      this.otherKeywords = this.filterKeywords('other');
+      this.otherKeywords = this.filterKeywords('other')
       // this.placeKeywords = this.filterKeywords('place');
-      this.placeKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'emprise_geographique')) || [];
-      this.collectionKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'collections')) || [];
-      this.themeSIGKeywords = this.metadata.keywords?.filter(k => this.thesaurusContains(k, 'themes_sig')) || [];
+      this.placeKeywords =
+        this.metadata.keywords?.filter((k) =>
+          this.thesaurusContains(k, 'emprise_geographique')
+        ) || []
+      this.collectionKeywords =
+        this.metadata.keywords?.filter((k) =>
+          this.thesaurusContains(k, 'collections')
+        ) || []
+      this.themeSIGKeywords =
+        this.metadata.keywords?.filter((k) =>
+          this.thesaurusContains(k, 'themes_sig')
+        ) || []
     }
-
-    // console.log("Other keywords:", this.otherKeywords);
-    // console.log("Place keywords:", this.placeKeywords);
-    // console.log("Collection keywords:", this.collectionKeywords);
-    // console.log("Theme SIG keywords:", this.themeSIGKeywords);
-    
-    
-    
-    
   }
 
   get hasUsage() {
@@ -109,7 +114,6 @@ export class MetadataInfoHDFComponent {
       (this.metadata.licenses?.length > 0 && this.licenses.length > 0)
     )
   }
-
 
   get legalConstraints() {
     let array = []

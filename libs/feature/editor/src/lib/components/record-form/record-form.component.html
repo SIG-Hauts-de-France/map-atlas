@@ -43,6 +43,8 @@
                 [config]="field.config.formFieldConfig"
                 [value]="field.value"
                 [componentName]="field.config.componentName"
+                [keywordsTypeCarteStatic]="keywordsTypeCarteStatic"
+                [keywordsTypeCarteDynamic]="keywordsTypeCarteDynamic"
                 (valueChange)="
                   handleFieldValueChange(field.config.model!, $event)
                 "

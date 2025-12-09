@@ -1244,7 +1244,7 @@ export function writeKeywordsTypeCarte(
   pipe(
     findOrCreateIdentification(),
     removeKeywordsTypeCarte(),
-    appendKeywordsTypeCarte(record.keywordsTypeCarte,record.defaultLanguage)
+    appendKeywordsTypeCarte(record.keywordsTypeCarte, record.defaultLanguage)
   )(rootEl)
 }
 

@@ -142,7 +142,6 @@ export const editorFieldAlimentationsFixture = () => ({
   value: 'unknown',
 })
 
-
 export const editorFieldKeywordsFixture = () => ({
   model: 'keywords',
   hidden: false,

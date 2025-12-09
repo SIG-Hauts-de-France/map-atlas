@@ -59,13 +59,15 @@ export class GenericKeywordsComponent {
 
   autoCompleteAction = (query: string) => {
     if (this.thesaurusId) {
-      return this.platformService.searchKeywordsInThesaurus(query, this.thesaurusId).pipe(
-        map((keywords) =>
-          keywords.map((keyword) => {
-            return { title: keyword.label, value: keyword }
-          })
+      return this.platformService
+        .searchKeywordsInThesaurus(query, this.thesaurusId)
+        .pipe(
+          map((keywords) =>
+            keywords.map((keyword) => {
+              return { title: keyword.label, value: keyword }
+            })
+          )
         )
-      )
     } else {
       return this.platformService.searchKeywords(query, this.keywordTypes).pipe(
         map((keywords) =>
@@ -73,7 +75,7 @@ export class GenericKeywordsComponent {
             return { title: keyword.label, value: keyword }
           })
         )
-      ) 
+      )
     }
   }
 

@@ -11,12 +11,36 @@
     <ng-container *ngTemplateOutlet="fieldContent"></ng-container>
   </ng-container>
   <ng-template #withGenericWrapper>
-    <gn-ui-form-field-wrapper
-      [label]="config.labelKey! | translate"
-      [hint]="config.hintKey! | translate"
-    >
-      <ng-container *ngTemplateOutlet="fieldContent"></ng-container>
-    </gn-ui-form-field-wrapper>
+    <ng-container [ngSwitch]="model">
+      <ng-container *ngSwitchDefault>
+        <gn-ui-form-field-wrapper
+          [label]="config.labelKey! | translate"
+          [hint]="config.hintKey! | translate"
+        >
+          <ng-container *ngTemplateOutlet="fieldContent"></ng-container>
+        </gn-ui-form-field-wrapper>
+      </ng-container>
+      <ng-container *ngSwitchCase="'resourceUpdated'" >
+        <ng-container *ngIf="keywordsTypeCarteDynamic">
+          <gn-ui-form-field-wrapper
+            [label]="config.labelKey! | translate"
+            [hint]="config.hintKey! | translate"
+          >
+            <ng-container *ngTemplateOutlet="fieldContent"></ng-container>
+          </gn-ui-form-field-wrapper>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'keywordsCollection'" >
+        <ng-container *ngIf="keywordsTypeCarteStatic">
+          <gn-ui-form-field-wrapper
+            [label]="config.labelKey! | translate"
+            [hint]="config.hintKey! | translate"
+          >
+            <ng-container *ngTemplateOutlet="fieldContent"></ng-container>
+          </gn-ui-form-field-wrapper>
+        </ng-container>
+      </ng-container>
+    </ng-container>
   </ng-template>
 </div>
 
@@ -83,11 +107,19 @@
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-date>
     </ng-container>
-    <ng-container *ngSwitchCase="'resourceUpdated'">
+    <ng-container *ngSwitchCase="'resourcePublished'">
       <gn-ui-form-field-date
         [value]="valueAsDate"
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-date>
+    </ng-container>
+    <ng-container *ngIf="keywordsTypeCarteDynamic">
+      <ng-container *ngSwitchCase="'resourceUpdated'">
+        <gn-ui-form-field-date
+          [value]="valueAsDate"
+          (valueChange)="valueChange.emit($event)"
+        ></gn-ui-form-field-date>
+      </ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="'updateFrequency'">
       <gn-ui-form-field-update-frequency
@@ -119,11 +151,13 @@
       ></gn-ui-form-field-keywords>
     </ng-container>
     <ng-container *ngSwitchCase="'keywordsCollection'">
-      <gn-ui-form-field-keywords
-        [value]="valueAsKeywords"
-        [thesaurusId]="thesaurusCollectionsId"
-        (valueChange)="valueChange.emit($event)"
-      ></gn-ui-form-field-keywords>
+      <ng-container *ngIf="keywordsTypeCarteStatic">
+        <gn-ui-form-field-keywords
+          [value]="valueAsKeywords"
+          [thesaurusId]="thesaurusCollectionsId"
+          (valueChange)="valueChange.emit($event)"
+        ></gn-ui-form-field-keywords>
+      </ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="'keywordsTypeCarte'">
       <gn-ui-form-field-keywords

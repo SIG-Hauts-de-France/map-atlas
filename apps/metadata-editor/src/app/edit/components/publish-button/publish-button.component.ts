@@ -29,7 +29,12 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core'
 import { combineLatest, Observable, of, Subscription } from 'rxjs'
 import { catchError, map, skip, switchMap, take } from 'rxjs/operators'
 import { DateService } from '@geonetwork-ui/util/shared'
-import { requiredFields, translatableFields } from '../../../../environements/environement'
+import {
+  requiredFieldsDynamique,
+  requiredFieldsStatique,
+  requiredFields,
+  translatableFields,
+} from '../../../../environements/environement'
 import { NotificationsService } from '@geonetwork-ui/feature/notifications'
 
 export type RecordSaveStatus = 'saving' | 'upToDate' | 'hasChanges'
@@ -176,18 +181,58 @@ export class PublishButtonComponent implements OnDestroy {
 
   saveRecord() {
     this.record$.pipe(take(1)).subscribe((record) => {
+      // console.log('Record to save:', record)
       let missingFields: string[] = []
-      for (const field of requiredFields) {
-        const value = record[field];
-        const isEmpty =
+      // Normalize keywordsTypeCarte to a string before comparison to avoid type mismatch
+      let keywordsTypeValue: string | undefined
+      // console.log('Record "overviews" value:', record['overviews'])
+      if (typeof record['keywordsTypeCarte'] === 'string') {
+        keywordsTypeValue = record['keywordsTypeCarte']
+      } else if (
+        Array.isArray(record['keywordsTypeCarte']) &&
+        record['keywordsTypeCarte'].length > 0
+      ) {
+        const first = record['keywordsTypeCarte'][0]
+        if (typeof first === 'string') {
+          keywordsTypeValue = first
+        } else if (first && typeof (first as any).label === 'string') {
+          keywordsTypeValue = (first as any).label
+        }
+      }
+
+      let requiredFieldsComplete = requiredFields
+      requiredFieldsComplete =
+        keywordsTypeValue === 'Statique'
+          ? [...requiredFieldsComplete, ...requiredFieldsStatique]
+          : requiredFieldsComplete
+      requiredFieldsComplete =
+        keywordsTypeValue === 'Dynamique'
+          ? [...requiredFieldsComplete, ...requiredFieldsDynamique]
+          : requiredFieldsComplete
+
+      // console.log('Required fields to check:', requiredFieldsComplete)
+      for (const field of requiredFieldsComplete) {
+        const value = record[field]
+        let isEmpty =
           value == null ||
           value === '' ||
-          (Array.isArray(value) && value.length === 0);
+          (Array.isArray(value) && value.length === 0)
+        //Champ spécifique pour 'AUTEURS'
+        if (field === 'contactsForResource-author') {
+          const authors = record['contactsForResource'].filter(
+            (contact: any) => {
+              return contact.role === 'author'
+            }
+          )
+          isEmpty = authors.length === 0
+        }
         if (isEmpty) {
           missingFields.push(translatableFields[field])
         }
       }
-      const cleanMissingFields = missingFields.filter(f => f && f.trim() !== '');
+      const cleanMissingFields = missingFields.filter(
+        (f) => f && f.trim() !== ''
+      )
       if (cleanMissingFields.length > 0) {
         this.notificationsService.showNotification({
           type: 'error',
@@ -199,7 +244,6 @@ export class PublishButtonComponent implements OnDestroy {
         })
         return
       }
-      console.log('Saving record', record)
       this.facade.saveRecord()
       this.facade.saveSuccess$
         .pipe(

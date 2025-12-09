@@ -86,6 +86,8 @@ export class FormFieldComponent {
 
   @Input() config: FormFieldConfig
   @Input() value: unknown
+  @Input() keywordsTypeCarteStatic = false
+  @Input() keywordsTypeCarteDynamic = false
 
   @Output() valueChange: EventEmitter<unknown> = new EventEmitter()
 
@@ -146,15 +148,16 @@ export class FormFieldComponent {
     return null
   }
   get thesaurusThemeId() {
-    return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
+    return 'geonetwork.thesaurus.local.theme.themes_sig'
+    //return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
   }
   get thesaurusCollectionsId() {
     return 'geonetwork.thesaurus.local.theme.collections'
   }
   get thesaurusTypeCarteId() {
-    return 'geonetwork.thesaurus.local.theme.Type de Carte'
+    return 'geonetwork.thesaurus.local.theme.type_de_carte'
   }
   get thesaurusEmpriseId() {
-    return 'geonetwork.thesaurus.local.theme.Emprise géographique'
+    return 'geonetwork.thesaurus.local.theme.emprise_geographique'
   }
 }

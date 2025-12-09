@@ -80,7 +80,7 @@ marker('editor.record.form.field.keywordsTheme')
 export const RECORD_COLLECTION_FIELD: EditorField = {
   model: 'keywordsCollection',
   formFieldConfig: {
-    labelKey: marker('Collections *'),
+    labelKey: marker('Collections'),
   },
 }
 marker('editor.record.form.field.keywordsCollection')
@@ -115,8 +115,6 @@ export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
   },
 }
 
-
-
 export const RECORD_TOPICS_FIELD: EditorField = {
   model: 'topics',
   formFieldConfig: {},
@@ -126,6 +124,14 @@ export const RECORD_RESOURCE_CREATED_FIELD: EditorField = {
   model: 'resourceCreated',
   formFieldConfig: {
     labelKey: marker('editor.record.form.field.resourceCreated'),
+  },
+  gridColumnSpan: 1,
+}
+
+export const RECORD_RESOURCE_PUBLISHED_FIELD: EditorField = {
+  model: 'resourcePublished',
+  formFieldConfig: {
+    labelKey: 'Date de publication *',
   },
   gridColumnSpan: 1,
 }
@@ -259,6 +265,7 @@ export const ABOUT_SECTION: EditorSection = {
     RECORD_ABSTRACT_FIELD,
     RECORD_RESOURCE_CREATED_FIELD,
     RECORD_RESOURCE_UPDATED_FIELD,
+    RECORD_RESOURCE_PUBLISHED_FIELD,
     RECORD_UPDATED_FIELD,
     RECORD_UPDATE_FREQUENCY_FIELD,
     RECORD_TEMPORAL_EXTENTS_FIELD,
@@ -302,7 +309,7 @@ export const CUSTOM_SECTION: EditorSection = {
   hidden: false,
   fields: [
     RECORD_EMPRISE_FIELD,
-    RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD, 
+    RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD,
     RECORD_THEME_HDF_FIELD,
     RECORD_KEYWORDS_FIELD,
     RECORD_COLLECTION_FIELD,
@@ -356,21 +363,20 @@ export const DEFAULT_CONFIGURATION: EditorConfig = {
       sections: [
         ABOUT_SECTION,
         CUSTOM_SECTION,
-        TITLE_SECTION,
         // CLASSIFICATION_SECTION,
-        INSPIRE_SECTION,
-        GEOGRAPHICAL_COVERAGE_SECTION,
+        // INSPIRE_SECTION,
+        // GEOGRAPHICAL_COVERAGE_SECTION,
       ],
     },
     {
       labelKey: marker('editor.record.form.page.resources'),
-      sections: [ASSOCIATED_RESOURCES_SECTION, ANNEXES_SECTION],
+      sections: [TITLE_SECTION, ASSOCIATED_RESOURCES_SECTION, ANNEXES_SECTION],
     },
     {
       labelKey: marker('editor.record.form.page.accessAndContact'),
       sections: [
-        USE_AND_ACCESS_CONDITIONS_SECTION,
         DATA_MANAGERS_SECTION,
+        USE_AND_ACCESS_CONDITIONS_SECTION,
         METADATA_POINT_OF_CONTACT_SECTION,
       ],
     },
