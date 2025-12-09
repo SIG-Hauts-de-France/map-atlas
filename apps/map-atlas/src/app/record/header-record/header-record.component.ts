@@ -114,7 +114,7 @@ export class HeaderRecordComponent {
   }
 
   get createDate() {
-    return this.dateService.formatDate(this.metadata.recordCreated) // or resourceCreated
+    return this.dateService.formatDate(this.metadata.resourceCreated) // or recordCreated
   }
 
   back() {
