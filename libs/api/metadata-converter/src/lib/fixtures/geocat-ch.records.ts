@@ -418,6 +418,17 @@ export const GEOCAT_CH_DATASET_RECORD: DatasetRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   spatialRepresentation: 'vector',
   onlineResources: [
     {
@@ -676,7 +687,7 @@ Die Quelle ist zu bezeichnen: „Quelle: Stadt Zürich“.`,
       rm: 'Convenziun da las Alps',
     },
   },
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }
 
@@ -839,6 +850,17 @@ export const GEOCAT_CH_SERVICE_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   onlineResources: [
     {
       type: 'link',
@@ -897,6 +919,6 @@ export const GEOCAT_CH_SERVICE_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

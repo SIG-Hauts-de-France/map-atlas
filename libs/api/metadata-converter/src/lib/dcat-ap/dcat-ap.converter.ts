@@ -59,6 +59,7 @@ export class DcatApConverter extends BaseConverter<string> {
     keywordsCollection: readKeywords,
     keywordsTypeCarte: readKeywords,
     keywordsEmprise: readKeywords,
+    keywordsPublication: readKeywords,
     topics: readTopics,
     resourceIdentifier: () => undefined,
     recordUpdated: readRecordUpdated,
@@ -115,6 +116,7 @@ export class DcatApConverter extends BaseConverter<string> {
     keywordsCollection: () => undefined,
     keywordsTypeCarte: () => undefined,
     keywordsEmprise: () => undefined,
+    keywordsPublication: () => undefined,
     topics: () => undefined,
     licenses: () => undefined,
     legalConstraints: () => undefined,
@@ -272,6 +274,12 @@ export class DcatApConverter extends BaseConverter<string> {
       tr,
       defaultLanguage
     )
+    const keywordsPublication = this.readers['keywordsPublication'](
+      dataStore,
+      catalogRecord,
+      tr,
+      defaultLanguage
+    )
     const topics = this.readers['topics'](
       dataStore,
       catalogRecord,
@@ -402,6 +410,7 @@ export class DcatApConverter extends BaseConverter<string> {
         keywordsCollection,
         keywordsTypeCarte,
         keywordsEmprise,
+        keywordsPublication,
         topics,
         licenses,
         legalConstraints,
@@ -447,6 +456,7 @@ export class DcatApConverter extends BaseConverter<string> {
         keywordsCollection,
         keywordsTypeCarte,
         keywordsEmprise,
+        keywordsPublication,
         topics,
         licenses,
         legalConstraints,
@@ -547,6 +557,8 @@ export class DcatApConverter extends BaseConverter<string> {
       this.writers['keywordsTypeCarte'](record, dataStore, recordNode)
     fieldChanged('keywordsEmprise') &&
       this.writers['keywordsEmprise'](record, dataStore, recordNode)
+    fieldChanged('keywordsPublication') &&
+      this.writers['keywordsPublication'](record, dataStore, recordNode)
     fieldChanged('topics') &&
       this.writers['topics'](record, dataStore, recordNode)
     fieldChanged('legalConstraints') &&

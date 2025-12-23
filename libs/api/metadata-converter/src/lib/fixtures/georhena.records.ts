@@ -190,6 +190,17 @@ export const GEORHENA_REUSE_SOLAIRE_RECORD: ReuseRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   topics: ['environment'],
   licenses: [],
   legalConstraints: [
@@ -257,6 +268,6 @@ export const GEORHENA_REUSE_SOLAIRE_RECORD: ReuseRecord = {
     },
   ],
   reuseType: 'map',
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

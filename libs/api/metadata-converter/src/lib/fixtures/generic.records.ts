@@ -197,6 +197,17 @@ Cette section contient des *caractères internationaux* (ainsi que des "caractè
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   topics: ['agriculture'],
   spatialRepresentation: 'grid',
   onlineResources: [
@@ -291,6 +302,6 @@ As such, **it is not very interesting at all.**`,
       de: 'Dieser Datensatz wurde manuell bearbeitet, um die Konvertierungsprozesse zu testen\n\nAls solches ist es **überhaupt nicht interessant.**',
     },
   },
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

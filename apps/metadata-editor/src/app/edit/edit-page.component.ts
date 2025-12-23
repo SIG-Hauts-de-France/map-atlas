@@ -127,6 +127,11 @@ export class EditPageComponent implements OnInit, OnDestroy {
           kw.thesaurus &&
           kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.themes_sig'
       )
+      const keywordsPublication = recordToOpen.keywords.filter(
+        (kw: any) =>
+          kw.thesaurus &&
+          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.publication'
+      )
       const keywordsSansTypeCarteEmpriseCollection =
         recordToOpen.keywords.filter(
           (kw: any) =>
@@ -137,7 +142,10 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 'geonetwork.thesaurus.local.theme.emprise_geographique' &&
               kw.thesaurus.id !==
                 'geonetwork.thesaurus.local.theme.collections' &&
-              kw.thesaurus.id !== 'geonetwork.thesaurus.local.theme.themes_sig')
+              kw.thesaurus.id !==
+                'geonetwork.thesaurus.local.theme.themes_sig' &&
+              kw.thesaurus.id !==
+                'geonetwork.thesaurus.local.theme.publication')
         )
       // console.log('recordToOpen.keywords:', recordToOpen.keywords)
       recordToOpen = {
@@ -147,6 +155,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         keywordsEmprise: keywordsEmprise,
         keywordsCollection: keywordsCollection,
         keywordsTheme: keywordsRegionHDF,
+        keywordsPublication: keywordsPublication,
       }
     }
 
@@ -425,6 +434,22 @@ export class EditPageComponent implements OnInit, OnDestroy {
               )
             : ''
 
+          const contactDirectionField = issue.custom_fields.find(
+            (cf) => cf.name === 'Direction'
+          )?.value
+          const contactAuthorField = issue.author.name
+            .split(' ')
+            .filter(Boolean)
+            .map((word) => word[0].toUpperCase())
+            .join('')
+          const contact = {
+            email: 'sig@hautsdefrance.fr',
+            organization: {
+              name: contactDirectionField + ' - ' + contactAuthorField,
+            },
+            role: 'author',
+          }
+
           this.facade.record$.pipe(take(1)).subscribe((oldRecord) => {
             const updatedRecord: CatalogRecord = {
               ...oldRecord,
@@ -437,6 +462,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 collectionField === null ? [] : collectionKeywords,
               keywordsTypeCarte: typeCarteKeyword,
               keywordsEmprise: empriseKeyword,
+              keywordsPublication: [],
               kind: 'dataset',
               resourceIdentifier: this.cardNumber,
               resourceCreated: issue.created_on,
@@ -444,8 +470,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
               recordUpdated: issue.updated_on,
               licenses: [],
               lineage: '',
-              contacts: [],
-              contactsForResource: [],
+              contacts: [contact],
+              contactsForResource: [contact],
               spatialExtents: [],
               temporalExtents: [],
               status: 'ongoing',

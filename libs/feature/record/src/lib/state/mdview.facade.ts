@@ -175,6 +175,16 @@ export class MdViewFacade {
     )
   )
 
+  isDynamique$ = this.metadata$.pipe(
+    map((metadata) => {
+      return (
+        metadata?.keywords?.filter(
+          (kw) => kw?.label?.toLowerCase() === 'dynamique'
+        ).length > 0
+      )
+    })
+  )
+
   userFeedbacks$ = this.store.pipe(select(MdViewSelectors.getUserFeedbacks))
   isAllUserFeedbackLoading$ = this.store.pipe(
     select(MdViewSelectors.getAllUserFeedbacksLoading)

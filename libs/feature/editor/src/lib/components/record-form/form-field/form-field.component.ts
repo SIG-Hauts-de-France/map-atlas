@@ -160,4 +160,7 @@ export class FormFieldComponent {
   get thesaurusEmpriseId() {
     return 'geonetwork.thesaurus.local.theme.emprise_geographique'
   }
+  get thesaurusPublicationId() {
+    return 'geonetwork.thesaurus.local.theme.publication'
+  }
 }

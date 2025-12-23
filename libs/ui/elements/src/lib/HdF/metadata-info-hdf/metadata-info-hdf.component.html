@@ -12,6 +12,9 @@
         ghostClass="h-[178px]"
         [showContent]="fieldReady('abstract')"
       >
+        <p class="mt-3 mb-3 font-medium text-primary text-sm" *ngIf="metadata.abstract" translate>
+          record.metadata.abstract
+        </p>
         <gn-ui-max-lines [maxLines]="6" *ngIf="metadata.abstract">
           <div class="mb-6">
             <gn-ui-markdown-parser
@@ -120,14 +123,10 @@
         </p>
       </div>
       <!-- Mise à jour -->
-      <div *ngIf="updateFrequency">
-        <p class="text-sm" translate>record.metadata.updateFrequency</p>
-        <p
-          class="text-primary font-medium mt-1 updateFrequency"
-          translate
-          [translateParams]="{ count: updatedTimes }"
-        >
-          {{ updateFrequency }}
+      <div *ngIf="metadata.resourceUpdated"> 
+        <p class="text-sm" translate>record.metadata.updatedOn</p>
+        <p class="text-primary font-medium mt-1">
+          {{ formatDate(metadata.resourceUpdated) }}
         </p>
       </div>
        <!-- Echelle -->

@@ -437,6 +437,17 @@ Toutes ces données sont reprises dans BDR.`,
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   kind: 'dataset',
   legalConstraints: [],
   licenses: [
@@ -495,7 +506,7 @@ Depuis, ce sont les Districts routiers qui assurent la tenue à jour de ces info
   defaultLanguage: 'fr',
   otherLanguages: [],
   translations: {},
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }
 
@@ -707,6 +718,17 @@ export const METAWAL_SERVICE_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   kind: 'service',
   legalConstraints: [],
   licenses: [
@@ -753,6 +775,6 @@ export const METAWAL_SERVICE_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

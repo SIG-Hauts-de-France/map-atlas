@@ -142,6 +142,15 @@ export const editorFieldAlimentationsFixture = () => ({
   value: 'unknown',
 })
 
+export const editorFieldLineageFixture = () => ({
+  model: 'lineage',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.lineage',
+  },
+  value: 'unknown',
+})
+
 export const editorFieldKeywordsFixture = () => ({
   model: 'keywords',
   hidden: false,
@@ -179,6 +188,14 @@ export const editorFieldKeywordsEmpriseFixture = () => ({
   },
 })
 
+export const editorFieldKeywordsPublicationFixture = () => ({
+  model: 'keywordsPublication',
+  hidden: false,
+  formFieldConfig: {
+    labelKey: 'editor.record.form.field.keywordsPublication',
+  },
+})
+
 export const editorFieldUniqueIdentifierFixture = () => ({
   model: 'uniqueIdentifier',
   hidden: false,
@@ -210,7 +227,9 @@ export const editorFieldsFixture = () => [
   editorFieldKeywordsCollectionFixture(),
   editorFieldKeywordsTypeCarteFixture(),
   editorFieldKeywordsEmpriseFixture(),
+  editorFieldKeywordsPublicationFixture(),
   editorFieldUniqueIdentifierFixture(),
   editorFieldResolutionScaleDenominatorFixture(),
   editorFieldAlimentationsFixture(),
+  editorFieldLineageFixture(),
 ]

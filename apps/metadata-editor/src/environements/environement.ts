@@ -14,11 +14,11 @@ export const requiredFields = [
   'keywords',
   'keywordsTypeCarte',
   'keywordsEmprise',
+  'keywordsPublication',
   'contactsForResource-author',
   'resourceCreated',
   'overviews',
   'onlineResources',
-  'resourcePublished',
 ]
 export const requiredFieldsStatique = []
 export const requiredFieldsDynamique = [
@@ -35,9 +35,9 @@ export const translatableFields = {
   keywordsCollection: 'Collection',
   keywordsTypeCarte: 'Type de carte',
   keywordsEmprise: 'Emprise géographique',
+  keywordsPublication: 'Publication',
   resourceCreated: 'Date de création',
   'contactsForResource-author': 'Auteur(s) de la ressource',
   onlineResources: 'Annexe - Fichier PDF ou URL de la carte',
   overviews: 'Aperçu - Fichier PNG',
-  resourcePublished: 'Date de publication',
 }

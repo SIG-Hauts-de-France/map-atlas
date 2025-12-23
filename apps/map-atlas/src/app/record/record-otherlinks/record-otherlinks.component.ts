@@ -36,6 +36,16 @@ import { getIsMobile } from '@geonetwork-ui/util/shared'
 })
 export class RecordOtherlinksComponent implements AfterViewInit {
   otherLinks$ = this.facade.otherLinks$
+  isDynamique$ = this.facade.isDynamique$
+
+  // otherLinks$ = this.facade.metadata$.pipe(
+  //   map((metadata) => {
+  //     const isDynamique = metadata?.keywordsTypeCarte?.some(
+  //       (kw: any) => kw?.label?.toLowerCase() === 'dynamique'
+  //     )
+  //     return isDynamique ? [] : this.facade.otherLinks$
+  //   })
+  // )
 
   isMobile$ = getIsMobile()
 

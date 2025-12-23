@@ -188,6 +188,17 @@ export const GEO2FRANCE_SERVICE_EAUXUSEES_RECORD: ServiceRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   topics: [],
   licenses: [],
   legalConstraints: [
@@ -228,6 +239,6 @@ export const GEO2FRANCE_SERVICE_EAUXUSEES_RECORD: ServiceRecord = {
     },
   ],
   translations: {},
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

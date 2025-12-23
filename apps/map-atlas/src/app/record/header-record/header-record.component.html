@@ -76,14 +76,14 @@
                   [style.color]="foregroundColor"
                   data-test="metadataBadges"
                 >
-                  <gn-ui-kind-badge
+                  <!-- <gn-ui-kind-badge
                     [styling]="'outline'"
                     [kind]="metadata.kind"
                   ></gn-ui-kind-badge>
                   <gn-ui-geo-data-badge
                     [styling]="'default'"
                     [record]="metadata"
-                  ></gn-ui-geo-data-badge>
+                  ></gn-ui-geo-data-badge> -->
                   <div *ngIf="metadata.resourceCreated">
                     <p
                       translate
@@ -93,7 +93,7 @@
                       record.metadata.createDate
                     </p>
                   </div>
-                  <div
+                  <!-- <div
                     *ngIf="metadata.kind === 'dataset' && metadata.status"
                     class="flex flex-row gap-4 text-sm"
                   >
@@ -103,7 +103,7 @@
                         'domain.record.status.' + metadata.status | translate
                       "
                     ></p>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

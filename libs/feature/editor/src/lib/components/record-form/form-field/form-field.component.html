@@ -173,6 +173,13 @@
         (valueChange)="valueChange.emit($event)"
       ></gn-ui-form-field-keywords>
     </ng-container>
+    <ng-container *ngSwitchCase="'keywordsPublication'">
+      <gn-ui-form-field-keywords
+        [value]="valueAsKeywords"
+        [thesaurusId]="thesaurusPublicationId"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-keywords>
+    </ng-container>
     <ng-container *ngSwitchCase="'topics'">
       <gn-ui-form-field-inspire-theme
         [value]="valueAsInspireTheme"
@@ -243,6 +250,14 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'alimentations'">
+      <gn-ui-form-field-simple
+        [type]="'text'"
+        [value]="valueAsString"
+        (valueChange)="valueChange.emit($event)"
+      ></gn-ui-form-field-simple>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'lineage'">
       <gn-ui-form-field-simple
         [type]="'text'"
         [value]="valueAsString"

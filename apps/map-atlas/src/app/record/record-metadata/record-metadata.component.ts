@@ -74,7 +74,7 @@ import { UserModel } from '@geonetwork-ui/common/domain/model/user'
     RecordLinkedRecordsComponent,
     TranslateDirective,
     TranslatePipe,
-    ImageOverlayPreviewHDFComponent
+    ImageOverlayPreviewHDFComponent,
   ],
   viewProviders: [
     provideIcons({ matChatOutline, iconoirAppWindow }),
@@ -93,8 +93,8 @@ export class RecordMetadataComponent {
     dataset: {
       download: (links) => links?.length > 0,
       api: (links) => links?.length > 0,
-      map: (mapApiLinks, geoDataLinksWithGeometry) =>
-        mapApiLinks?.length > 0 || geoDataLinksWithGeometry?.length > 0,
+      // On affiche jamais la carte pour les jeux de données HDF
+      map: (mapApiLinks, geoDataLinksWithGeometry) => false,
       data: (dataLinks, geoDataLinks) =>
         dataLinks?.length > 0 || geoDataLinks?.length > 0,
     },
@@ -170,6 +170,12 @@ export class RecordMetadataComponent {
     )
   )
 
+  // On affiche pas les liens si carte type dynamique
+  // displayOtherLinks$ = combineLatest([
+  //   this.metadataViewFacade.otherLinks$,
+  //   this.metadataViewFacade.isDynamique$,
+  // ]).pipe(map(([links, isDynamique]) => links?.length > 0 && !isDynamique))
+
   displayOtherLinks$ = this.metadataViewFacade.otherLinks$.pipe(
     map((links) => links?.length > 0)
   )
@@ -238,6 +244,16 @@ export class RecordMetadataComponent {
     })
   )
 
+  isDynamique$ = this.metadataViewFacade.metadata$.pipe(
+    map((metadata) => {
+      return (
+        metadata?.keywords?.filter(
+          (kw) => kw?.label?.toLowerCase() === 'dynamique'
+        ).length > 0
+      )
+    })
+  )
+
   errorTypes = ErrorType
 
   constructor(
@@ -251,6 +267,12 @@ export class RecordMetadataComponent {
     public reuseFormUrl: string
   ) {
     this.activeUser$ = this.platformServiceInterface.getMe()
+    // this.metadataViewFacade.metadata$.subscribe((metadata) => {
+    //   console.log('Metadata loaded:', metadata)
+    // })
+    // this.metadataViewFacade.isDynamique$.subscribe((value) => {
+    //   console.log('isDynamique$:', value)
+    // })
   }
 
   onInfoKeywordClick(keyword: Keyword) {

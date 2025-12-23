@@ -412,6 +412,17 @@ export const WALLONIE_REUSE_SPW_RECORD: ReuseRecord = {
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   topics: [],
   licenses: [
     {
@@ -492,6 +503,6 @@ export const WALLONIE_REUSE_SPW_RECORD: ReuseRecord = {
   ),
   lineage: "L'application a été développée sur base de l'API GeoViewer",
   temporalExtents: [],
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

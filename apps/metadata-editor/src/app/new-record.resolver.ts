@@ -42,6 +42,7 @@ export class NewRecordResolver {
           keywordsCollection: [],
           keywordsTypeCarte: [],
           keywordsEmprise: [],
+          keywordsPublication: [],
           licenses: [],
           legalConstraints: [NOT_KNOWN_CONSTRAINT],
           securityConstraints: [],

@@ -150,6 +150,17 @@ Malgré l'attention portée à la création de ces données, il est rappelé que
       translations: {},
     },
   ],
+  keywordsPublication: [
+    {
+      thesaurus: {
+        id: 'geonetwork.thesaurus.local',
+        name: 'geonetwork.thesaurus.local',
+      },
+      type: 'theme',
+      label: 'Interne',
+      translations: {},
+    },
+  ],
   topics: ['planningCadastre'],
   spatialRepresentation: 'vector',
   onlineResources: [
@@ -192,6 +203,6 @@ Ce lot de données produit en 2019, a été numérisé à partir du PCI Vecteur 
   translations: {},
   resourceIdentifier:
     'https://www.geoportail-urbanisme.gouv.fr/document/60036_PLU_20220329',
-  resolutionScaleDenominator:'1050000',
+  resolutionScaleDenominator: '1050000',
   alimentations: 'Oui-externe',
 }

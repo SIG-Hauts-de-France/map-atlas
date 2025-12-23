@@ -38,6 +38,7 @@ export class Gn4Converter extends BaseConverter<Gn4Record> {
       keywordsCollection: [],
       keywordsTypeCarte: [],
       keywordsEmprise: [],
+      keywordsPublication: [],
       topics: [],
       spatialExtents: [],
       temporalExtents: [],
@@ -45,7 +46,7 @@ export class Gn4Converter extends BaseConverter<Gn4Record> {
       defaultLanguage: null,
       otherLanguages: [],
       resolutionScaleDenominator: '',
-      alimentations:'',
+      alimentations: '',
     }
     const record: CatalogRecord = Object.keys(allKeys).reduce(
       (prev, fieldName) =>

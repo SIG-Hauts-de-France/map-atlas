@@ -30,6 +30,7 @@ import {
   readKeywordsCollection,
   readKeywordsTypeCarte,
   readKeywordsEmprise,
+  readKeywordsPublication,
   readKind,
   readLegalConstraints,
   readLicenses,
@@ -67,6 +68,7 @@ import {
   writeKeywordsCollection,
   writeKeywordsTypeCarte,
   writeKeywordsEmprise,
+  writeKeywordsPublication,
   writeKind,
   writeLanguages,
   writeLegalConstraints,
@@ -119,6 +121,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     keywordsCollection: readKeywordsCollection,
     keywordsTypeCarte: readKeywordsTypeCarte,
     keywordsEmprise: readKeywordsEmprise,
+    keywordsPublication: readKeywordsPublication,
     topics: readIsoTopics,
     licenses: readLicenses,
     legalConstraints: readLegalConstraints,
@@ -167,6 +170,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     keywordsCollection: writeKeywordsCollection,
     keywordsTypeCarte: writeKeywordsTypeCarte,
     keywordsEmprise: writeKeywordsEmprise,
+    keywordsPublication: writeKeywordsPublication,
     topics: writeTopics,
     licenses: writeLicenses,
     legalConstraints: writeLegalConstraints,
@@ -260,6 +264,7 @@ export class Iso19139Converter extends BaseConverter<string> {
     const keywordsCollection = this.readers['keywordsCollection'](rootEl, tr)
     const keywordsTypeCarte = this.readers['keywordsTypeCarte'](rootEl, tr)
     const keywordsEmprise = this.readers['keywordsEmprise'](rootEl, tr)
+    const keywordsPublication = this.readers['keywordsPublication'](rootEl, tr)
     const topics = this.readers['topics'](rootEl, tr)
     const legalConstraints = this.readers['legalConstraints'](rootEl, tr)
     const otherConstraints = this.readers['otherConstraints'](rootEl, tr)
@@ -300,6 +305,7 @@ export class Iso19139Converter extends BaseConverter<string> {
       keywordsCollection,
       keywordsTypeCarte,
       keywordsEmprise,
+      keywordsPublication,
       topics,
       licenses,
       legalConstraints,
@@ -428,6 +434,8 @@ export class Iso19139Converter extends BaseConverter<string> {
       this.writers['keywordsTypeCarte'](record, rootEl)
     fieldChanged('keywordsEmprise') &&
       this.writers['keywordsEmprise'](record, rootEl)
+    fieldChanged('keywordsPublication') &&
+      this.writers['keywordsPublication'](record, rootEl)
     fieldChanged('topics') && this.writers['topics'](record, rootEl)
     fieldChanged('legalConstraints') &&
       this.writers['legalConstraints'](record, rootEl)

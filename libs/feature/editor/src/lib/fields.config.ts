@@ -101,6 +101,14 @@ export const RECORD_EMPRISE_FIELD: EditorField = {
 }
 marker('editor.record.form.field.keywordsEmprise')
 
+export const RECORD_PUBLICATION_FIELD: EditorField = {
+  model: 'keywordsPublication',
+  formFieldConfig: {
+    labelKey: marker('Publication *'),
+  },
+}
+marker('editor.record.form.field.keywordsPublication')
+
 export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
   model: 'resolutionScaleDenominator',
   formFieldConfig: {
@@ -112,6 +120,13 @@ export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
   model: 'alimentations',
   formFieldConfig: {
     labelKey: marker('Alimentations'),
+  },
+}
+
+export const RECORD_LINEAGE_FIELD: EditorField = {
+  model: 'lineage',
+  formFieldConfig: {
+    labelKey: marker('Source'),
   },
 }
 
@@ -265,10 +280,10 @@ export const ABOUT_SECTION: EditorSection = {
     RECORD_ABSTRACT_FIELD,
     RECORD_RESOURCE_CREATED_FIELD,
     RECORD_RESOURCE_UPDATED_FIELD,
-    RECORD_RESOURCE_PUBLISHED_FIELD,
-    RECORD_UPDATED_FIELD,
-    RECORD_UPDATE_FREQUENCY_FIELD,
-    RECORD_TEMPORAL_EXTENTS_FIELD,
+    //RECORD_RESOURCE_PUBLISHED_FIELD,
+    // RECORD_UPDATED_FIELD,
+    // RECORD_UPDATE_FREQUENCY_FIELD,
+    // RECORD_TEMPORAL_EXTENTS_FIELD,
   ],
 }
 
@@ -314,6 +329,8 @@ export const CUSTOM_SECTION: EditorSection = {
     RECORD_KEYWORDS_FIELD,
     RECORD_COLLECTION_FIELD,
     RECORD_ALIMENTATIONS_FIELD,
+    RECORD_PUBLICATION_FIELD,
+    RECORD_LINEAGE_FIELD,
   ],
 }
 
