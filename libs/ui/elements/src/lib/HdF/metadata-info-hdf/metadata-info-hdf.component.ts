@@ -99,7 +99,7 @@ export class MetadataInfoHDFComponent {
         ) || []
       this.themeSIGKeywords =
         this.metadata.keywords?.filter((k) =>
-          this.thesaurusContains(k, 'themes_sig')
+          this.thesaurusContains(k, 'thematiques_region_hdf')
         ) || []
     }
   }

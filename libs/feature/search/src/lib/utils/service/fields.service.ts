@@ -83,7 +83,7 @@ export class FieldsService {
     license: new LicenseSearchField(this.injector),
     owner: new OwnerSearchField(this.injector),
     themesSIG: new SimpleSearchField(
-      'th_themes_sig.default',
+      'th_thematiques_region_hdf.default',
       this.injector,
       'asc'
     ),

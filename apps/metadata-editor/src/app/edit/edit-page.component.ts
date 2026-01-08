@@ -102,52 +102,46 @@ export class EditPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const [currentRecord, currentRecordSource] =
       this.route.snapshot.data['record']
-
     // Déplacer les mots-clés de type de carte, emprise et collection du tableau keywords vers leurs champs dédiés lors de l'init
     let recordToOpen = { ...currentRecord }
     if (Array.isArray(recordToOpen.keywords)) {
       const keywordsTypeCarte = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.type_de_carte'
+          kw.thesaurus.id ===
+            'geonetwork.thesaurus.local.theme.type_de_carte' &&
+          kw.label !== ''
       )
       const keywordsEmprise = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.local.theme.emprise_geographique'
+            'geonetwork.thesaurus.local.theme.emprise_geographique' &&
+          kw.label !== ''
       )
       const keywordsCollection = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.collections'
+          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.collections' &&
+          kw.label !== ''
       )
       const keywordsRegionHDF = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.themes_sig'
+          kw.thesaurus.id ===
+            'geonetwork.thesaurus.external.theme.thematiques_region_hdf' &&
+          kw.label !== ''
       )
       const keywordsPublication = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.publication'
+          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.publication' &&
+          kw.label !== ''
       )
       const keywordsSansTypeCarteEmpriseCollection =
         recordToOpen.keywords.filter(
-          (kw: any) =>
-            !kw.thesaurus ||
-            (kw.thesaurus.id !==
-              'geonetwork.thesaurus.local.theme.type_de_carte' &&
-              kw.thesaurus.id !==
-                'geonetwork.thesaurus.local.theme.emprise_geographique' &&
-              kw.thesaurus.id !==
-                'geonetwork.thesaurus.local.theme.collections' &&
-              kw.thesaurus.id !==
-                'geonetwork.thesaurus.local.theme.themes_sig' &&
-              kw.thesaurus.id !==
-                'geonetwork.thesaurus.local.theme.publication')
+          (kw: any) => !kw.thesaurus && kw.label !== ''
         )
-      // console.log('recordToOpen.keywords:', recordToOpen.keywords)
       recordToOpen = {
         ...recordToOpen,
         keywords: keywordsSansTypeCarteEmpriseCollection,
@@ -366,7 +360,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Thématiques région',
-                id: 'geonetwork.thesaurus.local.theme.themes_sig',
+                id: 'geonetwork.thesaurus.external.theme.thematiques_region_hdf',
                 url: new URL(
                   'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.thematiques_region_hdf'
                 ),
@@ -381,8 +375,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
             ? [
                 {
                   thesaurus: {
-                    name: 'Collections',
-                    id: 'geonetwork.thesaurus.external.theme.collections',
+                    name: 'Collection',
+                    id: 'geonetwork.thesaurus.local.theme.collections',
                     url: new URL(
                       'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.collections'
                     ),
@@ -398,7 +392,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Type de carte',
-                id: 'geonetwork.thesaurus.external.theme.type_de_carte',
+                id: 'geonetwork.thesaurus.local.theme.type_de_carte',
                 url: new URL(
                   'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.type_de_carte'
                 ),
@@ -413,7 +407,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Emprise géographique',
-                id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
+                id: 'geonetwork.thesaurus.local.theme.emprise_geographique',
                 url: new URL(
                   'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.emprise_geographique'
                 ),

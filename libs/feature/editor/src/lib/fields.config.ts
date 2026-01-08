@@ -72,7 +72,7 @@ export const RECORD_KEYWORDS_FIELD: EditorField = {
 export const RECORD_THEME_HDF_FIELD: EditorField = {
   model: 'keywordsTheme',
   formFieldConfig: {
-    labelKey: marker('Thématique Haut de France *'),
+    labelKey: marker('Thématique Hauts-de-France *'),
   },
 }
 marker('editor.record.form.field.keywordsTheme')
@@ -80,7 +80,7 @@ marker('editor.record.form.field.keywordsTheme')
 export const RECORD_COLLECTION_FIELD: EditorField = {
   model: 'keywordsCollection',
   formFieldConfig: {
-    labelKey: marker('Collections'),
+    labelKey: marker('Collection'),
   },
 }
 marker('editor.record.form.field.keywordsCollection')
@@ -119,7 +119,7 @@ export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
 export const RECORD_ALIMENTATIONS_FIELD: EditorField = {
   model: 'alimentations',
   formFieldConfig: {
-    labelKey: marker('Alimentations'),
+    labelKey: marker('Alimentation'),
   },
 }
 
@@ -319,8 +319,8 @@ export const CLASSIFICATION_SECTION: EditorSection = {
 }
 
 export const CUSTOM_SECTION: EditorSection = {
-  labelKey: marker('Section pour HDF'),
-  descriptionKey: marker('Section pour HDF - Concu spécialement pour vous'),
+  labelKey: marker('Section pour les Hauts-de-France'),
+  descriptionKey: marker('Informations liées aux spécificités régionales'),
   hidden: false,
   fields: [
     RECORD_EMPRISE_FIELD,

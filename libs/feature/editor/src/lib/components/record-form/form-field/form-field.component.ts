@@ -148,7 +148,7 @@ export class FormFieldComponent {
     return null
   }
   get thesaurusThemeId() {
-    return 'geonetwork.thesaurus.local.theme.themes_sig'
+    return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
     //return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
   }
   get thesaurusCollectionsId() {
