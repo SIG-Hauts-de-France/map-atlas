@@ -92,6 +92,7 @@ export class InternalLinkCardHDFComponent implements OnInit {
     )
   }
   get shouldShowThumbnail(): boolean {
+    return true
     return this.size === 'L' || this.size === 'M'
   }
 
