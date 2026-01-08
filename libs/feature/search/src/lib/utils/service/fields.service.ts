@@ -72,7 +72,7 @@ export class FieldsService {
       this.injector,
       'asc'
     ),
-    keyword: new MultilingualSearchField('tag', this.injector, 'desc', 'count'),
+    keyword: new MultilingualSearchField('tag', this.injector, 'asc', 'count'),
     documentStandard: new SimpleSearchField(
       'documentStandard',
       this.injector,

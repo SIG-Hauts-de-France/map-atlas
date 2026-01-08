@@ -4,14 +4,14 @@
   class="record-card"
   [ngClass]="cardClass"
 >
-  <div *ngIf="shouldShowThumbnail" class="record-card__thumbnail">
+  <div *ngIf="shouldShowThumbnail" class="record-card__thumbnail flex-shrink-0 w-24 sm:w-32 md:w-40 h-24 sm:h-32 md:h-40 overflow-hidden rounded border bg-gray-100">
     <gn-ui-thumbnail-hdf
       class="h-full object-contain"
       [thumbnailUrl]="record.overviews?.[0]?.url?.toString() || ''"
       [fit]="contain"
     ></gn-ui-thumbnail-hdf>
   </div>
-  <div class="grow pt-1" [ngClass]="shouldShowThumbnail ? 'sm:w-0' : ''">
+  <div class="grow min-w-0">
     <div class="flex flex-col gap-2 h-full">
       <h4
         class="record-card__title"
