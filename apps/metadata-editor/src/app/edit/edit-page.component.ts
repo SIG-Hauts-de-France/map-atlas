@@ -109,14 +109,14 @@ export class EditPageComponent implements OnInit, OnDestroy {
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.local.theme.type_de_carte' &&
+            'geonetwork.thesaurus.external.theme.type_de_carte' &&
           kw.label !== ''
       )
       const keywordsEmprise = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.local.theme.emprise_geographique' &&
+            'geonetwork.thesaurus.external.theme.emprise_geographique' &&
           kw.label !== ''
       )
       const keywordsCollection = recordToOpen.keywords.filter(
@@ -135,7 +135,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       const keywordsPublication = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.publication' &&
+          kw.thesaurus.id === 'geonetwork.thesaurus.external.theme.publication' &&
           kw.label !== ''
       )
       const keywordsSansTypeCarteEmpriseCollection =
@@ -392,9 +392,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Type de carte',
-                id: 'geonetwork.thesaurus.local.theme.type_de_carte',
+                id: 'geonetwork.thesaurus.external.theme.type_de_carte',
                 url: new URL(
-                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.type_de_carte'
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.type_de_carte'
                 ),
               },
               type: 'theme',
@@ -407,9 +407,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Emprise géographique',
-                id: 'geonetwork.thesaurus.local.theme.emprise_geographique',
+                id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
                 url: new URL(
-                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.emprise_geographique'
+                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.emprise_geographique'
                 ),
               },
               type: 'theme',

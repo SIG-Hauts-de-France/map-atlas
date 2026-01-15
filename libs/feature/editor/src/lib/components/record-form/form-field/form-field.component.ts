@@ -155,12 +155,14 @@ export class FormFieldComponent {
     return 'geonetwork.thesaurus.local.theme.collections'
   }
   get thesaurusTypeCarteId() {
-    return 'geonetwork.thesaurus.local.theme.type_de_carte'
+    // return 'geonetwork.thesaurus.external.theme.Type_de_carte'
+    return 'geonetwork.thesaurus.external.theme.type_de_carte'
   }
   get thesaurusEmpriseId() {
-    return 'geonetwork.thesaurus.local.theme.emprise_geographique'
+    // return 'geonetwork.thesaurus.external.theme.Emprise_geographique'
+    return 'geonetwork.thesaurus.external.theme.emprise_geographique'
   }
   get thesaurusPublicationId() {
-    return 'geonetwork.thesaurus.local.theme.publication'
+    return 'geonetwork.thesaurus.external.theme.publication'
   }
 }
