@@ -186,7 +186,7 @@ describe('datasets', () => {
         .should('eql', [
           'organization',
           'format',
-          'publicationYear',
+          'creationYear',
           'topic',
           'isSpatial',
           'license',

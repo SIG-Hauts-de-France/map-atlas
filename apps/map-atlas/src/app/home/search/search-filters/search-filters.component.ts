@@ -100,7 +100,7 @@ export class SearchFiltersComponent implements OnInit {
       getOptionalSearchConfig().ADVANCED_FILTERS || [
         'themesSIG',
         'keyword',
-        'publicationYear',
+        'creationYear',
         'collection',
         'placeKeywords',
         'resourceType',

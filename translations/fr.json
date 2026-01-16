@@ -614,6 +614,7 @@
   "search.filters.otherRecords": "Affichage des ressources d'un autre utilisateur",
   "search.filters.producerOrg": "Producteur",
   "search.filters.publicationYear": "Date de réalisation",
+  "search.filters.creationYear": "Date de réalisation",
   "search.filters.publisherOrg": "Distributeur",
   "search.filters.recordKind.all": "Tous",
   "search.filters.recordKind.dataset": "Jeux de données",

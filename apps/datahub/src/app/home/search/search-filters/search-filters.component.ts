@@ -97,7 +97,7 @@ export class SearchFiltersComponent implements OnInit {
       getOptionalSearchConfig().ADVANCED_FILTERS || [
         'organization',
         'format',
-        'publicationYear',
+        'creationYear',
         'topic',
         'isSpatial',
         'license',

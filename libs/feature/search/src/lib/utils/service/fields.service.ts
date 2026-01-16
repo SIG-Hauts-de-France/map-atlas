@@ -30,7 +30,7 @@ marker('search.filters.inspireKeyword')
 marker('search.filters.keyword')
 marker('search.filters.isSpatial')
 marker('search.filters.license')
-marker('search.filters.publicationYear')
+marker('search.filters.creationYear')
 marker('search.filters.organization')
 marker('search.filters.representationType')
 marker('search.filters.resourceType')
@@ -61,8 +61,8 @@ export class FieldsService {
       this.injector,
       'asc'
     ),
-    publicationYear: new SimpleSearchField(
-      'publicationYearForResource',
+    creationYear: new SimpleSearchField(
+      'creationYearForResource',
       this.injector,
       'desc'
     ),

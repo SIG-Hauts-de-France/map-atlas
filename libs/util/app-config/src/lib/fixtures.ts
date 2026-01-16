@@ -40,7 +40,7 @@ fonts_stylesheet_url = "https://fonts.googleapis.com/css2?family=Open+Sans"
 [search]
 record_kind_quick_filter = false
 filter_geometry_url = 'https://my.domain.org/geom.json'
-advanced_filters = ['publicationYear', 'documentStandard', 'inspireKeyword', 'topic', 'license']
+advanced_filters = ['creationYear', 'documentStandard', 'inspireKeyword', 'topic', 'license']
 
 [[search_preset]]
 sort = "-createDate"
@@ -49,7 +49,7 @@ filters.q = 'Carto'
 filters.organisation = ['Org1', 'Org2']
 filters.format = ['ESRI Shapefile']
 filters.topic = ['boundaries']
-filters.publicationYear = ['2023', '2022']
+filters.creationYear = ['2023', '2022']
 filters.spatial = ['yes']
 
 [translations.en]

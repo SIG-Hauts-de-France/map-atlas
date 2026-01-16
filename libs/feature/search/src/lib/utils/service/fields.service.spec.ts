@@ -91,7 +91,7 @@ describe('FieldsService', () => {
           'resourceType',
           'recordKind',
           'representationType',
-          'publicationYear',
+          'creationYear',
           'topic',
           'inspireKeyword',
           'keyword',
@@ -129,7 +129,7 @@ describe('FieldsService', () => {
           service.buildFiltersFromFieldValues({
             organization: ['aa', 'bb'],
             format: ['cc', 'dd'],
-            publicationYear: '2022',
+            creationYear: '2022',
             q: 'any',
             unknownField: 'abcd',
           })
@@ -142,7 +142,7 @@ describe('FieldsService', () => {
             dd: true,
           },
           orgFilter: true,
-          publicationYearForResource: {
+          creationYearForResource: {
             '2022': true,
           },
           any: 'any',
@@ -179,7 +179,7 @@ describe('FieldsService', () => {
           keyword: [],
           isSpatial: [],
           license: [],
-          publicationYear: [],
+          creationYear: [],
           organization: ['orgB'],
           q: [],
           representationType: [],
@@ -198,7 +198,7 @@ describe('FieldsService', () => {
     describe('#getFieldType', () => {
       it('returns the field type', () => {
         expect(service.getFieldType('organization')).toEqual('values')
-        expect(service.getFieldType('publicationYear')).toEqual('values')
+        expect(service.getFieldType('creationYear')).toEqual('values')
         expect(service.getFieldType('format')).toEqual('values')
         expect(service.getFieldType('changeDate')).toEqual('dateRange')
       })

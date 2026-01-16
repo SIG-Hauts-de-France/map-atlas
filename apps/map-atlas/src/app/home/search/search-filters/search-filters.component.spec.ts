@@ -26,7 +26,7 @@ jest.mock('@geonetwork-ui/util/app-config', () => ({
       'inspireKeyword',
       'license',
       'topic',
-      'publicationYear',
+      'creationYear',
     ],
   }),
 }))
@@ -66,7 +66,7 @@ class FieldsServiceMock {
       'inspireKeyword',
       'license',
       'topic',
-      'publicationYear',
+      'creationYear',
     ]
   }
 }
@@ -253,7 +253,7 @@ describe('SearchFiltersComponent', () => {
       it('clear OrgForResource & format', () => {
         expect(searchService.updateFilters).toHaveBeenCalledWith({
           filter_format: {},
-          filter_publicationYear: {},
+          filter_creationYear: {},
           filter_isSpatial: {},
           filter_publisherOrg: {},
           filter_topic: {},

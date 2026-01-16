@@ -16,7 +16,7 @@ const FIELD_VALUES_FROM_FILTERS_MOCK = {
   format: [],
   resourceType: [],
   representationType: [],
-  publicationYear: [],
+  creationYear: [],
   topic: [],
   inspireKeyword: [],
   keyword: [],
