@@ -47,7 +47,7 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'resoucreCreated', 'resourceIdentifier', 'resolutionScaleDenominator'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'resoucreCreated', 'resourceDate', 'resourceIdentifier', 'resolutionScaleDenominator', 'creationDateForResource'])
       .setSortBy(['desc', 'createDate'])
       .setResultsLayout('ROW')
       

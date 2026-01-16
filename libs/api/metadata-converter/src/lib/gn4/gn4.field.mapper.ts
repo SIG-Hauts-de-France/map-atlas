@@ -469,6 +469,17 @@ export class Gn4FieldMapper {
         ...(resolutionScaleDenominator && { resolutionScaleDenominator }),
       }
     },
+    resourceDate: (output, source) => {
+      const resourceDate = getAsArray(
+        selectField(source, 'resourceDate')
+      )?.find(d => d?.type === 'creation');
+      
+      return {
+        ...output,
+        ...(resourceDate && { resourceDate }),
+      }
+    }
+
   }
 
   private genericField = (output) => output
