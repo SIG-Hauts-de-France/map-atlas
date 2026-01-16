@@ -41,9 +41,12 @@
             class="text-primary -translate-y-[0.5px] shrink-0"
             [title]="record.ownerOrganization.name"
           ></ng-icon> -->
-          
-          <span *ngIf="record.recordCreated">
+          <!-- record.resourceCreated or record.recordCreated // record.creationDateForResource -->
+          <!-- <span *ngIf="record.recordCreated">
             Crée le {{ formatDate(record.recordCreated) }}
+          </span> -->
+          <span *ngIf="record?.resourceDate">
+            Crée le {{ formatDate(record.resourceDate.date) }}
           </span>
           <span *ngIf="record?.resourceIdentifier">
             - Numéro de carte : {{ record.resourceIdentifier.code }}
