@@ -122,7 +122,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       const keywordsCollection = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.collections' &&
+          kw.thesaurus.id === 'geonetwork.thesaurus.external.theme.collections' &&
           kw.label !== ''
       )
       const keywordsRegionHDF = recordToOpen.keywords.filter(
@@ -376,9 +376,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 {
                   thesaurus: {
                     name: 'Collection',
-                    id: 'geonetwork.thesaurus.local.theme.collections',
+                    id: 'geonetwork.thesaurus.external.theme.collections',
                     url: new URL(
-                      'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.collections'
+                      'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.collections'
                     ),
                   },
                   type: 'theme',
