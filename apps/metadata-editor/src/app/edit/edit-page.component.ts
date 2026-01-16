@@ -105,43 +105,62 @@ export class EditPageComponent implements OnInit, OnDestroy {
     // Déplacer les mots-clés de type de carte, emprise et collection du tableau keywords vers leurs champs dédiés lors de l'init
     let recordToOpen = { ...currentRecord }
     if (Array.isArray(recordToOpen.keywords)) {
-      const keywordsTypeCarte = recordToOpen.keywords.filter(
+      console.log(recordToOpen)
+      var keywordsTypeCarte = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
             'geonetwork.thesaurus.external.theme.type_de_carte' &&
           kw.label !== ''
       )
-      const keywordsEmprise = recordToOpen.keywords.filter(
+      if (keywordsTypeCarte.length === 0) {
+        keywordsTypeCarte = recordToOpen.keywordsTypeCarte
+      }
+      var keywordsEmprise = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
             'geonetwork.thesaurus.external.theme.emprise_geographique' &&
           kw.label !== ''
       )
-      const keywordsCollection = recordToOpen.keywords.filter(
+      if (keywordsEmprise.length === 0) {
+        keywordsEmprise = recordToOpen.keywordsEmprise
+      }
+      var keywordsCollection = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.external.theme.collections' &&
+          kw.thesaurus.id ===
+            'geonetwork.thesaurus.external.theme.collections' &&
           kw.label !== ''
       )
-      const keywordsRegionHDF = recordToOpen.keywords.filter(
+      if (keywordsCollection.length === 0) {
+        keywordsCollection = recordToOpen.keywordsCollection
+      }
+      var keywordsRegionHDF = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
             'geonetwork.thesaurus.external.theme.thematiques_region_hdf' &&
           kw.label !== ''
       )
-      const keywordsPublication = recordToOpen.keywords.filter(
+      if (keywordsRegionHDF.length === 0) {
+        keywordsRegionHDF = recordToOpen.keywordsTheme
+      }
+      var keywordsPublication = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id === 'geonetwork.thesaurus.external.theme.publication' &&
+          kw.thesaurus.id ===
+            'geonetwork.thesaurus.external.theme.publication' &&
           kw.label !== ''
       )
-      const keywordsSansTypeCarteEmpriseCollection =
-        recordToOpen.keywords.filter(
-          (kw: any) => !kw.thesaurus && kw.label !== ''
-        )
+      if (keywordsPublication.length === 0) {
+        keywordsPublication = recordToOpen.keywordsPublication
+      }
+      const keywordsSansTypeCarteEmpriseCollection = recordToOpen.keywords
+      // const keywordsSansTypeCarteEmpriseCollection =
+      //   recordToOpen.keywords.filter(
+      //     (kw: any) => !kw.thesaurus && kw.label !== ''
+      //   )
       recordToOpen = {
         ...recordToOpen,
         keywords: keywordsSansTypeCarteEmpriseCollection,
@@ -436,10 +455,18 @@ export class EditPageComponent implements OnInit, OnDestroy {
             .filter(Boolean)
             .map((word) => word[0].toUpperCase())
             .join('')
+          // const contact = {
+          //   email: 'sig@hautsdefrance.fr',
+          //   organization: {
+          //     name: contactDirectionField + ' - ' + contactAuthorField,
+          //   },
+          //   role: 'author',
+          // }
+          // #29746
           const contact = {
             email: 'sig@hautsdefrance.fr',
             organization: {
-              name: contactDirectionField + ' - ' + contactAuthorField,
+              name: 'Région Hauts-de-France',
             },
             role: 'author',
           }
