@@ -345,6 +345,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
           const alimentationField = issue.custom_fields.find(
             (cf) => cf.name === 'Alimentation Cartothèque'
           )?.value
+          ?.split('-')[1]
+          ?.trim() ?? null
           const echelleField = issue.custom_fields.find(
             (cf) => cf.name === 'Echelle'
           )?.value
@@ -437,6 +439,23 @@ export class EditPageComponent implements OnInit, OnDestroy {
             },
           ]
 
+          const publicationKeyword: Keyword[] = alimentationField
+            ? [
+                {
+                  thesaurus: {
+                    name: 'Publication',
+                    id: 'geonetwork.thesaurus.external.theme.publication',
+                    url: new URL(
+                      'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.publication'
+                    ),
+                  },
+                  type: 'theme',
+                  label: alimentationField,
+                  translations: {},
+                },
+              ]
+            : []
+
           const echelle = echelleField
             ? parseInt(
                 (echelleField.match(/1\s*:\s*([\d\s]+)/)?.[1] || '').replace(
@@ -483,7 +502,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 collectionField === null ? [] : collectionKeywords,
               keywordsTypeCarte: typeCarteKeyword,
               keywordsEmprise: empriseKeyword,
-              keywordsPublication: [],
+              keywordsPublication: publicationKeyword,
               kind: 'dataset',
               resourceIdentifier: this.cardNumber,
               resourceCreated: issue.created_on,
