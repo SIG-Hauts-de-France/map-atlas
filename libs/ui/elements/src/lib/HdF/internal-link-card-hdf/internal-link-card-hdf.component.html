@@ -46,7 +46,7 @@
             Crée le {{ formatDate(record.recordCreated) }}
           </span> -->
           <span *ngIf="record?.resourceDate">
-            Crée le {{ formatDate(record.resourceDate.date) }}
+            Créée le {{ formatDate(record.resourceDate.date) }}
           </span>
           <span *ngIf="record?.resourceIdentifier">
             - Numéro de carte : {{ record.resourceIdentifier.code }}
