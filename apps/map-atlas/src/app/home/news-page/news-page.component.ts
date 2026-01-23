@@ -44,14 +44,14 @@ export class NewsPageComponent {
     return getGlobalConfig().CONTACT_EMAIL
   }
   onMostRecentClick():void{
-    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { _sort: '-createDate' } });
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { _sort: '-creationDateForResource' } });
   }
 
   onMapsClick():void{
-    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'CALU',  _sort: '-createDate' } });
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'CALU',  _sort: '-creationDateForResource' } });
   }
 
   onMostDownloadedClick():void{
-    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'SPRC',  _sort: '-createDate' } });
+    this.router.navigate([ROUTER_ROUTE_SEARCH], { queryParams: { keyword: 'SPRC',  _sort: '-creationDateForResource' } });
   }
 }
