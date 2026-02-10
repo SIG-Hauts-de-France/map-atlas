@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FIELDS_BRIEF, SearchFacade } from '@geonetwork-ui/feature/search'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
-import { Observable } from 'rxjs';
-import { RouterFacade } from '@geonetwork-ui/feature/router';
+import { Observable } from 'rxjs'
+import { RouterFacade } from '@geonetwork-ui/feature/router'
 import { MatTooltipModule } from '@angular/material/tooltip'
 
 @Component({
@@ -21,19 +21,15 @@ export class MostRecentComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'creationDateForResource'])
       .setPageSize(8)
-      .setSortBy(['desc', 'createDate'])
+      .setSortBy(['desc', 'creationDateForResource'])
       .setResultsLayout('FEED')
 
-    this.records$ = this.searchFacade.results$; 
-
+    this.records$ = this.searchFacade.results$
   }
 
   onMapClick(metadata: CatalogRecord): void {
     this.routerFacade.goToMetadata(metadata)
   }
-  
 }
-
-

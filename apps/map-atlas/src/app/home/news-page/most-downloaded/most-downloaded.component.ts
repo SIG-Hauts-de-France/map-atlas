@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FIELDS_BRIEF, SearchFacade } from '@geonetwork-ui/feature/search'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
-import { Observable } from 'rxjs';
-import { RouterFacade } from '@geonetwork-ui/feature/router';
+import { Observable } from 'rxjs'
+import { RouterFacade } from '@geonetwork-ui/feature/router'
 import { MatTooltipModule } from '@angular/material/tooltip'
 
 @Component({
@@ -14,29 +14,28 @@ import { MatTooltipModule } from '@angular/material/tooltip'
   styleUrl: './most-downloaded.component.css',
 })
 export class MostDownloadedComponent implements OnInit {
-  records$: Observable<CatalogRecord[]>;
+  records$: Observable<CatalogRecord[]>
 
   constructor(
     private searchFacade: SearchFacade,
     private routerFacade: RouterFacade
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'creationDateForResource'])
       .setPageSize(8)
-      .setSortBy(['desc', 'createDate'])
+      .setSortBy(['desc', 'creationDateForResource'])
       .setResultsLayout('FEED')
       .setConfigFilters({
         'th_otherKeywords-.default': {
-          SPRC: true
-        } 
+          SPRC: true,
+        },
       })
-    this.records$ = this.searchFacade.results$;
+    this.records$ = this.searchFacade.results$
   }
 
   onMapClick(metadata: CatalogRecord): void {
     this.routerFacade.goToMetadata(metadata)
   }
-
 }

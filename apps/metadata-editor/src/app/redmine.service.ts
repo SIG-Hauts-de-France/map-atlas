@@ -10,7 +10,8 @@ export class RedmineService {
   // private apiUrlByCardNumber = '/redmine-api/issues.json?status_id=7&cf_1=';
   // status_id=7 => statut validé
   // cf_17 => champ Alimentation Cartothèque (Oui-Interne, Oui-Externe)
-  private apiUrlByCardNumber = `${environment.redmineUrl}/issues.json?status_id=7&f[]=cf_17&op[cf_17]==&v[cf_17][]=Oui-Interne&v[cf_17][]=Oui-Externe&cf_1=`
+  // private apiUrlByCardNumber = `${environment.redmineUrl}/issues.json?status_id=7&f[]=cf_17&op[cf_17]==&v[cf_17][]=Oui-Interne&v[cf_17][]=Oui-Externe&cf_1=`
+  private apiUrlByCardNumber = `${environment.redmineUrl}/issues.json?status_id=7&cf_1=`
   private username = environment.redmineUsername
   private password = environment.redminePassword
 

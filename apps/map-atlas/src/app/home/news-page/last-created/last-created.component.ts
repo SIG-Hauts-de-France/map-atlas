@@ -16,7 +16,11 @@ import { CommonModule } from '@angular/common'
   templateUrl: './last-created.component.html',
   styleUrls: ['./last-created.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FeatureSearchModule, ResultsListHdFContainerComponent],
+  imports: [
+    CommonModule,
+    FeatureSearchModule,
+    ResultsListHdFContainerComponent,
+  ],
   standalone: true,
 })
 export class LastCreatedComponent implements OnInit {
@@ -27,16 +31,15 @@ export class LastCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'creationDateForResource'])
       .setPageSize(3)
-      .setSortBy(['desc', 'createDate'])
+      .setSortBy(['desc', 'creationDateForResource'])
       .setResultsLayout('FEED')
       .setConfigFilters({
         'th_otherKeywords-.default': {
-            CALU: true
-        } 
+          CALU: true,
+        },
       })
-    
   }
 
   onMetadataSelection(metadata: CatalogRecord): void {

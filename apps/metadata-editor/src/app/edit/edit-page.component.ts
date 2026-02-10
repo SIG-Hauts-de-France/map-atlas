@@ -325,10 +325,28 @@ export class EditPageComponent implements OnInit, OnDestroy {
     this.redmineService
       .getIssueByCardNumber(this.cardNumber)
       .subscribe((data: any) => {
+        if (!data) {
+          alert('Erreur lors de la récupération des données Redmine.')
+          return
+        }
+
         // console.log('Redmine data received:', data);
 
         if (data.issues && data.issues.length > 0) {
           const issue = data.issues[0]
+
+          const alimentationCartotheque =
+            issue.custom_fields
+              .find((cf) => cf.name === 'Alimentation Cartothèque')
+              ?.value?.split('-')[0]
+              ?.trim() ?? null
+          if (alimentationCartotheque !== 'Oui') {
+            alert(
+              "La carte n'est pas paramétrée pour une alimentation dans la cartothèque."
+            )
+            return
+          }
+
           const keywordsField = issue.custom_fields.find(
             (cf) => cf.name === 'Mots clés'
           )?.value
@@ -342,11 +360,11 @@ export class EditPageComponent implements OnInit, OnDestroy {
               ? null
               : issue.custom_fields.find((cf) => cf.name === 'Collection')
                   ?.value
-          const alimentationField = issue.custom_fields.find(
-            (cf) => cf.name === 'Alimentation Cartothèque'
-          )?.value
-          ?.split('-')[1]
-          ?.trim() ?? null
+          const alimentationField =
+            issue.custom_fields
+              .find((cf) => cf.name === 'Alimentation Cartothèque')
+              ?.value?.split('-')[1]
+              ?.trim() ?? null
           const echelleField = issue.custom_fields.find(
             (cf) => cf.name === 'Echelle'
           )?.value
