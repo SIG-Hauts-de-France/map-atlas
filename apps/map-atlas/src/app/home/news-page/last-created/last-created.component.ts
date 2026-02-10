@@ -36,7 +36,7 @@ export class LastCreatedComponent implements OnInit {
       .setSortBy(['desc', 'creationDateForResource'])
       .setResultsLayout('FEED')
       .setConfigFilters({
-        'th_otherKeywords-.default': {
+        'th_custom.default': {
           CALU: true,
         },
       })

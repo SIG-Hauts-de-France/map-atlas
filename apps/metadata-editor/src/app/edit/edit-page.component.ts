@@ -369,7 +369,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
             (cf) => cf.name === 'Echelle'
           )?.value
           let empriseField = issue.custom_fields.find(
-            (cf) => cf.name === 'Emprise données fournies'
+            (cf) => cf.name === 'Emprise carte'
           )?.value
           empriseField = empriseField == 'Régional' ? 'Région' : empriseField
           empriseField =
