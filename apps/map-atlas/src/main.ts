@@ -3,7 +3,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
 import { AppModule } from './app/app.module'
 import { environment } from './environments/environment'
-import { loadAppConfigHDF, getGlobalConfig } from '@geonetwork-ui/util/app-config'
+import {
+  loadAppConfigHDF,
+  getGlobalConfig,
+} from '@geonetwork-ui/util/app-config'
 import { enableFallbackWithoutWorker } from '@camptocamp/ogc-client'
 
 if (environment.production) {
@@ -19,4 +22,20 @@ loadAppConfigHDF().then(() => {
   platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch((err) => console.error(err))
+
+  const matomoScript = document.createElement('script')
+  matomoScript.type = 'text/javascript'
+  matomoScript.text = `
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="${getGlobalConfig().MATOMO_URL}";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '${getGlobalConfig().MATOMO_SITE_ID}']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  `
+  document.head.appendChild(matomoScript)
 })

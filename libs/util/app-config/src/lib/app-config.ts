@@ -103,6 +103,8 @@ export function loadAppConfig() {
           'languages',
           'contact_email',
           'reuse_form_url',
+          'matomo_site_id',
+          'matomo_url',
         ],
         warnings,
         errors
@@ -135,6 +137,8 @@ export function loadAppConfig() {
               LANGUAGES: parsedGlobalSection.languages,
               CONTACT_EMAIL: parsedGlobalSection.contact_email,
               REUSE_FORM_URL: parsedGlobalSection.reuse_form_url,
+              MATOMO_SITE_ID: parsedGlobalSection.matomo_site_id,
+              MATOMO_URL: parsedGlobalSection.matomo_url,
             } as GlobalConfig)
 
       const parsedLayersSections = parseMultiConfigSection(
@@ -329,6 +333,8 @@ export function loadAppConfigHDF() {
           'languages',
           'contact_email',
           'reuse_form_url',
+          'matomo_site_id',
+          'matomo_url',
         ],
         warnings,
         errors
@@ -361,6 +367,8 @@ export function loadAppConfigHDF() {
               LANGUAGES: parsedGlobalSection.languages,
               CONTACT_EMAIL: parsedGlobalSection.contact_email,
               REUSE_FORM_URL: parsedGlobalSection.reuse_form_url,
+              MATOMO_SITE_ID: parsedGlobalSection.matomo_site_id,
+              MATOMO_URL: parsedGlobalSection.matomo_url,
             } as GlobalConfig)
 
       const parsedLayersSections = parseMultiConfigSection(

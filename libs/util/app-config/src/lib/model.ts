@@ -13,6 +13,8 @@ export interface GlobalConfig {
   LANGUAGES?: string[]
   CONTACT_EMAIL?: string
   REUSE_FORM_URL?: string
+  MATOMO_SITE_ID?: string
+  MATOMO_URL?: string
 }
 
 export interface LayerConfig {
