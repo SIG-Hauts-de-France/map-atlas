@@ -64,7 +64,6 @@ export class GenericKeywordsComponent {
         .pipe(
           map((keywords) =>
             keywords.map((keyword) => {
-              console.log(keyword)
               return { title: keyword.label, value: keyword }
             })
           )
@@ -81,7 +80,6 @@ export class GenericKeywordsComponent {
               keyword.thesaurus.id =
                 'geonetwork.thesaurus.external.theme.custom'
             }
-            console.log(keyword)
             return { title: keyword.label, value: keyword }
           })
         )
