@@ -64,6 +64,7 @@ export class GenericKeywordsComponent {
         .pipe(
           map((keywords) =>
             keywords.map((keyword) => {
+              console.log(keyword)
               return { title: keyword.label, value: keyword }
             })
           )
@@ -72,6 +73,15 @@ export class GenericKeywordsComponent {
       return this.platformService.searchKeywords(query, this.keywordTypes).pipe(
         map((keywords) =>
           keywords.map((keyword) => {
+            // Vérifie si le thesaurus est de type CUSTOM et met à jour l'id
+            if (
+              keyword.thesaurus?.name === 'CUSTOM' &&
+              keyword.thesaurus?.id === 'external.theme.custom'
+            ) {
+              keyword.thesaurus.id =
+                'geonetwork.thesaurus.external.theme.custom'
+            }
+            console.log(keyword)
             return { title: keyword.label, value: keyword }
           })
         )
@@ -86,6 +96,8 @@ export class GenericKeywordsComponent {
   }
 
   addKeyword(keyword: Keyword) {
+    console.log('Adding keyword:', keyword)
+
     const duplicatedKeyword = this.keywords.find(
       (k) => k.label === keyword.label
     )
