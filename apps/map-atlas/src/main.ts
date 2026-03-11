@@ -27,6 +27,7 @@ loadAppConfigHDF().then(() => {
   matomoScript.type = 'text/javascript'
   matomoScript.text = `
     var _paq = window._paq = window._paq || [];
+    _paq.push(['alwaysUseSendBeacon', true]);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
@@ -36,6 +37,12 @@ loadAppConfigHDF().then(() => {
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href$=".pdf"],a[href$=".zip"],a[href$=".doc"],a[href$=".docx"],a[href$=".xls"],a[href$=".xlsx"],a[href$=".csv"]');
+      if (link) {
+        _paq.push(['trackLink', link.href, 'download']);
+      }
+    });
   `
   document.head.appendChild(matomoScript)
 })
