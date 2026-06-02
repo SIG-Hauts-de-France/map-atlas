@@ -5,8 +5,8 @@
 
 [global]
 
-matomo_site_id = "9"
-matomo_url = "//piwik.hautsdefrance.fr/"
+matomo_site_id = "1"
+matomo_url = "//matomo-hdf.neogeo.fr/"
 
 # This URL (relative or absolute) must point to the API endpoint of a GeoNetwork4 instance
 geonetwork4_api_url = "/geonetwork/srv/api"

@@ -38,7 +38,7 @@ loadAppConfigHDF().then(() => {
       g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
     document.addEventListener('click', function(e) {
-      var link = e.target.closest('a[href$=".pdf"],a[href$=".zip"],a[href$=".doc"],a[href$=".docx"],a[href$=".xls"],a[href$=".xlsx"],a[href$=".csv"]');
+      var link = e.target.closest('a[href$=".pdf"],a[href$=".png"],a[href$=".jpg"],a[href$=".jpeg"],a[href$=".zip"],a[href$=".doc"],a[href$=".docx"],a[href$=".xls"],a[href$=".xlsx"],a[href$=".csv"]');
       if (link) {
         _paq.push(['trackLink', link.href, 'download']);
       }
