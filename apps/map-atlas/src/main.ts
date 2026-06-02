@@ -23,26 +23,38 @@ loadAppConfigHDF().then(() => {
     .bootstrapModule(AppModule)
     .catch((err) => console.error(err))
 
-  const matomoScript = document.createElement('script')
-  matomoScript.type = 'text/javascript'
-  matomoScript.text = `
-    var _paq = window._paq = window._paq || [];
-    _paq.push(['alwaysUseSendBeacon', true]);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u="${getGlobalConfig().MATOMO_URL}";
+  const matomoUrl = getGlobalConfig().MATOMO_URL
+  const matomoSiteId = getGlobalConfig().MATOMO_SITE_ID
+  if (matomoUrl && matomoSiteId) {
+    const matomoScript = document.createElement('script')
+    matomoScript.type = 'text/javascript'
+    matomoScript.text = `
+      var _paq = window._paq = window._paq || [];
+      var u="${matomoUrl}";
       _paq.push(['setTrackerUrl', u+'matomo.php']);
-      _paq.push(['setSiteId', '${getGlobalConfig().MATOMO_SITE_ID}']);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('a[href$=".pdf"],a[href$=".png"],a[href$=".jpg"],a[href$=".jpeg"],a[href$=".zip"],a[href$=".doc"],a[href$=".docx"],a[href$=".xls"],a[href$=".xlsx"],a[href$=".csv"]');
-      if (link) {
-        _paq.push(['trackLink', link.href, 'download']);
+      _paq.push(['setSiteId', '${matomoSiteId}']);
+      _paq.push(['alwaysUseSendBeacon', true]);
+      _paq.push(['trackPageView']);
+      // Complète enableLinkTracking (URLs avec paramètres, formats géo, etc.)
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+      var DOWNLOAD_EXT = /\\.(pdf|doc|docx|xls|xlsx|csv|zip|png|jpe?g|geojson|json|shp|gml|kml|kmz|gpkg|fgb|dxf|svg|html?|tar\\.gz)$/i;
+      function isDownloadHref(href) {
+        if (!href || href.indexOf('javascript:') === 0 || href.charAt(0) === '#') return false;
+        try {
+          return DOWNLOAD_EXT.test(new URL(href, window.location.href).pathname);
+        } catch (e) {
+          return DOWNLOAD_EXT.test(href.split(/[?#]/)[0]);
+        }
       }
-    });
-  `
-  document.head.appendChild(matomoScript)
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('a[href]');
+        if (!link || !isDownloadHref(link.href)) return;
+        _paq.push(['trackLink', link.href, 'download']);
+      }, true);
+    `
+    document.head.appendChild(matomoScript)
+  }
 })

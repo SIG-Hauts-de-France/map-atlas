@@ -4,6 +4,10 @@
 ### GLOBAL SETTINGS
 
 [global]
+
+matomo_site_id = "1"
+matomo_url = "//matomo-hdf.neogeo.fr/"
+
 # This URL (relative or absolute) must point to the API endpoint of a GeoNetwork4 instance
 geonetwork4_api_url = "/geonetwork/srv/api"
 geonetwork4_api_url_map_atlas = "/geonetwork/cartotheque/api"
