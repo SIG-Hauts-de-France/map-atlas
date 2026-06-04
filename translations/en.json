@@ -317,7 +317,7 @@
   "feature.catalog.attribute.values": "Values",
   "input.file.dropFileLabel": "or drop it here",
   "input.file.orInputUrl": "or create a link to an external resource",
-  "input.file.selectFileLabel": "Select a file ({sizeMB} MB max.)",
+  "input.file.selectFileLabel": "Select a file",
   "input.file.uploadProgressCancel": "Cancel",
   "input.file.uploadProgressLabel": "Uploading in progress...",
   "input.image.altTextPlaceholder": "Image alternate text",
