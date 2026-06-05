@@ -50,7 +50,9 @@ loadAppConfigHDF().then(() => {
         }
       }
       document.addEventListener('click', function(e) {
-        var link = e.target.closest('a[href]');
+        var target = e.target;
+        if (!target || !(target instanceof Element)) return;
+        var link = target.closest('a[href]');
         if (!link || !isDownloadHref(link.href)) return;
         _paq.push(['trackLink', link.href, 'download']);
       }, true);
