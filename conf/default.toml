@@ -9,19 +9,19 @@
 #geonetwork4_api_url_map_atlas = "/geonetwork/cartotheque/api"
 
 ## DEV
-geonetwork4_api_url = "https://geocatalogue-hdf.neogeo.fr/geonetwork/srv/api"
+geonetwork4_api_url = "/geonetwork/srv/api"
 geonetwork4_api_url_map_atlas = "https://geocatalogue-hdf.neogeo.fr/geonetwork/cartotheque/api"
 matomo_site_id = "1"
 matomo_url = "//matomo-hdf.neogeo.fr/"
 
 ## KALIF
-# geonetwork4_api_url = "https://geocatalogue-kalif.hautsdefrance.net/geonetwork/srv/api"
+# geonetwork4_api_url = "/geonetwork/srv/api"
 # geonetwork4_api_url_map_atlas = "https://geocatalogue-kalif.hautsdefrance.net/geonetwork/cartotheque/api"
 # matomo_site_id = "13"
 # matomo_url = "//piwik.hautsdefrance.fr/"
 
 ## PROD
-# geonetwork4_api_url = "https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api"
+# geonetwork4_api_url = "/geonetwork/srv/api"
 # geonetwork4_api_url_map_atlas = "https://geocatalogue.hautsdefrance.fr/geonetwork/cartotheque/api"
 # matomo_site_id = "9"
 # matomo_url = "//piwik.hautsdefrance.fr/"
