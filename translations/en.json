@@ -517,6 +517,8 @@
   "record.metadata.title": "Title",
   "record.metadata.topics": "Categories",
   "record.metadata.uniqueId": "Unique Identifier",
+  "record.metadata.resourceIdentifier": "Map Number",
+  "record.metadata.identifier": "Identifier",
   "record.metadata.updateFrequency": "Data Update Frequency",
   "record.metadata.updatedOn": "Updated on",
   "record.metadata.usage": "License and Conditions",
