@@ -1,12 +1,13 @@
 module.exports = {
   '/geonetwork': {
     target: 'https://geocatalogue-hdf.neogeo.fr/',
-    secure: true,
+    secure: false,
     logLevel: 'debug',
     changeOrigin: true,
     cookiePathRewrite: {
       '/geonetwork': '/',
     },
+    cookieDomainRewrite: 'localhost',
   },
   // this provides a parameter-based proxy to easily work around CORS issues
   // use with: /dev-proxy?http://where_to_proxy.com/bla?abc

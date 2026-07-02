@@ -148,21 +148,21 @@ export class FormFieldComponent {
     return null
   }
   get thesaurusThemeId() {
-    return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
+    return 'geonetwork.thesaurus.local.theme.thematiques_region_hdf'
     //return 'geonetwork.thesaurus.external.theme.thematiques_region_hdf'
   }
   get thesaurusCollectionsId() {
-    return 'geonetwork.thesaurus.external.theme.collections'
+    return 'geonetwork.thesaurus.local.theme.collections'
   }
   get thesaurusTypeCarteId() {
     // return 'geonetwork.thesaurus.external.theme.Type_de_carte'
-    return 'geonetwork.thesaurus.external.theme.type_de_carte'
+    return 'geonetwork.thesaurus.local.theme.type_de_carte'
   }
   get thesaurusEmpriseId() {
     // return 'geonetwork.thesaurus.external.theme.Emprise_geographique'
-    return 'geonetwork.thesaurus.external.theme.emprise_geographique'
+    return 'geonetwork.thesaurus.local.theme.emprise_geographique'
   }
   get thesaurusPublicationId() {
-    return 'geonetwork.thesaurus.external.theme.publication'
+    return 'geonetwork.thesaurus.local.theme.publication'
   }
 }

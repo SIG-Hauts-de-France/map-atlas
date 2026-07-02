@@ -75,10 +75,9 @@ export class GenericKeywordsComponent {
             // Vérifie si le thesaurus est de type CUSTOM et met à jour l'id
             if (
               keyword.thesaurus?.name === 'CUSTOM' &&
-              keyword.thesaurus?.id === 'external.theme.custom'
+              keyword.thesaurus?.id === 'local.theme.custom'
             ) {
-              keyword.thesaurus.id =
-                'geonetwork.thesaurus.external.theme.custom'
+              keyword.thesaurus.id = 'geonetwork.thesaurus.local.theme.custom'
             }
             return { title: keyword.label, value: keyword }
           })

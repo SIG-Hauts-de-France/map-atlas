@@ -110,7 +110,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.external.theme.type_de_carte' &&
+            'geonetwork.thesaurus.local.theme.type_de_carte' &&
           kw.label !== ''
       )
       if (keywordsTypeCarte.length === 0) {
@@ -120,7 +120,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.external.theme.emprise_geographique' &&
+            'geonetwork.thesaurus.local.theme.emprise_geographique' &&
           kw.label !== ''
       )
       if (keywordsEmprise.length === 0) {
@@ -129,8 +129,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       var keywordsCollection = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id ===
-            'geonetwork.thesaurus.external.theme.collections' &&
+          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.collections' &&
           kw.label !== ''
       )
       if (keywordsCollection.length === 0) {
@@ -140,7 +139,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         (kw: any) =>
           kw.thesaurus &&
           kw.thesaurus.id ===
-            'geonetwork.thesaurus.external.theme.thematiques_region_hdf' &&
+            'geonetwork.thesaurus.local.theme.thematiques_region_hdf' &&
           kw.label !== ''
       )
       if (keywordsRegionHDF.length === 0) {
@@ -149,8 +148,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       var keywordsPublication = recordToOpen.keywords.filter(
         (kw: any) =>
           kw.thesaurus &&
-          kw.thesaurus.id ===
-            'geonetwork.thesaurus.external.theme.publication' &&
+          kw.thesaurus.id === 'geonetwork.thesaurus.local.theme.publication' &&
           kw.label !== ''
       )
       if (keywordsPublication.length === 0) {
@@ -399,9 +397,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Thématiques région',
-                id: 'geonetwork.thesaurus.external.theme.thematiques_region_hdf',
+                id: 'geonetwork.thesaurus.local.theme.thematiques_region_hdf',
                 url: new URL(
-                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.thematiques_region_hdf'
+                  'https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.thematiques_region_hdf'
                 ),
               },
               type: 'theme',
@@ -415,9 +413,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 {
                   thesaurus: {
                     name: 'Collection',
-                    id: 'geonetwork.thesaurus.external.theme.collections',
+                    id: 'geonetwork.thesaurus.local.theme.collections',
                     url: new URL(
-                      'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.collections'
+                      'https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.collections'
                     ),
                   },
                   type: 'theme',
@@ -431,9 +429,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Type de carte',
-                id: 'geonetwork.thesaurus.external.theme.type_de_carte',
+                id: 'geonetwork.thesaurus.local.theme.type_de_carte',
                 url: new URL(
-                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.type_de_carte'
+                  'https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.type_de_carte'
                 ),
               },
               type: 'theme',
@@ -446,9 +444,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
             {
               thesaurus: {
                 name: 'Emprise géographique',
-                id: 'geonetwork.thesaurus.external.theme.emprise_geographique',
+                id: 'geonetwork.thesaurus.local.theme.emprise_geographique',
                 url: new URL(
-                  'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.emprise_geographique'
+                  'https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.emprise_geographique'
                 ),
               },
               type: 'theme',
@@ -462,9 +460,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
                 {
                   thesaurus: {
                     name: 'Publication',
-                    id: 'geonetwork.thesaurus.external.theme.publication',
+                    id: 'geonetwork.thesaurus.local.theme.publication',
                     url: new URL(
-                      'https://opendata.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/external.theme.publication'
+                      'https://geocatalogue.hautsdefrance.fr/geonetwork/srv/api/registries/vocabularies/local.theme.publication'
                     ),
                   },
                   type: 'theme',
