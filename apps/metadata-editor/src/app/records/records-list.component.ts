@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 import {
-  ResultsTableContainerComponent,
+  ResultsTableHdFContainerComponent,
   SearchFacade,
   SearchService,
 } from '@geonetwork-ui/feature/search'
@@ -34,7 +34,7 @@ export const allSearchFields = [
   standalone: true,
   imports: [
     CommonModule,
-    ResultsTableContainerComponent,
+    ResultsTableHdFContainerComponent,
     PaginationButtonsComponent,
   ],
 })
