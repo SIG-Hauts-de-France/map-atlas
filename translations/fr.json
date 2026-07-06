@@ -541,7 +541,7 @@
   "record.metadata.topics": "Catégories",
   "record.metadata.uniqueId": "Identificateur de ressource unique",
   "record.metadata.resourceIdentifier": "Numéro de carte",
-  "record.metadata.identifier": "Numéro",
+  "record.metadata.identifier": "Identifiant",
   "record.metadata.updateFrequency": "Fréquence de mise à jour des données",
   "record.metadata.resolutionScaleDenominator": "Echelle de réalisation",
   "record.metadata.updatedOn": "Date de mise à jour",

@@ -112,7 +112,7 @@ marker('editor.record.form.field.keywordsPublication')
 export const RECORD_RESOLUTION_SCALE_DENOMINATOR_FIELD: EditorField = {
   model: 'resolutionScaleDenominator',
   formFieldConfig: {
-    labelKey: marker('Echelle *'),
+    labelKey: marker('Echelle * (ex: 1050000)'),
   },
 }
 
